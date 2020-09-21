@@ -7,5 +7,7 @@ namespace Backend.Responses
         public Player player;
         public Progress progress;
         public Achievements achievements;
+        public string token;
+        public Resources resources;
     }
 }
