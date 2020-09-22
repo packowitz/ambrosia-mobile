@@ -9,5 +9,7 @@ namespace Backend.Responses
         public Achievements achievements;
         public string token;
         public Resources resources;
+        public Gear gear;
+        public Gear[] gears;
     }
 }
