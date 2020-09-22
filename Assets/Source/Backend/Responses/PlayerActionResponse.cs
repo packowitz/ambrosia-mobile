@@ -9,7 +9,17 @@ namespace Backend.Responses
         public Achievements achievements;
         public string token;
         public Resources resources;
+        public Hero hero;
+        public Hero[] heroes;
+        public long[] heroIdsRemoved;
         public Gear gear;
         public Gear[] gears;
+        public long[] gearIdsRemovedFromArmory;
+        public Jewelry[] jewelries;
+        public Building[] buildings;
+        public Vehicle[] vehicles;
+        public VehiclePart[] vehicleParts;
+        public PlayerMap[] playerMaps;
+        public PlayerMap currentMap;
     }
 }
