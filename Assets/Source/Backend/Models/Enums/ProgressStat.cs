@@ -1,0 +1,57 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace Backend.Models
+{
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum ProgressStat
+    {
+        PLAYER_XP,
+        EXPEDITION_LEVEL,
+        EXPEDITION_SPEED,
+        NUMBER_ODD_JOBS,
+        GARAGE_SLOT,
+        MISSION_SPEED,
+        MISSION_MAX_BATTLES,
+        BUILDER_QUEUE,
+        BUILDER_SPEED,
+        BARRACKS_SIZE,
+        GEAR_QUALITY_INCREASE,
+        HERO_TRAIN_LEVEL,
+        TRAINING_XP_BOOST,
+        TRAINING_ASC_BOOST,
+        BATTLE_XP_BOOST,
+        VEHICLE_UPGRADE_LEVEL,
+        INCUBATORS,
+        LAB_SPEED,
+        SIMPLE_GENOMES_NEEDED,
+        COMMON_GENOMES_NEEDED,
+        UNCOMMON_GENOMES_NEEDED,
+        RARE_GENOMES_NEEDED,
+        EPIC_GENOMES_NEEDED,
+        SIMPLE_INCUBATION_UP_PER_MIL,
+        COMMON_INCUBATION_UP_PER_MIL,
+        UNCOMMON_INCUBATION_UP_PER_MIL,
+        UNCOMMON_INCUBATION_SUPER_UP_PER_MIL,
+        RARE_INCUBATION_UP_PER_MIL,
+        UNCOMMON_STARTING_LEVEL,
+        JEWEL_UPGRADE_LEVEL,
+        JEWEL_MERGE_DOUBLE_CHANCE,
+        GEAR_MOD_RARITY,
+        GEAR_MOD_SPEED,
+        GEAR_BREAKDOWN_RARITY,
+        GEAR_BREAKDOWN_RESOURCES,
+        AUTO_BREAKDOWN_ENABLED,
+        REROLL_GEAR_QUALITY,
+        REROLL_GEAR_STAT,
+        INC_GEAR_RARITY,
+        REROLL_GEAR_JEWEL,
+        ADD_GEAR_JEWEL,
+        ADD_GEAR_SPECIAL_JEWEL,
+        NEGOTIATION_LEVEL,
+        ENABLE_TRADING,
+        ENABLE_BLACK_MARKET,
+        ENABLE_CAR_YARD,
+        MERCHANT_LEVEL
+    }
+}

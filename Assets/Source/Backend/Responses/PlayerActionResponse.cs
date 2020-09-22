@@ -21,5 +21,6 @@ namespace Backend.Responses
         public VehiclePart[] vehicleParts;
         public PlayerMap[] playerMaps;
         public PlayerMap currentMap;
+        public Battle ongoingBattle;
     }
 }
