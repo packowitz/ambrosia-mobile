@@ -1,5 +1,8 @@
+using System;
+
 namespace Backend.Models
 {
+    [Serializable]
     public class Resources
     {
         public long playerId;

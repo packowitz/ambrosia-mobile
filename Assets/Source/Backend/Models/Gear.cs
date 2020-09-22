@@ -1,5 +1,8 @@
+using System;
+
 namespace Backend.Models
 {
+    [Serializable]
     public class Gear
     {
         public long id;
