@@ -11,7 +11,7 @@ namespace Backend.Models
         public string icon;
         public bool passive;
         public PassiveSkillTrigger passiveSkillTrigger;
-        public int passiveSkillTriggerValue;
+        public int? passiveSkillTriggerValue;
         public SkillActiveTrigger skillActiveTrigger;
         public int initCooldown;
         public int cooldown;

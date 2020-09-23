@@ -10,6 +10,6 @@ namespace Backend.Models
         public bool admin;
         public bool betaTester;
         public bool serviceAccount;
-        public string color;
+        public Color color;
     }
 }

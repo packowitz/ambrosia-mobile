@@ -12,17 +12,17 @@ namespace Backend.Models
         public Color color;
         public LootItemType type;
         public ResourceType resourceType;
-        public int resourceFrom;
-        public int resourceTo;
-        public long heroBaseId;
-        public int heroLevel;
-        public long gearLootId;
+        public int? resourceFrom;
+        public int? resourceTo;
+        public long? heroBaseId;
+        public int? heroLevel;
+        public long? gearLootId;
         public JewelType[] jewelTypes;
-        public int jewelLevel;
-        public long vehicleBaseId;
+        public int? jewelLevel;
+        public long? vehicleBaseId;
         public PartType vehiclePartType;
         public PartQuality vehiclePartQuality;
         public ProgressStat progressStat;
-        public int progressStatBonus;
+        public int? progressStatBonus;
     }
 }

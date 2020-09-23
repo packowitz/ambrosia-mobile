@@ -14,6 +14,6 @@ namespace Backend.Models
         public SkillActionTarget target;
         public SkillActionEffect effect;
         public int effectValue;
-        public int effectDuration;
+        public int? effectDuration;
     }
 }

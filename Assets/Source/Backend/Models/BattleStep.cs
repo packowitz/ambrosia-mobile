@@ -7,7 +7,7 @@ namespace Backend.Models
         public BattleStepPhase phase;
         public HeroPosition actingHero;
         public string actingHeroName;
-        public int usedSkill;
+        public int? usedSkill;
         public string usedSkillName;
         public HeroPosition target;
         public string targetName;

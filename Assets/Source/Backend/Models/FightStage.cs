@@ -7,9 +7,9 @@ namespace Backend.Models
     {
         public long id;
         public int stage;
-        public long hero1Id;
-        public long hero2Id;
-        public long hero3Id;
-        public long hero4Id;
+        public long? hero1Id;
+        public long? hero2Id;
+        public long? hero3Id;
+        public long? hero4Id;
     }
 }

@@ -6,8 +6,8 @@ namespace Backend.Models
     public class Hero
     {
         public long id;
-        public long missionId;
-        public long playerExpeditionId;
+        public long? missionId;
+        public long? playerExpeditionId;
         public long heroBaseId;
         public string name;
         public Color color;
@@ -17,12 +17,12 @@ namespace Backend.Models
         public int xp;
         public int maxXp;
         public int skill1;
-        public int skill2;
-        public int skill3;
-        public int skill4;
-        public int skill5;
-        public int skill6;
-        public int skill7;
+        public int? skill2;
+        public int? skill3;
+        public int? skill4;
+        public int? skill5;
+        public int? skill6;
+        public int? skill7;
         public int skillPoints;
         public int ascLvl;
         public int ascPoints;

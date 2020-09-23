@@ -7,7 +7,7 @@ namespace Backend.Models
     {
         public long id;
         public long playerId;
-        public long equippedTo;
+        public long? equippedTo;
         public PartType type;
         public PartQuality quality;
         public int level;

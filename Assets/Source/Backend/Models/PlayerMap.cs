@@ -6,7 +6,7 @@ namespace Backend.Models
     public class PlayerMap
     {
         public long mapId;
-        public int name;
+        public string name;
         public MapType type;
         public string background;
         public int discoverySteamCost;
@@ -16,7 +16,7 @@ namespace Backend.Models
         public int maxX;
         public int minY;
         public int maxY;
-        public int secondsToReset;
+        public int? secondsToReset;
         public bool unvisited;
  
         public PlayerMapTile[] tiles;

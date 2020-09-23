@@ -22,7 +22,7 @@ namespace Backend
             };
             serverAPI.DoPost<PlayerActionResponse>("/auth/login", body, resp =>
             {
-                Debug.Log(resp.player?.name);
+                Debug.Log(resp.player?.name + " logged in");
             }, null);
         }
     }

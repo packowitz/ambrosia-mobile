@@ -7,8 +7,8 @@ namespace Backend.Models
     {
         public long id;
         public long playerId;
-        public long missionId;
-        public long playerExpeditionId;
+        public long? missionId;
+        public long? playerExpeditionId;
         public long baseVehicleId;
         public string name;
         public string avatar;

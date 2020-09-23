@@ -1,4 +1,5 @@
 using Backend.Models;
+using Newtonsoft.Json;
 
 namespace Backend.Responses
 {
@@ -22,5 +23,8 @@ namespace Backend.Responses
         public PlayerMap[] playerMaps;
         public PlayerMap currentMap;
         public Battle ongoingBattle;
+        public Looted looted;
+        public Mission[] missions;
+        public long? missionIdFinished;
     }
 }

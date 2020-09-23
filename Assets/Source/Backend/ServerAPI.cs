@@ -1,5 +1,6 @@
 using System;
 using Configs;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -23,7 +24,11 @@ namespace Backend
             var requestAsyncOperation = request.SendWebRequest();
             requestAsyncOperation.completed += operation =>
             {
-                var response = JsonUtility.FromJson<T>(request.downloadHandler.text);
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                var response = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, settings);
                 onSuccess?.Invoke(response);
             };
         }

@@ -6,7 +6,7 @@ namespace Backend.Models
     public class BattleHero
     {
         public long id;
-        public long playerId;
+        public long? playerId;
         public long heroId;
         public HeroStatus status;
         public HeroBase heroBase;
@@ -20,18 +20,18 @@ namespace Backend.Models
         public BattleHeroBuff[] buffs;
  
         public int skill1Lvl;
-        public int skill2Lvl;
-        public int skill2Cooldown;
-        public int skill3Lvl;
-        public int skill3Cooldown;
-        public int skill4Lvl;
-        public int skill4Cooldown;
-        public int skill5Lvl;
-        public int skill5Cooldown;
-        public int skill6Lvl;
-        public int skill6Cooldown;
-        public int skill7Lvl;
-        public int skill7Cooldown;
+        public int? skill2Lvl;
+        public int? skill2Cooldown;
+        public int? skill3Lvl;
+        public int? skill3Cooldown;
+        public int? skill4Lvl;
+        public int? skill4Cooldown;
+        public int? skill5Lvl;
+        public int? skill5Cooldown;
+        public int? skill6Lvl;
+        public int? skill6Cooldown;
+        public int? skill7Lvl;
+        public int? skill7Cooldown;
  
         public int heroStrength;
         public int strengthBonus;

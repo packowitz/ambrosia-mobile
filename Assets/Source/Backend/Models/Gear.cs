@@ -6,8 +6,8 @@ namespace Backend.Models
     public class Gear
     {
         public long id;
-        public long playerId;
-        public long equippedTo;
+        public long? playerId;
+        public long? equippedTo;
         public bool modificationInProgress;
         public bool modificationPerformed;
         public Modification modificationAllowed;
@@ -20,19 +20,19 @@ namespace Backend.Models
         public GearQuality gearQuality;
         public GearJewelSlot jewelSlot1;
         public JewelType jewel1Type;
-        public int jewel1Level;
+        public int? jewel1Level;
         public GearJewelSlot jewelSlot2;
         public JewelType jewel2Type;
-        public int jewel2Level;
+        public int? jewel2Level;
         public GearJewelSlot jewelSlot3;
         public JewelType jewel3Type;
-        public int jewel3Level;
+        public int? jewel3Level;
         public GearJewelSlot jewelSlot4;
         public JewelType jewel4Type;
-        public int jewel4Level;
+        public int? jewel4Level;
         public bool specialJewelSlot;
         public JewelType specialJewelType;
-        public int specialJewelLevel;
+        public int? specialJewelLevel;
 
         // transient
         public bool markedToBreakdown;

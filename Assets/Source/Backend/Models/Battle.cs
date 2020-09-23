@@ -12,12 +12,12 @@ namespace Backend.Models
         public long nextBattleId;
         public Fight fight;
         public int fightStage;
-        public long mapId;
-        public int mapPosX;
-        public int mapPosY;
+        public long? mapId;
+        public int? mapPosX;
+        public int? mapPosY;
         public long playerId;
         public string playerName;
-        public long opponentId;
+        public long? opponentId;
         public string opponentName;
         public HeroPosition activeHero;
         public int turnsDone;
