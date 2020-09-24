@@ -16,7 +16,7 @@ namespace Backend
             envConfig = configsProvider.Get<EnvConfig>();
         }
         
-        public void DoPost<T>(string actionPath, object body, Action<T> onSuccess, Action<ErrorResponse> onError)
+        public void DoPost(string actionPath, object body, Action<PlayerActionResponse> onSuccess, Action<ErrorResponse> onError)
         {
             var request = UnityWebRequest.Put(envConfig.ApiUrl + actionPath, JsonUtility.ToJson(body));
             request.method = UnityWebRequest.kHttpVerbPOST;
@@ -44,7 +44,7 @@ namespace Backend
                     {
                         NullValueHandling = NullValueHandling.Ignore
                     };
-                    var response = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, settings);
+                    var response = JsonConvert.DeserializeObject<PlayerActionResponse>(request.downloadHandler.text, settings);
                     onSuccess?.Invoke(response);
                 }
             };
