@@ -1,8 +1,10 @@
+using System;
 using Backend.Models;
 using Backend.Models.ObjectShape;
 
 namespace Backend
 {
+    [Serializable]
     public class LootedItem
     {
         public LootedItemType type;
