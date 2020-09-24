@@ -1,6 +1,4 @@
 using Backend.Requests;
-using Backend.Responses;
-using UnityEngine;
 
 namespace Backend
 {
@@ -20,10 +18,7 @@ namespace Backend
                 email = email,
                 password = password
             };
-            serverAPI.DoPost("/auth/login", body, response =>
-            {
-                Debug.Log(response.player?.name + " logged in");
-            }, error => { Debug.Log("Login failed: " + error.title + "(" + error.httpStatus + ")"); });
+            serverAPI.DoPost("/auth/login", body);
         }
     }
 }
