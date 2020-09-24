@@ -1,4 +1,5 @@
 using System;
+using Backend.Responses;
 using Configs;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Backend
             envConfig = configsProvider.Get<EnvConfig>();
         }
         
-        public void DoPost<T>(string actionPath, object body, Action<T> onSuccess, Action<string> onError)
+        public void DoPost<T>(string actionPath, object body, Action<T> onSuccess, Action<ErrorResponse> onError)
         {
             var request = UnityWebRequest.Put(envConfig.ApiUrl + actionPath, JsonUtility.ToJson(body));
             request.method = UnityWebRequest.kHttpVerbPOST;
@@ -24,12 +25,28 @@ namespace Backend
             var requestAsyncOperation = request.SendWebRequest();
             requestAsyncOperation.completed += operation =>
             {
-                var settings = new JsonSerializerSettings
+                if (request.isNetworkError)
                 {
-                    NullValueHandling = NullValueHandling.Ignore
-                };
-                var response = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, settings);
-                onSuccess?.Invoke(response);
+                    onError?.Invoke(new ErrorResponse()
+                    {
+                        title = "Network error",
+                        message = "Please check you internet connection and try again.",
+                        httpStatus = 0
+                    });
+                }
+                else if (request.isHttpError)
+                {
+                    onError?.Invoke(JsonConvert.DeserializeObject<ErrorResponse>(request.downloadHandler.text));
+                }
+                else
+                {
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    };
+                    var response = JsonConvert.DeserializeObject<T>(request.downloadHandler.text, settings);
+                    onSuccess?.Invoke(response);
+                }
             };
         }
     }

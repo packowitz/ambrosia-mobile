@@ -20,10 +20,10 @@ namespace Backend
                 email = email,
                 password = password
             };
-            serverAPI.DoPost<PlayerActionResponse>("/auth/login", body, resp =>
+            serverAPI.DoPost<PlayerActionResponse>("/auth/login", body, response =>
             {
-                Debug.Log(resp.player?.name + " logged in");
-            }, null);
+                Debug.Log(response.player?.name + " logged in");
+            }, error => { Debug.Log("Login failed: " + error.title + "(" + error.httpStatus + ")"); });
         }
     }
 }
