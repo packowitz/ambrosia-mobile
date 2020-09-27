@@ -1,6 +1,8 @@
 using System;
 using Backend;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Zenject;
 
@@ -20,10 +22,10 @@ namespace Bootstrap
 
         private void Start()
         {
-            Bootstrap();
+            Bootstrap().Forget();
         }
 
-        private void Bootstrap()
+        private async UniTask Bootstrap()
         {
             if (!serverAPI.IsLoggedIn)
             {
@@ -34,13 +36,20 @@ namespace Bootstrap
                 {
                     loginController.RemoveFromView();
                     loadingController.SetActive(true);
-                    Bootstrap();
+                    Bootstrap().Forget();
                 };
             }
             else if (!playerService.PlayerInitialized)
             {
                 loadingController.SetMessage("Loading Player");
                 playerService.LoadPlayer();
+                await UniTask.WaitUntil(() => playerService.PlayerInitialized);
+                Bootstrap().Forget();
+            }
+            // TODO load properties, HeroBase, VehicleBase
+            else
+            {
+                await SceneManager.LoadSceneAsync("Metagame");
             }
         }
     }
