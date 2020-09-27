@@ -1,5 +1,5 @@
 using Backend;
-using Backend.Responses;
+using Backend.Services;
 using Backend.Signal;
 using Configs;
 using Zenject;
@@ -18,6 +18,9 @@ namespace Installers
             
             Container.Bind<ServerAPI>().AsSingle();
             Container.Bind<ConfigsProvider>().AsSingle();
+            
+            // services
+            Container.Bind<HeroBaseService>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();
         }
     }

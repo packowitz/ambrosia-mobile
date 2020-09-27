@@ -5,7 +5,7 @@ using Backend.Responses;
 using Backend.Signal;
 using Zenject;
 
-namespace Backend
+namespace Backend.Services
 {
     public class PlayerService
     {

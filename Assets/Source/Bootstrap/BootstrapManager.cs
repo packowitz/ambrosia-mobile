@@ -1,9 +1,8 @@
-using System;
 using Backend;
+using Backend.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Bootstrap
@@ -19,6 +18,8 @@ namespace Bootstrap
         [Inject] private ServerAPI serverAPI;
 
         [Inject] private PlayerService playerService;
+
+        [Inject] private HeroBaseService heroBaseService;
 
         private void Start()
         {
@@ -46,7 +47,14 @@ namespace Bootstrap
                 await UniTask.WaitUntil(() => playerService.PlayerInitialized);
                 Bootstrap().Forget();
             }
-            // TODO load properties, HeroBase, VehicleBase
+            else if(!heroBaseService.HeroesInitialized)
+            {
+                loadingController.SetMessage("Loading Heroes");
+                heroBaseService.LoadBaseHeroes();
+                await UniTask.WaitUntil(() => heroBaseService.HeroesInitialized);
+                Bootstrap().Forget();
+            }
+            // TODO load properties, VehicleBase
             else
             {
                 await SceneManager.LoadSceneAsync("Metagame");

@@ -2,7 +2,6 @@ using System;
 using Backend.Responses;
 using Backend.Signal;
 using Configs;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -112,8 +111,6 @@ namespace Backend
                 {
                     var responseModel = JsonConvert.DeserializeObject<PlayerActionResponse>(request.downloadHandler.text, serializerSettings);
                     signalBus.Fire(new PlayerActionSignal(responseModel));
-                    Debug.Log($"{responseModel.player.name} with token {UserToken}");
-                    Debug.Log($"Logged in: {IsLoggedIn}");
                     onSuccess?.Invoke(responseModel);
                 }
             };
