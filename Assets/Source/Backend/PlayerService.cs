@@ -4,7 +4,8 @@ namespace Backend
 {
     public class PlayerService
     {
-        private ServerAPI serverAPI;
+        public bool IsLoggedIn => serverAPI.IsLoggedIn;
+        private readonly ServerAPI serverAPI;
         
         public PlayerService(ServerAPI serverAPI)
         {

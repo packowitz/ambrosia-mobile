@@ -9,6 +9,29 @@ namespace Backend
 {
     public class ServerAPI
     {
+        public bool IsLoggedIn => !string.IsNullOrEmpty(UserToken);
+
+        private const string TOKEN_KEY = "ServerAPI.playerToken";
+
+        private string UserToken
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(userToken))
+                {
+                    userToken = PlayerPrefs.GetString(TOKEN_KEY, null);
+                }
+                return userToken;
+            }
+            set
+            {
+                userToken = value;
+                PlayerPrefs.SetString(TOKEN_KEY, userToken);
+            }
+        }
+
+        private string userToken;
+
         private EnvConfig envConfig;
         private JsonSerializerSettings serializerSettings = new JsonSerializerSettings
         {
@@ -20,12 +43,21 @@ namespace Backend
             envConfig = configsProvider.Get<EnvConfig>();
         }
 
+        private void AddGenericHeaders(UnityWebRequest request)
+        {
+            request.SetRequestHeader("Accept", "application/json");
+
+            if (!string.IsNullOrEmpty(UserToken))
+            {
+                request.SetRequestHeader("Authorization", $"Bearer {UserToken}");
+            }
+        }
+
         public void DoGet<T>(string path, Action<T> onSuccess = null, Action<ErrorResponse> onError = null)
         {
             var url = envConfig.ApiUrl + (path.StartsWith("/") ? path : "/" + path);
             var request = UnityWebRequest.Get(url);
-            request.SetRequestHeader("Accept", "application/json");
-            // TODO add user token if exist
+            AddGenericHeaders(request);
             var requestAsyncOperation = request.SendWebRequest();
             requestAsyncOperation.completed += operation =>
             {
@@ -51,8 +83,7 @@ namespace Backend
             var request = UnityWebRequest.Put(url, JsonUtility.ToJson(body));
             request.method = UnityWebRequest.kHttpVerbPOST;
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Accept", "application/json");
-            // TODO add user token if exist
+            AddGenericHeaders(request);
             var requestAsyncOperation = request.SendWebRequest();
             requestAsyncOperation.completed += operation =>
             {
@@ -66,8 +97,12 @@ namespace Backend
                 }
                 else
                 {
-                    onSuccess?.Invoke(
-                        JsonConvert.DeserializeObject<PlayerActionResponse>(request.downloadHandler.text, serializerSettings));
+                    var responseModel = JsonConvert.DeserializeObject<PlayerActionResponse>(request.downloadHandler.text, serializerSettings);
+                    if (!string.IsNullOrEmpty(responseModel.token))
+                    {
+                        UserToken = responseModel.token;
+                    }
+                    onSuccess?.Invoke(responseModel);
                 }
             };
         }
