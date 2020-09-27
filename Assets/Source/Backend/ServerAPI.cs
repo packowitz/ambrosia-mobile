@@ -93,7 +93,7 @@ namespace Backend
             Action<ErrorResponse> onError = null)
         {
             var url = envConfig.ApiUrl + (path.StartsWith("/") ? path : "/" + path);
-            var request = UnityWebRequest.Put(url, body != null ? JsonUtility.ToJson(body) : string.Empty);
+            var request = UnityWebRequest.Put(url, body != null ? JsonUtility.ToJson(body) : "{}");
             request.method = UnityWebRequest.kHttpVerbPOST;
             request.SetRequestHeader("Content-Type", "application/json");
             AddGenericHeaders(request);
