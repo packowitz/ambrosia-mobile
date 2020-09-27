@@ -1,3 +1,4 @@
+using System;
 using Backend;
 using TMPro;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Zenject;
 
 namespace Bootstrap
 {
-    public class AuthController: MonoBehaviour
+    public class LoginController: MonoBehaviour
     {
         [SerializeField]
         private TMP_InputField emailInput;
@@ -20,6 +21,8 @@ namespace Bootstrap
         [Inject]
         private PlayerService playerService;
 
+        public event Action PlayerLoggedIn;
+
         private void Start()
         {
             emailInput.onValueChanged.AddListener(CheckButton);
@@ -30,13 +33,21 @@ namespace Bootstrap
 
         public void Login()
         {
-            playerService.Login(emailInput.text, passwordInput.text);
+            playerService.Login(emailInput.text, passwordInput.text, data =>
+            {
+                PlayerLoggedIn?.Invoke();
+            });
         }
 
         private void CheckButton(string value)
         {
             submitButton.interactable =
                 !string.IsNullOrEmpty(emailInput.text) && !string.IsNullOrEmpty(passwordInput.text);
+        }
+
+        public void RemoveFromView()
+        {
+            Destroy(gameObject);
         }
     }
 }

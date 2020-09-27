@@ -1,4 +1,6 @@
 using Backend;
+using Backend.Responses;
+using Backend.Signal;
 using Configs;
 using Zenject;
 
@@ -8,6 +10,12 @@ namespace Installers
     {
         public override void InstallBindings()
         {
+            // enable signals
+            SignalBusInstaller.Install(Container);
+            
+            // declare signals
+            Container.DeclareSignal<PlayerActionSignal>();
+            
             Container.Bind<ServerAPI>().AsSingle();
             Container.Bind<ConfigsProvider>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();

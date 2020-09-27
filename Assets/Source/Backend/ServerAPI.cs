@@ -1,14 +1,32 @@
 using System;
 using Backend.Responses;
+using Backend.Signal;
 using Configs;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
+using Zenject;
 
 namespace Backend
 {
     public class ServerAPI
     {
+        public ServerAPI(ConfigsProvider configsProvider, SignalBus signalBus)
+        {
+            envConfig = configsProvider.Get<EnvConfig>();
+            this.signalBus = signalBus;
+            this.signalBus.Subscribe<PlayerActionSignal>(signal =>
+            {
+                if (!string.IsNullOrEmpty(signal.Data.token))
+                {
+                    UserToken = signal.Data.token;
+                }
+            });
+        }
+
+        private SignalBus signalBus;
+
         public bool IsLoggedIn => !string.IsNullOrEmpty(UserToken);
 
         private const string TOKEN_KEY = "ServerAPI.playerToken";
@@ -37,11 +55,6 @@ namespace Backend
         {
             NullValueHandling = NullValueHandling.Ignore
         };
-
-        public ServerAPI(ConfigsProvider configsProvider)
-        {
-            envConfig = configsProvider.Get<EnvConfig>();
-        }
 
         private void AddGenericHeaders(UnityWebRequest request)
         {
@@ -76,11 +89,11 @@ namespace Backend
             };
         }
 
-        public void DoPost(string path, object body, Action<PlayerActionResponse> onSuccess = null,
+        public void DoPost(string path, object body = null, Action<PlayerActionResponse> onSuccess = null,
             Action<ErrorResponse> onError = null)
         {
             var url = envConfig.ApiUrl + (path.StartsWith("/") ? path : "/" + path);
-            var request = UnityWebRequest.Put(url, JsonUtility.ToJson(body));
+            var request = UnityWebRequest.Put(url, body != null ? JsonUtility.ToJson(body) : string.Empty);
             request.method = UnityWebRequest.kHttpVerbPOST;
             request.SetRequestHeader("Content-Type", "application/json");
             AddGenericHeaders(request);
@@ -98,10 +111,9 @@ namespace Backend
                 else
                 {
                     var responseModel = JsonConvert.DeserializeObject<PlayerActionResponse>(request.downloadHandler.text, serializerSettings);
-                    if (!string.IsNullOrEmpty(responseModel.token))
-                    {
-                        UserToken = responseModel.token;
-                    }
+                    signalBus.Fire(new PlayerActionSignal(responseModel));
+                    Debug.Log($"{responseModel.player.name} with token {UserToken}");
+                    Debug.Log($"Logged in: {IsLoggedIn}");
                     onSuccess?.Invoke(responseModel);
                 }
             };
