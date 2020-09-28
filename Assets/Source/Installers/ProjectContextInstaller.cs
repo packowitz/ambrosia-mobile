@@ -22,6 +22,7 @@ namespace Installers
             // services
             Container.Bind<HeroBaseService>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();
+            Container.Bind<VehicleBaseService>().AsSingle();
         }
     }
 }

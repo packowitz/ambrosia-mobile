@@ -16,10 +16,9 @@ namespace Bootstrap
         [SerializeField] private RectTransform canvas;
 
         [Inject] private ServerAPI serverAPI;
-
-        [Inject] private PlayerService playerService;
-
         [Inject] private HeroBaseService heroBaseService;
+        [Inject] private PlayerService playerService;
+        [Inject] private VehicleBaseService vehicleBaseService;
 
         private void Start()
         {
@@ -41,13 +40,20 @@ namespace Bootstrap
                 playerService.LoadPlayer();
                 await UniTask.WaitUntil(() => playerService.PlayerInitialized);
             }
-            if(!heroBaseService.HeroesInitialized)
+            if (!heroBaseService.HeroesInitialized)
             {
                 loadingController.SetMessage("Loading Heroes");
                 heroBaseService.LoadBaseHeroes();
                 await UniTask.WaitUntil(() => heroBaseService.HeroesInitialized);
             }
-            // TODO load properties, VehicleBase
+            if (!vehicleBaseService.VehiclesInitialized)
+            {
+                loadingController.SetMessage("Loading Vehicles");
+                vehicleBaseService.LoadBaseVehicles();
+                await UniTask.WaitUntil(() => vehicleBaseService.VehiclesInitialized);
+            }
+            
+            // TODO load properties
             
             await SceneManager.LoadSceneAsync("Metagame");
         }
