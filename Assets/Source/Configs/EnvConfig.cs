@@ -7,11 +7,14 @@ namespace Configs
     {
         [SerializeField] private string apiUrl;
         [SerializeField] private string apiUrlDebug;
+        [SerializeField] private bool useLocal;
 
 #if UNITY_EDITOR
-        public string ApiUrl => apiUrlDebug;
+        public string ApiUrl => useLocal ? apiUrlDebug : apiUrl;
+        public bool IsLocal => useLocal;
 #else
         public string ApiUrl => apiUrl;
+        public bool IsLocal => false;
 #endif
     }
 }

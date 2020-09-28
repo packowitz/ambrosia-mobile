@@ -18,6 +18,7 @@ namespace Bootstrap
         [Inject] private ServerAPI serverAPI;
         [Inject] private HeroBaseService heroBaseService;
         [Inject] private PlayerService playerService;
+        [Inject] private PropertyService propertyService;
         [Inject] private VehicleBaseService vehicleBaseService;
 
         private void Start()
@@ -52,8 +53,13 @@ namespace Bootstrap
                 vehicleBaseService.LoadBaseVehicles();
                 await UniTask.WaitUntil(() => vehicleBaseService.VehiclesInitialized);
             }
-            
-            // TODO load properties
+
+            if (!propertyService.IsInitialized)
+            {
+                loadingController.SetMessage("Loading Properties");
+                propertyService.CheckVersions();
+                await UniTask.WaitUntil(() => propertyService.IsInitialized);
+            }
             
             await SceneManager.LoadSceneAsync("Metagame");
         }

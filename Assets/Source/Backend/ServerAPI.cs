@@ -11,9 +11,20 @@ namespace Backend
 {
     public class ServerAPI
     {
+        private readonly string tokenKey;
+        private string userToken;
+        
+        private readonly SignalBus signalBus;
+        private readonly EnvConfig envConfig;
+        private readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        };
+        
         public ServerAPI(ConfigsProvider configsProvider, SignalBus signalBus)
         {
             envConfig = configsProvider.Get<EnvConfig>();
+            tokenKey = "ServerAPI.playerToken" + (envConfig.IsLocal ? ".local" : "");
             this.signalBus = signalBus;
             this.signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
@@ -23,12 +34,8 @@ namespace Backend
                 }
             });
         }
-
-        private SignalBus signalBus;
-
+        
         public bool IsLoggedIn => !string.IsNullOrEmpty(UserToken);
-
-        private const string TOKEN_KEY = "ServerAPI.playerToken";
 
         private string UserToken
         {
@@ -36,24 +43,16 @@ namespace Backend
             {
                 if (string.IsNullOrEmpty(userToken))
                 {
-                    userToken = PlayerPrefs.GetString(TOKEN_KEY, null);
+                    userToken = PlayerPrefs.GetString(tokenKey, null);
                 }
                 return userToken;
             }
             set
             {
                 userToken = value;
-                PlayerPrefs.SetString(TOKEN_KEY, userToken);
+                PlayerPrefs.SetString(tokenKey, userToken);
             }
         }
-
-        private string userToken;
-
-        private EnvConfig envConfig;
-        private JsonSerializerSettings serializerSettings = new JsonSerializerSettings
-        {
-            NullValueHandling = NullValueHandling.Ignore
-        };
 
         private void AddGenericHeaders(UnityWebRequest request)
         {

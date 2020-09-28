@@ -6,7 +6,7 @@ namespace Backend
     [Serializable]
     public class PropertyCache
     {
-        public string type;
+        public PropertyType type;
         public int version;
         public Property[] props;
     }
