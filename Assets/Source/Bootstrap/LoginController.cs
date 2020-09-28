@@ -37,6 +37,7 @@ namespace Bootstrap
             playerService.Login(emailInput.text, passwordInput.text, data =>
             {
                 PlayerLoggedIn?.Invoke();
+                Destroy(gameObject);
             });
         }
 
@@ -44,11 +45,6 @@ namespace Bootstrap
         {
             submitButton.interactable =
                 !string.IsNullOrEmpty(emailInput.text) && !string.IsNullOrEmpty(passwordInput.text);
-        }
-
-        public void RemoveFromView()
-        {
-            Destroy(gameObject);
         }
     }
 }

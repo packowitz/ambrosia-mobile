@@ -23,42 +23,33 @@ namespace Bootstrap
 
         private void Start()
         {
-            Bootstrap().Forget();
+            Bootstrap();
         }
 
-        private async UniTask Bootstrap()
+        private async void Bootstrap()
         {
             if (!serverAPI.IsLoggedIn)
             {
-                // goto login
                 loadingController.SetActive(false);
-                var loginController = Instantiate(loginPrefab, canvas);
-                loginController.PlayerLoggedIn += () =>
-                {
-                    loginController.RemoveFromView();
-                    loadingController.SetActive(true);
-                    Bootstrap().Forget();
-                };
+                Instantiate(loginPrefab, canvas);
+                await UniTask.WaitUntil(() => serverAPI.IsLoggedIn);
+                loadingController.SetActive(true);
             }
-            else if (!playerService.PlayerInitialized)
+            if (!playerService.PlayerInitialized)
             {
                 loadingController.SetMessage("Loading Player");
                 playerService.LoadPlayer();
                 await UniTask.WaitUntil(() => playerService.PlayerInitialized);
-                Bootstrap().Forget();
             }
-            else if(!heroBaseService.HeroesInitialized)
+            if(!heroBaseService.HeroesInitialized)
             {
                 loadingController.SetMessage("Loading Heroes");
                 heroBaseService.LoadBaseHeroes();
                 await UniTask.WaitUntil(() => heroBaseService.HeroesInitialized);
-                Bootstrap().Forget();
             }
             // TODO load properties, VehicleBase
-            else
-            {
-                await SceneManager.LoadSceneAsync("Metagame");
-            }
+            
+            await SceneManager.LoadSceneAsync("Metagame");
         }
     }
 }
