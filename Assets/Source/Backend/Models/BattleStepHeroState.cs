@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -12,6 +13,6 @@ namespace Backend.Models
         public int armorPerc;
         public int speedbarPerc;
 
-        public BattleStepHeroStateBuff[] buffs;
+        public List<BattleStepHeroStateBuff> buffs;
     }
 }

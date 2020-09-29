@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -20,6 +21,6 @@ namespace Backend.Models
         public FightStageConfig stageConfig;
         public FightEnvironment environment;
         public LootBox lootBox;
-        public FightStage[] stages;
+        public List<FightStage> stages;
     }
 }

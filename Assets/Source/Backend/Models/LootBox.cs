@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -8,6 +9,6 @@ namespace Backend.Models
         public long id;
         public string name;
         public LootBoxType type;
-        public LootItem[] items;
+        public List<LootItem> items;
     }
 }

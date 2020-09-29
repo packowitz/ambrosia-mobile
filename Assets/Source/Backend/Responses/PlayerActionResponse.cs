@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Backend.Models;
 
 namespace Backend.Responses
@@ -10,39 +11,39 @@ namespace Backend.Responses
         public string token;
         public Resources resources;
         public Hero hero;
-        public Hero[] heroes;
-        public long[] heroIdsRemoved;
+        public List<Hero> heroes;
+        public List<long> heroIdsRemoved;
         public Gear gear;
-        public Gear[] gears;
-        public long[] gearIdsRemovedFromArmory;
-        public Jewelry[] jewelries;
-        public Building[] buildings;
-        public Vehicle[] vehicles;
-        public VehiclePart[] vehicleParts;
-        public PlayerMap[] playerMaps;
+        public List<Gear> gears;
+        public List<long> gearIdsRemovedFromArmory;
+        public List<Jewelry> jewelries;
+        public List<Building> buildings;
+        public List<Vehicle> vehicles;
+        public List<VehiclePart> vehicleParts;
+        public List<PlayerMap> playerMaps;
         public PlayerMap currentMap;
         public Battle ongoingBattle;
         public Looted looted;
-        public Mission[] missions;
+        public List<Mission> missions;
         public long? missionIdFinished;
-        public Upgrade[] upgrades;
+        public List<Upgrade> upgrades;
         public long? upgradeRemoved;
-        public Incubator[] incubators;
+        public List<Incubator> incubators;
         public long? incubatorDone;
-        public string[] knownStories;
-        public Expedition[] expeditions;
-        public PlayerExpedition[] playerExpeditions;
+        public List<string> knownStories;
+        public List<Expedition> expeditions;
+        public List<PlayerExpedition> playerExpeditions;
         public long? playerExpeditionCancelled;
-        public OddJob[] oddJobs;
+        public List<OddJob> oddJobs;
         public long? oddJobDone;
         public DailyActivity dailyActivity;
-        public MerchantPlayerItem[] merchantItems;
+        public List<MerchantPlayerItem> merchantItems;
         public MerchantPlayerItem boughtMerchantItem;
-        public BlackMarketItem[] blackMarketItems;
-        public AchievementReward[] achievementRewards;
+        public List<BlackMarketItem> blackMarketItems;
+        public List<AchievementReward> achievementRewards;
         public long? claimedAchievementRewardId;
         public AutoBreakdownConfiguration autoBreakdownConfiguration;
-        public InboxMessage[] inboxMessages;
+        public List<InboxMessage> inboxMessages;
         public long? inboxMessageDeleted;
     }
 }

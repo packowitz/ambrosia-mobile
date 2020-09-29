@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -11,7 +12,7 @@ namespace Backend.Models
         public long? senderId;
         public bool read;
         public string message;
-        public InboxMessageItem[] items;
+        public List<InboxMessageItem> items;
         public long ageInSeconds;
         public int validInSeconds;
     }

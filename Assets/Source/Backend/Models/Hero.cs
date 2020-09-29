@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -52,6 +53,6 @@ namespace Backend.Models
         public int dexterityTotal;
         public int resistanceTotal;
 
-        public HeroGearSet[] sets;
+        public List<HeroGearSet> sets;
     }
 }

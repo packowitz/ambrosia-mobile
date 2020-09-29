@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -19,6 +20,6 @@ namespace Backend.Models
         public int? secondsToReset;
         public bool unvisited;
  
-        public PlayerMapTile[] tiles;
+        public List<PlayerMapTile> tiles;
     }
 }

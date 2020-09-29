@@ -28,9 +28,9 @@ namespace Backend.Services
 
         public bool IsInitialized => versionsChecked && waitingCalls == 0;
 
-        public Property[] GetProperties(PropertyType type, int level)
+        public List<Property> GetProperties(PropertyType type, int level)
         {
-            return properties[type].props.Where(prop => prop.level == level).ToArray();
+            return properties[type].props.Where(prop => prop.level == level).ToList();
         }
 
         public void CheckVersions()
@@ -66,10 +66,10 @@ namespace Backend.Services
         {
             waitingCalls++;
             Debug.Log($"Updating properties of type {type} to version {version}");
-            serverAPI.DoGet<Property[]>("/properties/type/" + type + "/v/" + version, data =>
+            serverAPI.DoGet<List<Property>>("/properties/type/" + type + "/v/" + version, data =>
             {
                 waitingCalls--;
-                var updatedCache = new PropertyCache 
+                var updatedCache = new PropertyCache
                 {
                    type = type,
                    version = version,

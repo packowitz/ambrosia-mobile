@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -31,6 +32,6 @@ namespace Backend.Models
         public int resistanceAsc;
         public bool recruitable;
         public int maxAscLevel;
-        public HeroSkill[] skills;
+        public List<HeroSkill> skills;
     }
 }

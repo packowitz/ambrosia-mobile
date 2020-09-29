@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -14,6 +15,6 @@ namespace Backend.Models
         public long lootBoxId;
 
         // transient. only for player view
-        public LootedItem[] reward;
+        public List<LootedItem> reward;
     }
 }

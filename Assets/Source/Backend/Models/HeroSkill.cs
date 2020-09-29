@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -18,7 +19,7 @@ namespace Backend.Models
         public SkillTarget target;
         public string description;
         public int maxLevel;
-        public HeroSkillLevel[] skillLevel;
-        public HeroSkillAction[] actions;
+        public List<HeroSkillLevel> skillLevel;
+        public List<HeroSkillAction> actions;
     }
 }

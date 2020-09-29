@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -14,6 +15,6 @@ namespace Backend.Models
         public bool battleSuccess;
         public bool cancelled;
 
-        public LootedItem[] lootedItems;
+        public List<LootedItem> lootedItems;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -29,6 +30,6 @@ namespace Backend.Models
         public BattleHero oppHero2;
         public BattleHero oppHero3;
         public BattleHero oppHero4;
-        public BattleStep[] steps;
+        public List<BattleStep> steps;
     }
 }

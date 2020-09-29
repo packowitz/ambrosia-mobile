@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -27,7 +28,7 @@ namespace Backend.Models
         public int duration;
         public int secondsUntilDone;
 
-        public OfflineBattle[] battles;
+        public List<OfflineBattle> battles;
 
         // transient
         public bool updating;

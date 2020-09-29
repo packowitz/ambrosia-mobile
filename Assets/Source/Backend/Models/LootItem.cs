@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -17,7 +18,7 @@ namespace Backend.Models
         public long? heroBaseId;
         public int? heroLevel;
         public long? gearLootId;
-        public JewelType[] jewelTypes;
+        public List<JewelType> jewelTypes;
         public int? jewelLevel;
         public long? vehicleBaseId;
         public PartType vehiclePartType;

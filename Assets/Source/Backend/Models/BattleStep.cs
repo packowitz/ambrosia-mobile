@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Backend.Models
 {
     public class BattleStep
@@ -11,8 +13,8 @@ namespace Backend.Models
         public string usedSkillName;
         public HeroPosition target;
         public string targetName;
-        public BattleStepAction[] actions;
-        public BattleStepHeroState[] heroStates;
+        public List<BattleStepAction> actions;
+        public List<BattleStepHeroState> heroStates;
 
         // transient
         public bool expanded;

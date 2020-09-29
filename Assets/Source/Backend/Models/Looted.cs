@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -6,7 +7,7 @@ namespace Backend.Models
     public class Looted
     {
         public LootedType type;
-        public LootedItem[] items;
+        public List<LootedItem> items;
 
         // transient
         public bool autobreakdownChecked;

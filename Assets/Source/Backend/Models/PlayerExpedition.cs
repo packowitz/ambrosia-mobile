@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -19,7 +20,7 @@ namespace Backend.Models
         public int level;
         public Rarity rarity;
 
-        public LootedItem[] lootedItems;
+        public List<LootedItem> lootedItems;
         public int duration;
         public int secondsUntilDone;
     }

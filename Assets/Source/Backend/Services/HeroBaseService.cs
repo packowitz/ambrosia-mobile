@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Backend.Models;
 using UnityEngine;
 
@@ -8,9 +8,9 @@ namespace Backend.Services
     {
         private readonly ServerAPI serverAPI;
 
-        private HeroBase[] baseHeroes;
+        private List<HeroBase> baseHeroes;
 
-        public bool HeroesInitialized => baseHeroes != null && baseHeroes.Length > 0;
+        public bool HeroesInitialized => baseHeroes != null && baseHeroes.Count > 0;
 
         public HeroBaseService(ServerAPI serverAPI)
         {
@@ -19,16 +19,16 @@ namespace Backend.Services
 
         public void LoadBaseHeroes()
         {
-            serverAPI.DoGet<HeroBase[]>("/hero_base", data =>
+            serverAPI.DoGet<List<HeroBase>>("/hero_base", data =>
             {
                 baseHeroes = data;
-                Debug.Log($"Loaded {baseHeroes.Length} base heroes");
+                Debug.Log($"Loaded {baseHeroes.Count} base heroes");
             });
         }
 
         public HeroBase GetHeroBase(long id)
         {
-            return Array.Find(baseHeroes, hero => hero.id == id);
+            return baseHeroes.Find(hero => hero.id == id);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Backend.Models
 {
@@ -17,7 +18,7 @@ namespace Backend.Models
         public int ascLvl;
         public bool markedAsBoss;
  
-        public BattleHeroBuff[] buffs;
+        public List<BattleHeroBuff> buffs;
  
         public int skill1Lvl;
         public int? skill2Lvl;

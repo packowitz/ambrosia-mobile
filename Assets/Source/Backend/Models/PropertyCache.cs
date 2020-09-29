@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Backend.Models;
 
 namespace Backend
@@ -8,6 +9,6 @@ namespace Backend
     {
         public PropertyType type;
         public int version;
-        public Property[] props;
+        public List<Property> props;
     }
 }
