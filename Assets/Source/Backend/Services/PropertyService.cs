@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Models;
 using Configs;
+using ModestTree;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -28,9 +30,42 @@ namespace Backend.Services
 
         public bool IsInitialized => versionsChecked && waitingCalls == 0;
 
-        public List<Property> GetProperties(PropertyType type, int level)
+        public List<Property> Properties(PropertyType type, int level)
         {
             return properties[type].props.Where(prop => prop.level == level).ToList();
+        }
+        
+        public int JewelValue(JewelType jewelType, int level)
+        {
+            Enum.TryParse($"{jewelType}_JEWEL", out PropertyType propType);
+            var props = Properties(propType, level);
+
+            if (!props.IsEmpty())
+            {
+                return props[0].value1;
+            }
+            return 0;
+        }
+        
+        public int HeroMaxXp(int level)
+        {
+            var props = Properties(PropertyType.XP_MAX_HERO, level);
+            return props.IsEmpty() ? 0 : props[0].value1;
+        }
+        
+        public int HeroMergeXp(int level) {
+            var props = Properties(PropertyType.MERGE_XP_HERO, level);
+            return props.IsEmpty() ? 0 : props[0].value1;
+        }
+
+        public int HeroMaxAsc(int ascLevel) {
+            var props = Properties(PropertyType.ASC_POINTS_MAX_HERO, ascLevel);
+            return props.IsEmpty() ? 0 : props[0].value1;
+        }
+
+        public int HeroMergeAsc(int rarity) {
+            var props = Properties(PropertyType.MERGE_ASC_HERO, rarity);
+            return props.IsEmpty() ? 0 : props[0].value1;
         }
 
         public void CheckVersions()
