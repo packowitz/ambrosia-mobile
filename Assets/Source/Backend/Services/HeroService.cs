@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Models;
+using Backend.Responses;
 using Backend.Signal;
 using Zenject;
 
@@ -9,36 +10,13 @@ namespace Backend.Services
     public class HeroService
     {
         private List<Hero> heroes;
-        private HeroComparer comparer = new HeroComparer();
+        private readonly HeroComparer comparer = new HeroComparer();
 
         public HeroService(SignalBus signalBus)
         {
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
-                if (signal.Data.heroes != null)
-                {
-                    if (heroes == null)
-                    {
-                        heroes = signal.Data.heroes;
-                    }
-                    else
-                    {
-                        foreach (var hero in signal.Data.heroes)
-                        {
-                            Update(hero);
-                        }
-                    }
-                }
-
-                if (signal.Data.hero != null)
-                {
-                    Update(signal.Data.hero);
-                }
-
-                if (signal.Data.heroIdsRemoved != null)
-                {
-                    heroes = heroes.Where(h => !signal.Data.heroIdsRemoved.Contains(h.id)).ToList();
-                }
+                Consume(signal.Data);
             });
         }
 
@@ -47,7 +25,41 @@ namespace Backend.Services
             return heroes;
         }
 
-        public void Update(Hero hero)
+        public Hero Hero(long id)
+        {
+            return heroes.Find(h => h.id == id);
+        }
+
+        private void Consume(PlayerActionResponse data)
+        {
+            if (data.heroes != null)
+            {
+                if (heroes == null)
+                {
+                    heroes = data.heroes;
+                    SortHeroes();
+                }
+                else
+                {
+                    foreach (var hero in data.heroes)
+                    {
+                        Update(hero);
+                    }
+                }
+            }
+
+            if (data.hero != null)
+            {
+                Update(data.hero);
+            }
+
+            if (data.heroIdsRemoved != null)
+            {
+                heroes = heroes.Where(h => !data.heroIdsRemoved.Contains(h.id)).ToList();
+            }
+        }
+
+        private void Update(Hero hero)
         {
             var idx = heroes.FindIndex(h => h.id == hero.id);
             if (idx >= 0)

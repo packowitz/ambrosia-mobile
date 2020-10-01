@@ -20,8 +20,11 @@ namespace Installers
             Container.Bind<ConfigsProvider>().AsSingle();
             
             // services
+            Container.Bind<AchievementsService>().AsSingle();
             Container.Bind<HeroBaseService>().AsSingle();
+            Container.Bind<HeroService>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();
+            Container.Bind<ProgressService>().AsSingle();
             Container.Bind<PropertyService>().AsSingle();
             Container.Bind<VehicleBaseService>().AsSingle();
         }
