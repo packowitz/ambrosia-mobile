@@ -24,6 +24,7 @@ namespace Installers
             Container.Bind<GearService>().AsSingle();
             Container.Bind<HeroBaseService>().AsSingle();
             Container.Bind<HeroService>().AsSingle();
+            Container.Bind<JewelriesService>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();
             Container.Bind<ProgressService>().AsSingle();
             Container.Bind<PropertyService>().AsSingle();
