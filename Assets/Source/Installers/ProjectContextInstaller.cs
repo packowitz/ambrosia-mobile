@@ -21,11 +21,16 @@ namespace Installers
             
             // services
             Container.Bind<AchievementsService>().AsSingle();
+            Container.Bind<ActivityService>().AsSingle();
             Container.Bind<BattleService>().AsSingle();
+            Container.Bind<BazaarService>().AsSingle();
             Container.Bind<BuildingService>().AsSingle();
+            Container.Bind<ExpeditionService>().AsSingle();
+            Container.Bind<ForgeService>().AsSingle();
             Container.Bind<GearService>().AsSingle();
             Container.Bind<HeroBaseService>().AsSingle();
             Container.Bind<HeroService>().AsSingle();
+            Container.Bind<InboxService>().AsSingle();
             Container.Bind<IncubatorService>().AsSingle();
             Container.Bind<JewelryService>().AsSingle();
             Container.Bind<LootedService>().AsSingle();
