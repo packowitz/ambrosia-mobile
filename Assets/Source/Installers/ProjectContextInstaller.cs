@@ -31,6 +31,7 @@ namespace Installers
             Container.Bind<PropertyService>().AsSingle();
             Container.Bind<ResourcesService>().AsSingle();
             Container.Bind<VehicleBaseService>().AsSingle();
+            Container.Bind<VehicleService>().AsSingle();
         }
     }
 }
