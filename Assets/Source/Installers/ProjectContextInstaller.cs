@@ -26,13 +26,17 @@ namespace Installers
             Container.Bind<GearService>().AsSingle();
             Container.Bind<HeroBaseService>().AsSingle();
             Container.Bind<HeroService>().AsSingle();
+            Container.Bind<IncubatorService>().AsSingle();
             Container.Bind<JewelryService>().AsSingle();
             Container.Bind<LootedService>().AsSingle();
             Container.Bind<MapService>().AsSingle();
+            Container.Bind<MissionService>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();
             Container.Bind<ProgressService>().AsSingle();
             Container.Bind<PropertyService>().AsSingle();
             Container.Bind<ResourcesService>().AsSingle();
+            Container.Bind<StoryService>().AsSingle();
+            Container.Bind<UpgradeService>().AsSingle();
             Container.Bind<VehicleBaseService>().AsSingle();
             Container.Bind<VehicleService>().AsSingle();
         }

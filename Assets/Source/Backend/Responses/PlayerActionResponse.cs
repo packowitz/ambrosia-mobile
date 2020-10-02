@@ -32,7 +32,7 @@ namespace Backend.Responses
         public long? upgradeRemoved;
         public List<Incubator> incubators;
         public long? incubatorDone;
-        public List<string> knownStories;
+        public List<StoryTrigger> knownStories;
         public List<Expedition> expeditions;
         public List<PlayerExpedition> playerExpeditions;
         public long? playerExpeditionCancelled;
