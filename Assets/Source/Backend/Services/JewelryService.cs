@@ -7,11 +7,11 @@ using Zenject;
 
 namespace Backend.Services
 {
-    public class JewelriesService
+    public class JewelryService
     {
         private readonly Dictionary<JewelType, Jewelry> jewelries = new Dictionary<JewelType, Jewelry>();
 
-        public JewelriesService(SignalBus signalBus)
+        public JewelryService(SignalBus signalBus)
         {
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {

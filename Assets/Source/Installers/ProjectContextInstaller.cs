@@ -21,10 +21,11 @@ namespace Installers
             
             // services
             Container.Bind<AchievementsService>().AsSingle();
+            Container.Bind<BuildingService>().AsSingle();
             Container.Bind<GearService>().AsSingle();
             Container.Bind<HeroBaseService>().AsSingle();
             Container.Bind<HeroService>().AsSingle();
-            Container.Bind<JewelriesService>().AsSingle();
+            Container.Bind<JewelryService>().AsSingle();
             Container.Bind<PlayerService>().AsSingle();
             Container.Bind<ProgressService>().AsSingle();
             Container.Bind<PropertyService>().AsSingle();

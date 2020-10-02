@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Backend.Models;
+// ReSharper disable UnassignedField.Global
+// ReSharper disable InconsistentNaming
 
 namespace Backend.Responses
 {
