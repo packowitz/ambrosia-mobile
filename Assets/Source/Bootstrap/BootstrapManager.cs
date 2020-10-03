@@ -11,6 +11,8 @@ namespace Bootstrap
     {
         [SerializeField] private LoadingController loadingController;
 
+        [SerializeField] private RegisterController registerPrefab;
+        
         [SerializeField] private LoginController loginPrefab;
 
         [SerializeField] private RectTransform canvas;
@@ -26,12 +28,24 @@ namespace Bootstrap
             Bootstrap();
         }
 
+        private void ShowLogin()
+        {
+            var loginPanel = Instantiate(loginPrefab, canvas);
+            loginPanel.ShowRegisterButtonPressed += ShowRegister;
+        }
+
+        private void ShowRegister()
+        {
+            var registerPanel = Instantiate(registerPrefab, canvas);
+            registerPanel.ShowLoginButtonPressed += ShowLogin;
+        }
+
         private async void Bootstrap()
         {
             if (!serverAPI.IsLoggedIn)
             {
                 loadingController.SetActive(false);
-                Instantiate(loginPrefab, canvas);
+                ShowRegister();
                 await UniTask.WaitUntil(() => serverAPI.IsLoggedIn);
                 loadingController.SetActive(true);
             }

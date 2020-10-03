@@ -1,5 +1,4 @@
 using System;
-using Backend;
 using Backend.Services;
 using TMPro;
 using UnityEngine;
@@ -19,10 +18,13 @@ namespace Bootstrap
         [SerializeField]
         private Button submitButton;
 
+        [SerializeField]
+        private Button showRegisterButton;
+
         [Inject]
         private PlayerService playerService;
-
-        public event Action PlayerLoggedIn;
+        
+        public event Action ShowRegisterButtonPressed;
 
         private void Start()
         {
@@ -30,13 +32,13 @@ namespace Bootstrap
             passwordInput.onValueChanged.AddListener(CheckButton);
             submitButton.interactable = false;
             submitButton.onClick.AddListener(Login);
+            showRegisterButton.onClick.AddListener(GotoRegister);
         }
 
         public void Login()
         {
             playerService.Login(emailInput.text, passwordInput.text, data =>
             {
-                PlayerLoggedIn?.Invoke();
                 Destroy(gameObject);
             });
         }
@@ -45,6 +47,12 @@ namespace Bootstrap
         {
             submitButton.interactable =
                 !string.IsNullOrEmpty(emailInput.text) && !string.IsNullOrEmpty(passwordInput.text);
+        }
+
+        private void GotoRegister()
+        {
+            ShowRegisterButtonPressed?.Invoke();
+            Destroy(gameObject);
         }
     }
 }

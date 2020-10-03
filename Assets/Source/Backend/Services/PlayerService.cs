@@ -36,6 +36,17 @@ namespace Backend.Services
             };
             serverAPI.DoPost("/auth/login", body, onSuccess);
         }
+        
+        public void Register(string ign, string email, string password, Action<PlayerActionResponse> onSuccess)
+        {
+            var body = new RegisterRequest
+            {
+                name = ign,
+                email = email,
+                password = password
+            };
+            serverAPI.DoPost("/auth/register", body, onSuccess);
+        }
 
         public void LoadPlayer()
         {

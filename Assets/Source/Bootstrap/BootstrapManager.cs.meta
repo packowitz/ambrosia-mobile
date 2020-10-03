@@ -1,3 +1,15 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 17e39ceb7544445c97f97c7b52a3c3e4
-timeCreated: 1601209484
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - loadingController: {instanceID: 0}
+  - registerPrefab: {fileID: 8811906114217366853, guid: ed6e81841f1954e2ba4b10308b005bf3,
+      type: 3}
+  - canvas: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
