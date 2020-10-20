@@ -10,6 +10,7 @@ namespace Backend.Models
         public long playerId;
         public int sortOrder;
         public int merchantLevel;
+        public int amountAvailable;
         public bool sold;
         public ResourceType priceType;
         public int priceAmount;

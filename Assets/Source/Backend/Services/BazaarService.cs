@@ -41,7 +41,8 @@ namespace Backend.Services
                 var item = MerchantItems.Find(m => m.id == data.boughtMerchantItem.id);
                 if (item != null)
                 {
-                    item.sold = true;
+                    item.amountAvailable = data.boughtMerchantItem.amountAvailable;
+                    item.sold = data.boughtMerchantItem.sold;
                 }
             }
 
