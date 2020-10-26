@@ -203,6 +203,9 @@ MonoBehaviour:
   borderProgressPrefab: {fileID: 1552041657272110618, guid: 8428c5148ffca4b87a61eb52d5510c69,
     type: 3}
   canvas: {fileID: 4863969526013460873}
+  vehicleAtlas: {fileID: 4343727234628468602, guid: 53695c01c56e244ea9b479147c6d3c7f,
+    type: 2}
+  vehicleImage: {fileID: 2971482578215681751}
 --- !u!1 &7514997436112127384
 GameObject:
   m_ObjectHideFlags: 0
