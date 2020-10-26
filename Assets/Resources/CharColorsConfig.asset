@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200385b38d114609a938a62e71b0dd44, type: 3}
+  m_Name: CharColorsConfig
+  m_EditorClassIdentifier: 
+  configs:
+  - color: 1
+    playerBorderColor: {r: 0.5660378, g: 0.06674973, b: 0.09605369, a: 1}
+  - color: 2
+    playerBorderColor: {r: 0.066972226, g: 0.4056604, b: 0.08828615, a: 1}
+  - color: 3
+    playerBorderColor: {r: 0.06915272, g: 0.07001587, b: 0.6981132, a: 1}
+  - color: 0
+    playerBorderColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}

@@ -15,35 +15,36 @@ namespace Installers
             
             // declare signals
             Container.DeclareSignal<PlayerActionSignal>();
+            Container.DeclareSignal<ResourcesSignal>();
             
             Container.Bind<ServerAPI>().AsSingle();
             Container.Bind<ConfigsProvider>().AsSingle();
             
-            // services
-            Container.Bind<AchievementsService>().AsSingle();
-            Container.Bind<ActivityService>().AsSingle();
-            Container.Bind<BattleService>().AsSingle();
-            Container.Bind<BazaarService>().AsSingle();
-            Container.Bind<BuildingService>().AsSingle();
-            Container.Bind<ExpeditionService>().AsSingle();
-            Container.Bind<ForgeService>().AsSingle();
-            Container.Bind<GearService>().AsSingle();
-            Container.Bind<HeroBaseService>().AsSingle();
-            Container.Bind<HeroService>().AsSingle();
-            Container.Bind<InboxService>().AsSingle();
-            Container.Bind<IncubatorService>().AsSingle();
-            Container.Bind<JewelryService>().AsSingle();
-            Container.Bind<LootedService>().AsSingle();
-            Container.Bind<MapService>().AsSingle();
-            Container.Bind<MissionService>().AsSingle();
-            Container.Bind<PlayerService>().AsSingle();
-            Container.Bind<ProgressService>().AsSingle();
-            Container.Bind<PropertyService>().AsSingle();
-            Container.Bind<ResourcesService>().AsSingle();
-            Container.Bind<StoryService>().AsSingle();
-            Container.Bind<UpgradeService>().AsSingle();
-            Container.Bind<VehicleBaseService>().AsSingle();
-            Container.Bind<VehicleService>().AsSingle();
+            // data services
+            Container.Bind<AchievementsService>().AsSingle().NonLazy();
+            Container.Bind<ActivityService>().AsSingle().NonLazy();
+            Container.Bind<BattleService>().AsSingle().NonLazy();
+            Container.Bind<BazaarService>().AsSingle().NonLazy();
+            Container.Bind<BuildingService>().AsSingle().NonLazy();
+            Container.Bind<ExpeditionService>().AsSingle().NonLazy();
+            Container.Bind<ForgeService>().AsSingle().NonLazy();
+            Container.Bind<GearService>().AsSingle().NonLazy();
+            Container.Bind<HeroBaseService>().AsSingle().NonLazy();
+            Container.Bind<HeroService>().AsSingle().NonLazy();
+            Container.Bind<InboxService>().AsSingle().NonLazy();
+            Container.Bind<IncubatorService>().AsSingle().NonLazy();
+            Container.Bind<JewelryService>().AsSingle().NonLazy();
+            Container.Bind<LootedService>().AsSingle().NonLazy();
+            Container.Bind<MapService>().AsSingle().NonLazy();
+            Container.Bind<MissionService>().AsSingle().NonLazy();
+            Container.Bind<PlayerService>().AsSingle().NonLazy();
+            Container.Bind<ProgressService>().AsSingle().NonLazy();
+            Container.Bind<PropertyService>().AsSingle().NonLazy();
+            Container.Bind<ResourcesService>().AsSingle().NonLazy();
+            Container.Bind<StoryService>().AsSingle().NonLazy();
+            Container.Bind<UpgradeService>().AsSingle().NonLazy();
+            Container.Bind<VehicleBaseService>().AsSingle().NonLazy();
+            Container.Bind<VehicleService>().AsSingle().NonLazy();
         }
     }
 }

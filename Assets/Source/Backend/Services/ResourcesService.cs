@@ -15,6 +15,7 @@ namespace Backend.Services
                 if (signal.Data.resources != null)
                 {
                     Resources = signal.Data.resources;
+                    signalBus.Fire(new ResourcesSignal(Resources));
                 }
             });
         }

@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.Serialization;
+using UnityEngine;
 
 namespace Backend.Models
 {
@@ -10,12 +12,15 @@ namespace Backend.Models
         public int steam;
         public int steamMax;
         public int steamProduceIn;
+        public DateTime steamProductionTime { get; private set; }
         public int cogwheels;
         public int cogwheelsMax;
         public int cogwheelsProduceIn;
+        public DateTime cogwheelsProductionTime { get; private set; }
         public int tokens;
         public int tokensMax;
         public int tokensProduceIn;
+        public DateTime tokensProductionTime { get; private set; }
         public int premiumSteam;
         public int premiumSteamMax;
         public int premiumCogwheels;
@@ -45,5 +50,13 @@ namespace Backend.Models
         public int bronzeKeys;
         public int silverKeys;
         public int goldenKeys;
+        
+        [OnDeserialized]
+        internal void OnDeserialized(StreamingContext context)
+        {
+            steamProductionTime = DateTime.Now + TimeSpan.FromSeconds(steamProduceIn);
+            cogwheelsProductionTime = DateTime.Now + TimeSpan.FromSeconds(cogwheelsProduceIn);
+            tokensProductionTime = DateTime.Now + TimeSpan.FromSeconds(tokensProduceIn);
+        }
     }
 }
