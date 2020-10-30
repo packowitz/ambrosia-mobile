@@ -1,18 +1,25 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Backend.Models;
 using Backend.Responses;
 using Backend.Signal;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace Backend.Services
 {
     public class MissionService
     {
+        [Inject] private ServerAPI serverAPI;
+        private SignalBus signalBus;
         public List<Mission> Missions { get; private set; }
 
         public MissionService(SignalBus signalBus)
         {
+            this.signalBus = signalBus;
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);
@@ -27,6 +34,13 @@ namespace Backend.Services
                 {
                     Missions = data.missions;
                     SortMissions();
+                    data.missions.ForEach(mission =>
+                    {
+                        if (!mission.missionFinished)
+                        {
+                            ReloadMission(mission).SuppressCancellationThrow();
+                        }
+                    });
                 }
                 else
                 {
@@ -52,6 +66,10 @@ namespace Backend.Services
             var idx = Missions.FindIndex(m => m.id == mission.id);
             if (idx >= 0)
             {
+                if (Missions[idx].CancellationTokenSource != null)
+                {
+                    Missions[idx].CancellationTokenSource.Cancel();
+                }
                 Missions[idx] = mission;
             }
             else
@@ -59,11 +77,30 @@ namespace Backend.Services
                 Missions.Add(mission);
                 SortMissions();
             }
+            
+            signalBus.Fire(new MissionSignal(mission));
+
+            if (!mission.missionFinished)
+            {
+                ReloadMission(mission).SuppressCancellationThrow();
+            }
         }
 
         private void SortMissions()
         {
             Missions = Missions.OrderBy(m => m.slotNumber).ToList();
+        }
+
+        private async UniTask ReloadMission(Mission mission)
+        {
+            mission.CancellationTokenSource = new CancellationTokenSource();
+            await UniTask.Delay(
+                mission.NextUpdateTime - DateTime.Now,
+                cancellationToken: mission.CancellationTokenSource.Token
+            );
+            mission.CancellationTokenSource = null;
+            Debug.Log($"Updating mission {mission.id}");
+            serverAPI.DoGet<Mission>($"/battle/mission/{mission.id}", Update);
         }
     }
 }

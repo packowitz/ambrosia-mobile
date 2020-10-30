@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Threading;
 
 namespace Backend.Models
 {
@@ -27,11 +29,21 @@ namespace Backend.Models
         public int nextUpdateSeconds;
         public int duration;
         public int secondsUntilDone;
+        public DateTime NextUpdateTime { get; private set; }
+        public DateTime DoneTime { get; private set; }
 
         public List<OfflineBattle> battles;
 
         // transient
+        public CancellationTokenSource CancellationTokenSource;
         public bool updating;
         public bool updateFailed;
+        
+        [OnDeserialized]
+        internal void OnDeserialized(StreamingContext context)
+        {
+            NextUpdateTime = DateTime.Now + TimeSpan.FromSeconds(nextUpdateSeconds);
+            DoneTime = DateTime.Now + TimeSpan.FromSeconds(secondsUntilDone);
+        }
     }
 }

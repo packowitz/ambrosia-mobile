@@ -24,14 +24,12 @@ namespace Backend.Models
         public List<LootedItem> lootedItems;
         public int duration;
         public int secondsUntilDone;
-        public DateTime StartTime { get; private set; }
         public DateTime DoneTime { get; private set; }
         
         [OnDeserialized]
         internal void OnDeserialized(StreamingContext context)
         {
             DoneTime = DateTime.Now + TimeSpan.FromSeconds(secondsUntilDone);
-            StartTime = DoneTime - TimeSpan.FromSeconds(duration);
         }
     }
 }

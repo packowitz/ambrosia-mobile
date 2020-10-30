@@ -13,12 +13,15 @@ namespace Metagame.MainScreen
         [SerializeField] private RectTransform rectTransform;
         [SerializeField] private AnimationCurve blinkAnimationCurve;
         [SerializeField] private float blinkingInterval;
+        
+        [Inject] private ConfigsProvider configsProvider;
 
         private OfflineBattle battle;
         private PlayerExpedition expedition;
 
-        public void SetMissionBattle(ColorsConfig colorsConfig, OfflineBattle battle, int battleNumber, int totalBattles)
+        public void SetMissionBattle(OfflineBattle battle, int battleNumber, int totalBattles)
         {
+            var colorsConfig = configsProvider.Get<ColorsConfig>();
             this.battle = battle;
             rectTransform.rotation = Quaternion.Euler(0, 0, (-360F / totalBattles) * battleNumber);
             image.fillAmount = (1F / totalBattles) - 0.01F;

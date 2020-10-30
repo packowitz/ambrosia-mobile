@@ -25,7 +25,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752558159781420546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3883282514611953117}
   - component: {fileID: 4144430584258609550}
+  - component: {fileID: 6788708234811722115}
   m_Layer: 5
   m_Name: MissionOverlay
   m_TagString: Untagged
@@ -206,7 +207,19 @@ MonoBehaviour:
   vehicleAtlas: {fileID: 4343727234628468602, guid: 53695c01c56e244ea9b479147c6d3c7f,
     type: 2}
   vehicleImage: {fileID: 2971482578215681751}
-  colorsConfig: {fileID: 0}
+--- !u!114 &6788708234811722115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6174467659231545628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2
 --- !u!1 &7514997436112127384
 GameObject:
   m_ObjectHideFlags: 0

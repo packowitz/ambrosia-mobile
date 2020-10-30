@@ -14,6 +14,7 @@ namespace Installers
             SignalBusInstaller.Install(Container);
             
             // declare signals
+            Container.DeclareSignal<MissionSignal>();
             Container.DeclareSignal<PlayerActionSignal>();
             Container.DeclareSignal<ResourcesSignal>();
             

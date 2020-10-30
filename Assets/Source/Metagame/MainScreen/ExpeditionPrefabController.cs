@@ -4,6 +4,7 @@ using Configs;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Metagame.MainScreen
 {
@@ -15,13 +16,14 @@ namespace Metagame.MainScreen
         [SerializeField] private SpriteAtlas vehicleAtlas;
         [SerializeField] private Image vehicleImage;
 
-        public ColorsConfig colorsConfig;
-        public VehicleService vehicleService;
+        [Inject] private ConfigsProvider configsProvider;
+        [Inject] private VehicleService vehicleService;
 
         private PlayerExpedition expedition;
 
         public void SetExpedition(PlayerExpedition expedition)
         {
+            var colorsConfig = configsProvider.Get<ColorsConfig>();
             this.expedition = expedition;
             switch (expedition.rarity)
             {
@@ -49,6 +51,11 @@ namespace Metagame.MainScreen
             
             var border = Instantiate(borderProgressPrefab, canvas);
             border.SetExpedition(colorsConfig, expedition);
+        }
+
+        public void Remove()
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using Backend.Services;
-using Configs;
+using Backend.Signal;
 using UnityEngine;
 using Zenject;
 
@@ -12,25 +13,38 @@ namespace Metagame.MainScreen
         [SerializeField] private ExpeditionPrefabController expeditionPrefab;
         [Inject] private MissionService missionService;
         [Inject] private ExpeditionService expeditionService;
-        [Inject] private VehicleService vehicleService;
-        [Inject] private ConfigsProvider configsProvider;
+        [Inject] private SignalBus signalBus;
+
+        private List<MissionPrefabController> missions = new List<MissionPrefabController>();
+        private List<ExpeditionPrefabController> expeditions = new List<ExpeditionPrefabController>();
 
         private void Start()
         {
+            UpdateMissions();
+            signalBus.Subscribe<MissionSignal>(signal =>
+            {
+                UpdateMissions();
+            });
+        }
+        
+        private void UpdateMissions()
+        {
+            missions.ForEach(m => m.Remove());
+            missions.Clear();
+            expeditions.ForEach(e => e.Remove());
+            expeditions.Clear();
             foreach (var mission in missionService.Missions)
             {
                 var missionOverlay = Instantiate(missionPrefab, canvas);
-                missionOverlay.colorsConfig = configsProvider.Get<ColorsConfig>();
-                missionOverlay.vehicleService = vehicleService;
                 missionOverlay.SetMission(mission);
+                missions.Add(missionOverlay);
             }
 
             foreach (var expedition in expeditionService.PlayerExpeditions())
             {
                 var expeditionOverlay = Instantiate(expeditionPrefab, canvas);
-                expeditionOverlay.colorsConfig = configsProvider.Get<ColorsConfig>();
-                expeditionOverlay.vehicleService = vehicleService;
                 expeditionOverlay.SetExpedition(expedition);
+                expeditions.Add(expeditionOverlay);
             }
         }
     }

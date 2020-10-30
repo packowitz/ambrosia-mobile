@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Models;
 using Backend.Responses;
 using Backend.Signal;
+using Cysharp.Threading.Tasks;
 using Zenject;
 
 namespace Backend.Services
@@ -73,6 +75,16 @@ namespace Backend.Services
             {
                 playerExpeditions.Add(playerExpedition);
             }
+
+            if (playerExpedition.DoneTime < DateTime.Now)
+            {
+                
+            }
+        }
+
+        private async UniTask WaitForNextUpdate(PlayerExpedition playerExpedition)
+        {
+            //await UniTask.Delay(playerExpedition.Ne)
         }
     }
 }
