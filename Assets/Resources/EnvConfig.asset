@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiUrl: https://pacworx-ambrosia-api.herokuapp.com
   apiUrlDebug: http://localhost:8080
-  useLocal: 1
+  useLocal: 0

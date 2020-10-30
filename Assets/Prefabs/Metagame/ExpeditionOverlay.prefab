@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.093983635, g: 0.35996094, b: 0.6037736, a: 1}
+  m_Color: {r: 0.11120505, g: 0.29489878, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -157,9 +157,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3883282514611953117}
-  - component: {fileID: 4144430584258609550}
+  - component: {fileID: 20195917445460686}
   m_Layer: 5
-  m_Name: MissionOverlay
+  m_Name: ExpeditionOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4144430584258609550
+--- !u!114 &20195917445460686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,12 +197,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6174467659231545628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6d523fb874343e899ae4004dd9eb6d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 24adb7f2986946478a8468460a3ccefc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   borderProgressPrefab: {fileID: 1552041657272110618, guid: 8428c5148ffca4b87a61eb52d5510c69,
     type: 3}
   canvas: {fileID: 4863969526013460873}
+  inner: {fileID: 2114670205299249772}
   vehicleAtlas: {fileID: 4343727234628468602, guid: 53695c01c56e244ea9b479147c6d3c7f,
     type: 2}
   vehicleImage: {fileID: 2971482578215681751}
@@ -291,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4863969526013460873}
   m_Layer: 5
-  m_Name: MissionProgress
+  m_Name: ExpeditionProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

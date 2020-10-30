@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 200, y: 0}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &6373539718233918374
 MonoBehaviour:
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
@@ -76,4 +76,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 3636331950262950170}
   missionPrefab: {fileID: 4144430584258609550, guid: 854c4ed9a101c4b50ac650b6e2f6136b,
+    type: 3}
+  expeditionPrefab: {fileID: 20195917445460686, guid: 02df79c8b6c1247c4b6fea2ac0c08634,
     type: 3}

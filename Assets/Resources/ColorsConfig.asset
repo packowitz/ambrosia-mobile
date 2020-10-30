@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3375c232da044c4d8aa24936ad58ba43, type: 3}
   m_Name: ColorsConfig
   m_EditorClassIdentifier: 
-  missionSuccess: {r: 0.08505583, g: 0.4811321, b: 0.056737266, a: 0}
-  missionFailed: {r: 0.6320754, g: 0.07453719, b: 0.07453719, a: 0}
-  missionIdle: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
+  missionSuccess: {r: 0.08505583, g: 0.4811321, b: 0.056737266, a: 1}
+  missionFailed: {r: 0.6320754, g: 0.07453719, b: 0.07453719, a: 1}
+  missionIdle: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}

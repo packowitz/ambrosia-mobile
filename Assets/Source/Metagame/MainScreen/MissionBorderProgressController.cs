@@ -15,6 +15,7 @@ namespace Metagame.MainScreen
         [SerializeField] private float blinkingInterval;
 
         private OfflineBattle battle;
+        private PlayerExpedition expedition;
 
         public void SetMissionBattle(ColorsConfig colorsConfig, OfflineBattle battle, int battleNumber, int totalBattles)
         {
@@ -31,16 +32,48 @@ namespace Metagame.MainScreen
             }
         }
 
+        public void SetExpedition(ColorsConfig colorsConfig, PlayerExpedition expedition)
+        {
+            this.expedition = expedition;
+            image.color = colorsConfig.missionSuccess;
+            rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            UpdateExpedition();
+        }
+
         private void Update()
         {
-            if (battle.battleStarted && !battle.battleFinished)
+            if (battle != null && battle.battleStarted && !battle.battleFinished)
             {
-                var timePicker = (Time.unscaledTime % blinkingInterval) / blinkingInterval;
-                var alpha = blinkAnimationCurve.Evaluate(timePicker);
-                var color = image.color;
-                color.a = alpha;
-                image.color = color;
+                Blink();
             }
+
+            if (expedition != null)
+            {
+                UpdateExpedition();
+            }
+        }
+
+        private void UpdateExpedition()
+        {
+            if (expedition.DoneTime <= DateTime.Now)
+            {
+                image.fillAmount = 1F;
+                Blink();
+            }
+            else
+            {
+                var secondsLeft = (float)(expedition.DoneTime - DateTime.Now).TotalSeconds;
+                image.fillAmount = 1F - (secondsLeft / expedition.duration);
+            }
+        }
+
+        private void Blink()
+        {
+            var timePicker = (Time.unscaledTime % blinkingInterval) / blinkingInterval;
+            var alpha = blinkAnimationCurve.Evaluate(timePicker);
+            var color = image.color;
+            color.a = alpha;
+            image.color = color;
         }
     }
 }

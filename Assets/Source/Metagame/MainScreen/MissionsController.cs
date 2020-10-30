@@ -9,7 +9,9 @@ namespace Metagame.MainScreen
     {
         [SerializeField] private RectTransform canvas;
         [SerializeField] private MissionPrefabController missionPrefab;
+        [SerializeField] private ExpeditionPrefabController expeditionPrefab;
         [Inject] private MissionService missionService;
+        [Inject] private ExpeditionService expeditionService;
         [Inject] private VehicleService vehicleService;
         [Inject] private ConfigsProvider configsProvider;
 
@@ -21,6 +23,14 @@ namespace Metagame.MainScreen
                 missionOverlay.colorsConfig = configsProvider.Get<ColorsConfig>();
                 missionOverlay.vehicleService = vehicleService;
                 missionOverlay.SetMission(mission);
+            }
+
+            foreach (var expedition in expeditionService.PlayerExpeditions())
+            {
+                var expeditionOverlay = Instantiate(expeditionPrefab, canvas);
+                expeditionOverlay.colorsConfig = configsProvider.Get<ColorsConfig>();
+                expeditionOverlay.vehicleService = vehicleService;
+                expeditionOverlay.SetExpedition(expedition);
             }
         }
     }
