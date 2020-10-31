@@ -9,7 +9,6 @@ namespace Metagame.MainScreen
     public class GeneratedResourcePanel : MonoBehaviour
     {
         [SerializeField] private TMP_Text generatedAmountText;
-        [SerializeField] private TMP_Text premiumAmountText;
         [SerializeField] private Button toggleBtn;
 
         private bool showAmount = true;
@@ -61,11 +60,6 @@ namespace Metagame.MainScreen
                     generatedAmountText.text = timeLeft.Timer();
                 }
             }
-        }
-
-        public void SetPremiumAmount(int amount, int max)
-        {
-            premiumAmountText.text = $"{amount}/{max}";
         }
     }
 }

@@ -11,5 +11,10 @@ namespace Metagame.MainScreen
         {
             amountText.text = amount.ToString();
         }
+
+        public void SetAmount(int amount, int amountMax)
+        {
+            amountText.text = $"{amount}/{amountMax}";
+        }
     }
 }

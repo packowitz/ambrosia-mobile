@@ -4,6 +4,7 @@ using Configs;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Resources = Backend.Models.Resources;
 
 namespace Metagame.MainScreen
 {
@@ -11,8 +12,11 @@ namespace Metagame.MainScreen
     {
         [SerializeField] private Button playerAvatar;
         [SerializeField] private GeneratedResourcePanel tokens;
+        [SerializeField] private AnyResourcePanel tokensPremium;
         [SerializeField] private GeneratedResourcePanel cogwheels;
+        [SerializeField] private AnyResourcePanel cogwheelsPremium;
         [SerializeField] private GeneratedResourcePanel steam;
+        [SerializeField] private AnyResourcePanel steamPremium;
         [SerializeField] private AnyResourcePanel coins;
         [SerializeField] private AnyResourcePanel rubies;
         [Inject] private PlayerService playerService;
@@ -25,19 +29,21 @@ namespace Metagame.MainScreen
         {
             var colorConfig = configsProvider.Get<CharColorsConfig>().GetConfig(playerService.Player.color);
             playerAvatar.image.color = colorConfig.playerBorderColor;
-            UpdateResources();
-            signalBus.Subscribe<ResourcesSignal>(UpdateResources);
+            UpdateResources(resourcesService.Resources);
+            signalBus.Subscribe<ResourcesSignal>(signal =>
+            {
+                UpdateResources(signal.Data);
+            });
         }
 
-        private void UpdateResources()
+        private void UpdateResources(Resources res)
         {
-            var res = resourcesService.Resources;
             tokens.SetGeneratedAmount(res.tokens, res.tokensMax, res.tokensProductionTime);
-            tokens.SetPremiumAmount(res.premiumTokens, res.premiumTokensMax);
+            tokensPremium.SetAmount(res.premiumTokens, res.premiumTokensMax);
             cogwheels.SetGeneratedAmount(res.cogwheels, res.cogwheelsMax, res.cogwheelsProductionTime);
-            cogwheels.SetPremiumAmount(res.premiumCogwheels, res.premiumCogwheelsMax);
+            cogwheelsPremium.SetAmount(res.premiumCogwheels, res.premiumCogwheelsMax);
             steam.SetGeneratedAmount(res.steam, res.steamMax, res.steamProductionTime);
-            steam.SetPremiumAmount(res.premiumSteam, res.premiumSteamMax);
+            steamPremium.SetAmount(res.premiumSteam, res.premiumSteamMax);
             coins.SetAmount(res.coins);
             rubies.SetAmount(res.rubies);
         }

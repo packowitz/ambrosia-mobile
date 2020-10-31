@@ -4,6 +4,10 @@ namespace Backend.Signal
 {
     public class MissionSignal
     {
+        public MissionSignal()
+        {
+        }
+
         public MissionSignal(Mission data)
         {
             Data = data;

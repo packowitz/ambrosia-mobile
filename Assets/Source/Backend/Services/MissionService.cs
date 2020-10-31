@@ -57,6 +57,7 @@ namespace Backend.Services
                 if (idx >= 0)
                 {
                     Missions.RemoveAt(idx);
+                    signalBus.Fire<MissionSignal>();
                 }
             }
         }
