@@ -10,7 +10,7 @@ namespace Backend.Models
         public string description;
         public int level;
         public Rarity rarity;
-        public int durationMinutes;
+        public int durationHours;
         public int xp;
         public long lootBoxId;
     }

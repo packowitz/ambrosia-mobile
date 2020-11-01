@@ -5,6 +5,7 @@ using Backend.Models;
 using Backend.Responses;
 using Backend.Signal;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace Backend.Services
@@ -14,22 +15,42 @@ namespace Backend.Services
         private List<Expedition> expeditions;
         private List<PlayerExpedition> playerExpeditions;
 
+        [Inject] private ServerAPI serverAPI;
+
         public ExpeditionService(SignalBus signalBus)
         {
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);
             });
+            signalBus.Subscribe<ExpeditionLevelSignal>(ReloadExpeditions);
+            ScheduledExpeditionReload();
         }
 
-        public List<PlayerExpedition> PlayerExpeditions()
+        public IEnumerable<PlayerExpedition> PlayerExpeditions()
         {
-            return playerExpeditions.Where(e => !e.completed).ToList();
+            return playerExpeditions.Where(e => !e.completed);
         }
 
         public List<Expedition> AvailableExpeditions()
         {
             return expeditions.Where(e => playerExpeditions.FindIndex(p => p.expeditionId == e.id) == -1).ToList();
+        }
+
+        private async void ScheduledExpeditionReload()
+        {
+            await UniTask.Delay(TimeSpan.FromMinutes(5));
+            ReloadExpeditions();
+            ScheduledExpeditionReload();
+        }
+
+        private void ReloadExpeditions()
+        {
+            Debug.Log("Refreshing expeditions");
+            serverAPI.DoGet<List<Expedition>>("/expedition/active", data =>
+            {
+                expeditions = data;
+            });
         }
 
         private void Consume(PlayerActionResponse data)
@@ -75,16 +96,6 @@ namespace Backend.Services
             {
                 playerExpeditions.Add(playerExpedition);
             }
-
-            if (playerExpedition.DoneTime < DateTime.Now)
-            {
-                
-            }
-        }
-
-        private async UniTask WaitForNextUpdate(PlayerExpedition playerExpedition)
-        {
-            //await UniTask.Delay(playerExpedition.Ne)
         }
     }
 }

@@ -14,7 +14,13 @@ namespace Backend.Services
             {
                 if (signal.Data.progress != null)
                 {
-                    Progress = signal.Data.progress;
+                    var newProgress = signal.Data.progress;
+                    var expLvlChanged = Progress != null && newProgress.expeditionLevel != Progress.expeditionLevel;
+                    Progress = newProgress;
+                    if (expLvlChanged)
+                    {
+                        signalBus.Fire<ExpeditionLevelSignal>();
+                    }
                 }
             });
         }

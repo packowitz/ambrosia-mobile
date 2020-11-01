@@ -19,12 +19,9 @@ namespace Metagame.MainScreen
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private VehicleService vehicleService;
 
-        private PlayerExpedition expedition;
-
         public void SetExpedition(PlayerExpedition expedition)
         {
             var colorsConfig = configsProvider.Get<ColorsConfig>();
-            this.expedition = expedition;
             switch (expedition.rarity)
             {
                 case Rarity.SIMPLE:

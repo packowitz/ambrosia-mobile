@@ -21,10 +21,7 @@ namespace Metagame.MainScreen
         private void Start()
         {
             UpdateMissions();
-            signalBus.Subscribe<MissionSignal>(signal =>
-            {
-                UpdateMissions();
-            });
+            signalBus.Subscribe<MissionSignal>(UpdateMissions);
         }
         
         private void UpdateMissions()
