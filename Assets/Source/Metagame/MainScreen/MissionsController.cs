@@ -22,6 +22,7 @@ namespace Metagame.MainScreen
         {
             UpdateMissions();
             signalBus.Subscribe<MissionSignal>(UpdateMissions);
+            signalBus.Subscribe<ExpeditionSignal>(UpdateMissions);
         }
         
         private void UpdateMissions()

@@ -16,9 +16,11 @@ namespace Backend.Services
         private List<PlayerExpedition> playerExpeditions;
 
         [Inject] private ServerAPI serverAPI;
+        private SignalBus signalBus;
 
         public ExpeditionService(SignalBus signalBus)
         {
+            this.signalBus = signalBus;
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);
@@ -50,6 +52,7 @@ namespace Backend.Services
             serverAPI.DoGet<List<Expedition>>("/expedition/active", data =>
             {
                 expeditions = data;
+                signalBus.Fire<ExpeditionSignal>();
             });
         }
 
