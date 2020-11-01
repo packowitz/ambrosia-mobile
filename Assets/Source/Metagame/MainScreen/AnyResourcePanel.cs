@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace Metagame.MainScreen
 {
@@ -9,12 +10,12 @@ namespace Metagame.MainScreen
 
         public void SetAmount(int amount)
         {
-            amountText.text = amount.ToString();
+            amountText.text = NumberUtil.RoundAmount(amount);
         }
 
         public void SetAmount(int amount, int amountMax)
         {
-            amountText.text = $"{amount}/{amountMax}";
+            amountText.text = $"{NumberUtil.RoundAmount(amount)}/{NumberUtil.RoundAmount(amountMax)}";
         }
     }
 }
