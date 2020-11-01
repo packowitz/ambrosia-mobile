@@ -47,5 +47,6 @@ namespace Backend.Responses
         public AutoBreakdownConfiguration autoBreakdownConfiguration;
         public List<InboxMessage> inboxMessages;
         public long? inboxMessageDeleted;
+        public List<Team> teams;
     }
 }
