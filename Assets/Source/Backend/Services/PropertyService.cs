@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Backend.Models;
+using Backend.Models.Enums;
 using Configs;
 using ModestTree;
 using Newtonsoft.Json;

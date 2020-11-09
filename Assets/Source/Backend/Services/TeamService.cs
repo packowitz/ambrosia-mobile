@@ -8,7 +8,7 @@ namespace Backend.Services
 {
     public class TeamService
     {
-        public List<Team> Teams { get; private set; }
+        private List<Team> Teams;
 
         public TeamService(SignalBus signalBus)
         {
@@ -16,6 +16,11 @@ namespace Backend.Services
             {
                 Consume(signal.Data);
             });
+        }
+
+        public Team Team(string type)
+        {
+            return Teams.Find(team => team.type == type);
         }
 
         private void Consume(PlayerActionResponse data)
@@ -36,9 +41,9 @@ namespace Backend.Services
             }
         }
 
-        private void Update(Team team)
+        public void Update(Team team)
         {
-            var idx = Teams.FindIndex(t => t.id == team.id);
+            var idx = Teams.FindIndex(t => t.type == team.type);
             if (idx >= 0)
             {
                 Teams[idx] = team;

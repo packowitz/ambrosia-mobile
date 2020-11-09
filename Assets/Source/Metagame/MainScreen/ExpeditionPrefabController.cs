@@ -1,4 +1,5 @@
 using Backend.Models;
+using Backend.Models.Enums;
 using Backend.Services;
 using Configs;
 using UnityEngine;

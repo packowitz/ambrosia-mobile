@@ -1,6 +1,6 @@
 using System;
 
-namespace Backend.Models.ObjectShape
+namespace Backend.Models.Enums.ObjectShape
 {
     [Serializable]
     public class JewelTypeObj

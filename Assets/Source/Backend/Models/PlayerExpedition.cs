@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Backend.Models.Enums;
 
 namespace Backend.Models
 {

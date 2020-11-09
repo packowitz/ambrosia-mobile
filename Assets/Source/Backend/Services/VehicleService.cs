@@ -25,6 +25,12 @@ namespace Backend.Services
             return vehicles.Find(v => v.id == id);
         }
 
+        public Vehicle AvailableVehicle()
+        {
+            return vehicles.Find(v =>
+                v.slot != null && v.missionId == null && v.playerExpeditionId == null && !v.upgradeTriggered);
+        }
+
         public VehiclePart VehiclePart(long id)
         {
             return parts.Find(p => p.id == id);

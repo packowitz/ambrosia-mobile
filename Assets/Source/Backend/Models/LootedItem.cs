@@ -1,6 +1,6 @@
 using System;
-using Backend.Models;
-using Backend.Models.ObjectShape;
+using Backend.Models.Enums;
+using Backend.Models.Enums.ObjectShape;
 
 namespace Backend
 {

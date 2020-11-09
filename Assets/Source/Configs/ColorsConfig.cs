@@ -1,25 +1,33 @@
 using UnityEngine;
-using Color = Backend.Models.Color;
 
 namespace Configs
 {
     [CreateAssetMenu(fileName = "ColorsConfig", menuName = "Ambrosia/Configs/ColorsConfig")]
     public class ColorsConfig : ScriptableObject
     {
-        [SerializeField] public UnityEngine.Color missionSuccess;
-        [SerializeField] public UnityEngine.Color missionFailed;
-        [SerializeField] public UnityEngine.Color missionIdle;
-        [SerializeField] public UnityEngine.Color expSimple;
-        [SerializeField] public UnityEngine.Color expSimpleBorder;
-        [SerializeField] public UnityEngine.Color expCommon;
-        [SerializeField] public UnityEngine.Color expCommonBorder;
-        [SerializeField] public UnityEngine.Color expUncommon;
-        [SerializeField] public UnityEngine.Color expUncommonBorder;
-        [SerializeField] public UnityEngine.Color expRare;
-        [SerializeField] public UnityEngine.Color expRareBorder;
-        [SerializeField] public UnityEngine.Color expEpic;
-        [SerializeField] public UnityEngine.Color expEpicBorder;
-        [SerializeField] public UnityEngine.Color expLegendary;
-        [SerializeField] public UnityEngine.Color expLegendaryBorder;
+        [SerializeField] public Color missionSuccess;
+        [SerializeField] public Color missionFailed;
+        [SerializeField] public Color missionIdle;
+        [SerializeField] public Color expSimple;
+        [SerializeField] public Color expSimpleBorder;
+        [SerializeField] public Color expCommon;
+        [SerializeField] public Color expCommonBorder;
+        [SerializeField] public Color expUncommon;
+        [SerializeField] public Color expUncommonBorder;
+        [SerializeField] public Color expRare;
+        [SerializeField] public Color expRareBorder;
+        [SerializeField] public Color expEpic;
+        [SerializeField] public Color expEpicBorder;
+        [SerializeField] public Color expLegendary;
+        [SerializeField] public Color expLegendaryBorder;
+        [SerializeField] public Color heroAvatarBackground;
+        [SerializeField] public Color heroAvatarBackgroundActive;
+        [SerializeField] public Color heroLevelGreenBackground;
+        [SerializeField] public Color heroLevelBlueBackground;
+        [SerializeField] public Color heroLevelRedBackground;
+        [SerializeField] public Color heroLevelNeutralBackground;
+        [SerializeField] public Color heroMaxLevelBorder;
+        [SerializeField] public Color heroAscInnerActive;
+        [SerializeField] public Color heroAscInnerInactive;
     }
 }

@@ -14,7 +14,7 @@ namespace Backend.Models
         public string avatar;
         public int level;
         public bool upgradeTriggered;
-        public int slot;
+        public int? slot;
         public VehiclePart engine;
         public VehiclePart frame;
         public VehiclePart computer;

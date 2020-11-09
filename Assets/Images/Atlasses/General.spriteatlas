@@ -43,14 +43,56 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 618940df6eadc4b5081971a742ec53a7, type: 3}
-    totalSpriteSurfaceArea: 8192
+    totalSpriteSurfaceArea: 545792
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 2f0483212823444289cf8a3f166d12b1, type: 3}
+  - {fileID: 21300000, guid: 617ad2822225c4469827ddb649960496, type: 3}
+  - {fileID: 21300000, guid: 13685dc2e07204f50ae71e42f5ab7fee, type: 3}
   - {fileID: 21300000, guid: 452639e2720fc4f64b7ec6bec7dd29f1, type: 3}
+  - {fileID: 21300000, guid: 895897f2afc4b4ba9a8b7b59e21bad6b, type: 3}
+  - {fileID: 21300000, guid: c87f39932e3d94cf1b83b6cec0602a65, type: 3}
+  - {fileID: 21300000, guid: 4c31b004e1230495f836f62ad8189e7e, type: 3}
+  - {fileID: 21300000, guid: 776225846c06e4c79bc655c6ea0125d1, type: 3}
+  - {fileID: 21300000, guid: e7ae5bf4556c74945955108c465e3403, type: 3}
+  - {fileID: 21300000, guid: 47cd2bd5970024c6ea0148c869851ef1, type: 3}
+  - {fileID: 21300000, guid: 102fee86a744d40afb2d3bbbf6c88348, type: 3}
+  - {fileID: 21300000, guid: 929351e68b19b4376992a30c959b3923, type: 3}
+  - {fileID: 21300000, guid: b0d51577745054740aea79eb0c9b471f, type: 3}
   - {fileID: 21300000, guid: fdc27da7df62f45359db9dbdc03bf9fe, type: 3}
+  - {fileID: 21300000, guid: b75801c970fb84d80b8dd444525b221f, type: 3}
+  - {fileID: 21300000, guid: 830b9a6a8c0ba41f9818c27479d5295c, type: 3}
+  - {fileID: 21300000, guid: 296dc10bc6f984b5cb6ae2626e4d685a, type: 3}
+  - {fileID: 21300000, guid: 477ee63bc89a444e6b3610cab0bedbd1, type: 3}
+  - {fileID: 21300000, guid: 4494afeb2edab44d4b25777fe6721bd4, type: 3}
+  - {fileID: 21300000, guid: 63f0380ef77d8429fbc9f509e918e5ec, type: 3}
+  - {fileID: 21300000, guid: 3dc9a43e60b8d4979ab9d61b8f3eced4, type: 3}
+  - {fileID: 21300000, guid: a6d655bebcf80449c8272e988da7dea9, type: 3}
+  - {fileID: 21300000, guid: c5f3f0ee028ff4a23abfc443eb34c8b8, type: 3}
   m_PackedSpriteNamesToIndex:
+  - star_2_6
+  - star_2_5
+  - star_2_3
   - circle
+  - star_4_5
+  - star_4_6
+  - star_1_3
+  - star_6_6
+  - star_5_5
+  - star_1_5
+  - star_1_2
+  - star_3_6
+  - star_2_2
   - ring
+  - star_5_6
+  - star_1_4
+  - star_3_5
+  - star_4_4
+  - star_1_6
+  - star_2_4
+  - star_3_3
+  - star_3_4
+  - star_1_1
   m_Tag: General
   m_IsVariant: 0

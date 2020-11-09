@@ -45,6 +45,7 @@ namespace Installers
             Container.Bind<PropertyService>().AsSingle().NonLazy();
             Container.Bind<ResourcesService>().AsSingle().NonLazy();
             Container.Bind<StoryService>().AsSingle().NonLazy();
+            Container.Bind<TeamService>().AsSingle().NonLazy();
             Container.Bind<UpgradeService>().AsSingle().NonLazy();
             Container.Bind<VehicleBaseService>().AsSingle().NonLazy();
             Container.Bind<VehicleService>().AsSingle().NonLazy();

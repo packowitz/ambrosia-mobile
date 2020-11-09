@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Backend.Models;
+using Backend.Models.Enums;
+
 // ReSharper disable UnassignedField.Global
 // ReSharper disable InconsistentNaming
 

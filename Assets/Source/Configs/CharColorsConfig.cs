@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Color = Backend.Models.Color;
+using Color = Backend.Models.Enums.Color;
 
 namespace Configs
 {

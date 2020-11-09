@@ -6,6 +6,7 @@ namespace Backend.Models
     public class Expedition
     {
         public long id;
+        public long secondsAvailable;
         public ExpeditionBase expeditionBase;
     }
 }

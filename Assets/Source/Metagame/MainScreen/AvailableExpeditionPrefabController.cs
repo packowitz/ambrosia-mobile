@@ -1,5 +1,6 @@
 using System;
 using Backend.Models;
+using Backend.Models.Enums;
 using Configs;
 using TMPro;
 using UnityEngine;
@@ -10,12 +11,28 @@ namespace Metagame.MainScreen
 {
     public class AvailableExpeditionPrefabController : MonoBehaviour
     {
+        [SerializeField] private Button start;
+        [SerializeField] private StartExpeditionController startExpeditionPrefab;
         [SerializeField] private Image border;
         [SerializeField] private TMP_Text durationText;
+        
         [Inject] private ConfigsProvider configsProvider;
+        [Inject] private PopupCanvasController popupCanvasController;
+
+        private Expedition expedition;
+
+        private void Start()
+        {
+            start.onClick.AddListener(() =>
+            {
+                var popup = popupCanvasController.OpenPopup(startExpeditionPrefab);
+                popup.SetExpedition(expedition);
+            });
+        }
 
         public void SetExpedition(Expedition expedition)
         {
+            this.expedition = expedition;
             var colorsConfig = configsProvider.Get<ColorsConfig>();
             switch (expedition.expeditionBase.rarity)
             {
