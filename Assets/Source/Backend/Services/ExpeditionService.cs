@@ -51,16 +51,17 @@ namespace Backend.Services
             Debug.Log("Refreshing expeditions");
             serverAPI.DoGet<List<Expedition>>("/expedition/active", data =>
             {
-                expeditions = data;
-                signalBus.Fire<ExpeditionSignal>();
+                Consume(new PlayerActionResponse{ expeditions = data });
             });
         }
 
         private void Consume(PlayerActionResponse data)
         {
+            var fireSignal = false;
             if (data.expeditions != null)
             {
                 expeditions = data.expeditions;
+                fireSignal = true;
             }
 
             if (data.playerExpeditions != null)
@@ -76,6 +77,8 @@ namespace Backend.Services
                         Update(playerExpedition);
                     }
                 }
+
+                fireSignal = true;
             }
 
             if (data.playerExpeditionCancelled != null)
@@ -85,6 +88,13 @@ namespace Backend.Services
                 {
                     playerExpeditions.RemoveAt(idx);
                 }
+
+                fireSignal = true;
+            }
+
+            if (fireSignal)
+            {
+                signalBus.Fire<ExpeditionSignal>();
             }
         }
 

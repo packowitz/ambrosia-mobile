@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Backend.Models;
 using Backend.Responses;
 using Backend.Signal;
@@ -20,15 +21,40 @@ namespace Backend.Services
             });
         }
 
-        public Vehicle Vehicle(long id)
+        public Vehicle Vehicle(long? id)
         {
+            if (id == null)
+            {
+                return null;
+            }
             return vehicles.Find(v => v.id == id);
+        }
+
+        public Vehicle AvailableVehicle(long? id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            var vehicle = vehicles.Find(v => v.id == id);
+            if (vehicle != null && vehicle.missionId == null && vehicle.playerExpeditionId == null && !vehicle.upgradeTriggered)
+            {
+                return vehicle;
+            }
+
+            return null;
         }
 
         public Vehicle AvailableVehicle()
         {
             return vehicles.Find(v =>
                 v.slot != null && v.missionId == null && v.playerExpeditionId == null && !v.upgradeTriggered);
+        }
+
+        public List<Vehicle> AvailableVehicles()
+        {
+            return vehicles.Where(v =>
+                v.slot != null && v.missionId == null && v.playerExpeditionId == null && !v.upgradeTriggered).OrderBy(v => v.slot).ToList();
         }
 
         public VehiclePart VehiclePart(long id)

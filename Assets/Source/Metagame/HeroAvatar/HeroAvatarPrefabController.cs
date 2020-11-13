@@ -27,12 +27,21 @@ namespace Metagame.HeroAvatar
         [SerializeField] private SpriteAtlas heroAtlas;
         [SerializeField] private SpriteAtlas generalAtlas;
         [SerializeField] private Button button;
+        [SerializeField] private GameObject avatar;
+        [SerializeField] private GameObject availableLayer;
         
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private HeroBaseService heroBaseService;
 
-        public void SetHero(Hero hero)
+        public void SetHero(Hero hero, bool indicateAvailability = false)
         {
+            if (hero == null)
+            {
+                avatar.SetActive(false);
+                return;
+            }
+            avatar.SetActive(true);
+            availableLayer.SetActive(indicateAvailability && !hero.IsAvailable());
             var colorsConfig = configsProvider.Get<ColorsConfig>();
             var baseHero = heroBaseService.GetHeroBase(hero.heroBaseId);
             avatarImg.sprite = heroAtlas.GetSprite(hero.avatar);
@@ -84,6 +93,11 @@ namespace Metagame.HeroAvatar
         {
             var colorsConfig = configsProvider.Get<ColorsConfig>();
             avatarBackground.color = active ? colorsConfig.heroAvatarBackgroundActive : colorsConfig.heroAvatarBackground;
+        }
+
+        public void Remove()
+        {
+            Destroy(gameObject);
         }
     }
 }

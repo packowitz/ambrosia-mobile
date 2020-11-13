@@ -30,6 +30,21 @@ namespace Backend.Services
             return heroes.Find(h => h.id == id);
         }
 
+        public Hero AvailableHero(long? id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            var hero = heroes.Find(h => h.id == id);
+            if (hero?.IsAvailable() == true)
+            {
+                return hero;
+            }
+
+            return null;
+        }
+
         private void Consume(PlayerActionResponse data)
         {
             if (data.heroes != null)

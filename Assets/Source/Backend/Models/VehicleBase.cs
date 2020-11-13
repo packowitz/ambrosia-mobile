@@ -13,11 +13,11 @@ namespace Backend.Models
         public PartQuality engineQuality;
         public PartQuality frameQuality;
         public PartQuality computerQuality;
-        public PartType specialPart1;
-        public PartQuality specialPart1Quality;
-        public PartType specialPart2;
-        public PartQuality specialPart2Quality;
-        public PartType specialPart3;
-        public PartQuality specialPart3Quality;
+        public PartType? specialPart1;
+        public PartQuality? specialPart1Quality;
+        public PartType? specialPart2;
+        public PartQuality? specialPart2Quality;
+        public PartType? specialPart3;
+        public PartQuality? specialPart3Quality;
     }
 }

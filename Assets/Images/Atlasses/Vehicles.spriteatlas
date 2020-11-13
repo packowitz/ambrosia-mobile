@@ -43,34 +43,84 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 2087457301bd1485ca25249845bf8771, type: 3}
-    totalSpriteSurfaceArea: 592896
+    totalSpriteSurfaceArea: 900096
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 13efdc01f58fb4d4b8f80c8498d1d240, type: 3}
+  - {fileID: 21300000, guid: 321695117c7824a7185fed6022280bac, type: 3}
+  - {fileID: 21300000, guid: 5ac565824712247fc95fcdba932d891f, type: 3}
+  - {fileID: 21300000, guid: 84328eb23f5dc4825be721a546f7102f, type: 3}
+  - {fileID: 21300000, guid: b9801ef24fd544ea09553dc981f84777, type: 3}
   - {fileID: 21300000, guid: 4d4f95c3dae8e4d23b47d687be73e284, type: 3}
   - {fileID: 21300000, guid: 4b8c79e3168824adf96b26cce828dc27, type: 3}
+  - {fileID: 21300000, guid: 88cb67f31c8c54611bdb8938bb5a7dee, type: 3}
   - {fileID: 21300000, guid: 2fe80274b413b4bc7bb430d70102075c, type: 3}
+  - {fileID: 21300000, guid: 28e393748c91c4887bb132b6821da8c5, type: 3}
+  - {fileID: 21300000, guid: 52985715bab9e4912915a1fbb911e46b, type: 3}
+  - {fileID: 21300000, guid: 3ec24f26a19c64f4190769203773c559, type: 3}
   - {fileID: 21300000, guid: 5d2b4b4674dda4b7284c55e03b2ad6e6, type: 3}
+  - {fileID: 21300000, guid: 214f6d4640c78449d8ff83d6c0adcee5, type: 3}
+  - {fileID: 21300000, guid: 1f1b9456842b44cf592df5dd52af3bd3, type: 3}
+  - {fileID: 21300000, guid: d867dfe660a854a0eab0944d2106e566, type: 3}
   - {fileID: 21300000, guid: 3a423957fe0854166a2364c71bbe5a0e, type: 3}
+  - {fileID: 21300000, guid: d0ece8670f1a04f46a51155de273dcd4, type: 3}
   - {fileID: 21300000, guid: 69fd1f9767d0141c987fd863a66ff138, type: 3}
+  - {fileID: 21300000, guid: 57a423287bdd948478411c83728df318, type: 3}
   - {fileID: 21300000, guid: ae09da98e48724ccf9bd3f0d4a3c4ddc, type: 3}
+  - {fileID: 21300000, guid: 6b9864b84e9824b70921f24728e7713c, type: 3}
   - {fileID: 21300000, guid: ed1097c85c12f49469c78ca8605add64, type: 3}
+  - {fileID: 21300000, guid: 58d0c759c14364a3fbf6fa910632f05f, type: 3}
   - {fileID: 21300000, guid: 2c6ecc4afd86c44f6ac8572d01c70c8c, type: 3}
+  - {fileID: 21300000, guid: 007d93aa25f6b42d68849eed89897cc0, type: 3}
   - {fileID: 21300000, guid: 7ae7800bfe94f4594a9ce0029b1baf44, type: 3}
+  - {fileID: 21300000, guid: 5b06240b34573447c892813ec6f770b4, type: 3}
   - {fileID: 21300000, guid: 1dfc983b57fac448caea547b4b6df248, type: 3}
+  - {fileID: 21300000, guid: 0a05c7dbe857f4ccb9be736cce62805a, type: 3}
+  - {fileID: 21300000, guid: bcdc079cd1d7c4395b2ab0af42fe8c92, type: 3}
+  - {fileID: 21300000, guid: 5e11e00d16fbb4b8ab601f431eb252da, type: 3}
+  - {fileID: 21300000, guid: c9f6185d047614428aaf8d9114f1ccb9, type: 3}
+  - {fileID: 21300000, guid: 3b94cb6d5c5b74a959d5b2009f154552, type: 3}
+  - {fileID: 21300000, guid: d378bb8d900c547ca8e706c66f2c745d, type: 3}
+  - {fileID: 21300000, guid: b1aa1f0e735d64b4a9dcbc2e890eadd1, type: 3}
+  - {fileID: 21300000, guid: b6bf67cf22adb45f3a6984f70f50bed3, type: 3}
   m_PackedSpriteNamesToIndex:
   - vehicle_010
+  - COMPUTER_NONE
+  - SPECIAL_NONE
+  - REPAIR_KIT_NONE
+  - RAILGUN_NONE
   - vehicle_009
   - vehicle_005
+  - NIGHT_VISION
   - vehicle_007
+  - MEDI_KIT_NONE
+  - SMOKE_BOMB_NONE
+  - NIGHT_VISION_NONE
   - vehicle_008
+  - MISSILE_DEFENSE
+  - RAILGUN
+  - MISSILE_DEFENSE_NONE
   - vehicle_012
+  - SMOKE_BOMB
   - vehicle_006
+  - REPAIR_KIT
   - vehicle_002
+  - EXTRA_ARMOR
   - vehicle_004
+  - FRAME_NONE
   - vehicle_011
+  - ENGINE_NONE
   - vehicle_001
+  - MAGNETIC_SHIELD_NONE
   - vehicle_003
+  - ENGINE
+  - MAGNETIC_SHIELD
+  - SNIPER_SCOPE
+  - EXTRA_ARMOR_NONE
+  - SNIPER_SCOPE_NONE
+  - COMPUTER
+  - FRAME
+  - MEDI_KIT
   m_Tag: Vehicles
   m_IsVariant: 0

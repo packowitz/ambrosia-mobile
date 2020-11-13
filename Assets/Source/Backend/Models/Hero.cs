@@ -55,5 +55,10 @@ namespace Backend.Models
         public int resistanceTotal;
 
         public List<HeroGearSet> sets;
+
+        public bool IsAvailable()
+        {
+            return missionId == null && playerExpeditionId == null;
+        }
     }
 }

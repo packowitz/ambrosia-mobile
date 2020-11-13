@@ -91,10 +91,12 @@ namespace Backend
             Action<ErrorResponse> onError = null)
         {
             var url = envConfig.ApiUrl + (path.StartsWith("/") ? path : "/" + path);
-            var request = UnityWebRequest.Put(url, body != null ? JsonUtility.ToJson(body) : "{}");
+            var bodyData = body != null ? JsonConvert.SerializeObject(body) : "{}";
+            var request = UnityWebRequest.Put(url, bodyData);
             request.method = UnityWebRequest.kHttpVerbPOST;
             request.SetRequestHeader("Content-Type", "application/json");
             AddGenericHeaders(request);
+            Debug.Log($"POST: {url}\nBody: {bodyData}");
             var requestAsyncOperation = request.SendWebRequest();
             requestAsyncOperation.completed += operation =>
             {
@@ -147,6 +149,8 @@ namespace Backend
                 else
                 {
                     Debug.Log("TODO show http error without explicit handling");
+                    Debug.LogError(error.title);
+                    Debug.LogError(error.message);
                 }
             }
         }

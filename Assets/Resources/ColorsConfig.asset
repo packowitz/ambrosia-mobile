@@ -26,11 +26,9 @@ MonoBehaviour:
   expEpic: {r: 0.8396226, g: 0.53522545, b: 0.4712976, a: 1}
   expEpicBorder: {r: 0.15686274, g: 0.33390814, b: 0.8039216, a: 1}
   expLegendary: {r: 0.8396226, g: 0.43169275, b: 0.74777097, a: 1}
-  expLegendaryBorder: {r: 0.7594188, g: 0.15686274, b: 0.8039216, a: 0}
-  heroGreenBackground: {r: 0.7254902, g: 0.84313726, b: 0.69411767, a: 1}
-  heroBlueBackground: {r: 0.65882355, g: 0.84705883, b: 0.8901961, a: 1}
-  heroRedBackground: {r: 0.99215686, g: 0.40784314, b: 0.45490196, a: 1}
-  heroNeutralBackground: {r: 0.8117647, g: 0.8117647, b: 0.8117647, a: 1}
+  expLegendaryBorder: {r: 0.7594188, g: 0.15686274, b: 0.8039216, a: 1}
+  heroAvatarBackground: {r: 0.8117647, g: 0.8117647, b: 0.8117647, a: 1}
+  heroAvatarBackgroundActive: {r: 0.6039216, g: 0.81960785, b: 0.87058824, a: 1}
   heroLevelGreenBackground: {r: 0.105882354, g: 0.3882353, b: 0.09803922, a: 1}
   heroLevelBlueBackground: {r: 0.023529412, g: 0.047058824, b: 0.6627451, a: 1}
   heroLevelRedBackground: {r: 0.7372549, g: 0.0627451, b: 0.14117648, a: 1}
