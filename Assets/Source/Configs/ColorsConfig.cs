@@ -29,5 +29,7 @@ namespace Configs
         [SerializeField] public Color heroMaxLevelBorder;
         [SerializeField] public Color heroAscInnerActive;
         [SerializeField] public Color heroAscInnerInactive;
+        [SerializeField] public Color bottomHubActive;
+        [SerializeField] public Color bottomHubInactive;
     }
 }

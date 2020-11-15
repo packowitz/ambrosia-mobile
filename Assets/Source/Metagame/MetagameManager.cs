@@ -5,6 +5,6 @@ namespace Metagame
 {
     public class MetagameManager: MonoBehaviour
     {
-        
+        public MainScreenEnum currentScreen = MainScreenEnum.Map;
     }
 }

@@ -29,9 +29,9 @@ namespace Backend.Services
             ScheduledExpeditionReload();
         }
 
-        public IEnumerable<PlayerExpedition> PlayerExpeditions()
+        public List<PlayerExpedition> PlayerExpeditions()
         {
-            return playerExpeditions.Where(e => !e.completed);
+            return playerExpeditions.Where(e => !e.completed).ToList();
         }
 
         public List<Expedition> AvailableExpeditions()

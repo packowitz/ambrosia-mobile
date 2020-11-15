@@ -24,7 +24,7 @@ namespace Backend.Services
 
         public bool HasClaimableReward()
         {
-            return AchievementRewards.FindIndex(a => AchievementAmount(a.achievementType) >= a.achievementAmount) >= 0;
+            return AchievementRewards.Exists(a => AchievementAmount(a.achievementType) >= a.achievementAmount);
         }
 
         public long AchievementAmount(AchievementRewardType type)

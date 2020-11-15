@@ -18,6 +18,24 @@ namespace Backend.Services
                 Consume(signal.Data);
             });
         }
+
+        public bool HasClaimableActivity()
+        {
+            if (OddJobs.Exists(o => o.jobAmountDone >= o.jobAmount))
+            {
+                return true;
+            }
+
+            for (var i = 1; i <= DailyActivity.today; i++)
+            {
+                if (DailyActivity.Claimable(i))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         
         private void Consume(PlayerActionResponse data)
         {
