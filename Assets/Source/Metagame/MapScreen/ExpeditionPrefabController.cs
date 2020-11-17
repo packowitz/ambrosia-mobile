@@ -7,7 +7,7 @@ using UnityEngine.U2D;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
     public class ExpeditionPrefabController : MonoBehaviour
     {

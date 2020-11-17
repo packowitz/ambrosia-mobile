@@ -1,4 +1,3 @@
-using System;
 using Backend.Models;
 using Backend.Models.Enums;
 using Configs;
@@ -7,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
     public class AvailableExpeditionPrefabController : MonoBehaviour
     {

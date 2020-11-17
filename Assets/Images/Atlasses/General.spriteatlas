@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 618940df6eadc4b5081971a742ec53a7, type: 3}
-    totalSpriteSurfaceArea: 873472
+    totalSpriteSurfaceArea: 1382272
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -52,6 +52,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 13685dc2e07204f50ae71e42f5ab7fee, type: 3}
   - {fileID: 21300000, guid: 452639e2720fc4f64b7ec6bec7dd29f1, type: 3}
   - {fileID: 21300000, guid: 895897f2afc4b4ba9a8b7b59e21bad6b, type: 3}
+  - {fileID: 21300000, guid: d7f5b823b6553488da0b84acdf548c04, type: 3}
   - {fileID: 21300000, guid: 50ea5a73f94f34dd48df7da3387816c8, type: 3}
   - {fileID: 21300000, guid: c87f39932e3d94cf1b83b6cec0602a65, type: 3}
   - {fileID: 21300000, guid: 4c31b004e1230495f836f62ad8189e7e, type: 3}
@@ -81,6 +82,7 @@ SpriteAtlas:
   - star_2_3
   - circle
   - star_4_5
+  - background_inbox
   - inbox
   - star_4_6
   - star_1_3

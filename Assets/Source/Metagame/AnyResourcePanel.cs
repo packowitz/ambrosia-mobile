@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using Utils;
 
-namespace Metagame.MainScreen
+namespace Metagame
 {
     public class AnyResourcePanel : MonoBehaviour
     {
@@ -16,6 +16,12 @@ namespace Metagame.MainScreen
         public void SetAmount(int amount, int amountMax)
         {
             amountText.text = $"{NumberUtil.RoundAmount(amount)}/{NumberUtil.RoundAmount(amountMax)}";
+        }
+
+        public void SetAmount(int amount, bool max)
+        {
+            SetAmount(amount);
+            amountText.fontStyle = max ? FontStyles.Bold : FontStyles.Normal;
         }
     }
 }

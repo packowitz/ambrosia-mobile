@@ -4,7 +4,7 @@ using Backend.Signal;
 using UnityEngine;
 using Zenject;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
     public class AvailableExpeditionsController : MonoBehaviour
     {

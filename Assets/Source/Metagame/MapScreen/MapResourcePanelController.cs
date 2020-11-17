@@ -6,9 +6,9 @@ using UnityEngine.UI;
 using Zenject;
 using Resources = Backend.Models.Resources;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
-    public class ResourcePanelController : MonoBehaviour
+    public class MapResourcePanelController : MonoBehaviour
     {
         [SerializeField] private Button playerAvatar;
         [SerializeField] private GeneratedResourcePanel tokens;

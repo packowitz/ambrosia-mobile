@@ -1,12 +1,11 @@
 using Backend.Models;
 using Backend.Services;
-using Configs;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
     public class MissionPrefabController : MonoBehaviour
     {

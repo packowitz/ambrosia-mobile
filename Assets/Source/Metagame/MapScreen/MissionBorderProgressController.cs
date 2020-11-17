@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
     public class MissionBorderProgressController : MonoBehaviour
     {

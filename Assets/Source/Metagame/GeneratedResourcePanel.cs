@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-namespace Metagame.MainScreen
+namespace Metagame
 {
     public class GeneratedResourcePanel : MonoBehaviour
     {

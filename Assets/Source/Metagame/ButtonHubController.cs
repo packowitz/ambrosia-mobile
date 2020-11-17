@@ -1,5 +1,6 @@
 using System;
 using Backend.Services;
+using Backend.Signal;
 using Configs;
 using TMPro;
 using UnityEngine;
@@ -11,15 +12,20 @@ namespace Metagame
     public class ButtonHubController : MonoBehaviour
     {
         [SerializeField] private Button tasksButton;
+        [SerializeField] private Image tasksCircle;
         [SerializeField] private GameObject tasksAlert;
         [SerializeField] private Button inboxButton;
+        [SerializeField] private Image inboxCircle;
         [SerializeField] private GameObject inboxAlert;
         [SerializeField] private TMP_Text inboxAlertText;
         [SerializeField] private Button mapButton;
+        [SerializeField] private Image mapCircle;
         [SerializeField] private GameObject mapAlert;
         [SerializeField] private Button buildingsButton;
+        [SerializeField] private Image buildingsCircle;
         [SerializeField] private GameObject buildingsAlert;
         [SerializeField] private Button builderButton;
+        [SerializeField] private Image builderCircle;
         [SerializeField] private GameObject builderAlert;
 
         [Inject] private MetagameManager metagameManager;
@@ -38,26 +44,36 @@ namespace Metagame
         private void Start()
         {
             UpdateButtons();
+            mapButton.onClick.AddListener(() =>
+            {
+                metagameManager.SetMainScreen(MainScreenEnum.Map);
+            });
+            inboxButton.onClick.AddListener(() =>
+            {
+                metagameManager.SetMainScreen(MainScreenEnum.Inbox);
+            });
+            
+            signalBus.Subscribe<MainScreenChangedSignal>(signal => UpdateButtons());
         }
 
         private void UpdateButtons()
         {
             var colorConfig = configsProvider.Get<ColorsConfig>();
             
-            tasksButton.image.color = metagameManager.currentScreen == MainScreenEnum.Tasks ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
+            tasksCircle.color = metagameManager.CurrentScreen == MainScreenEnum.Tasks ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
             tasksAlert.SetActive(HasTaskToClaim());
             
-            inboxButton.image.color = metagameManager.currentScreen == MainScreenEnum.Inbox ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
+            inboxCircle.color = metagameManager.CurrentScreen == MainScreenEnum.Inbox ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
             inboxAlert.SetActive(inboxService.Messages.Count > 0);
             inboxAlertText.text = inboxService.Messages.Count.ToString();
             
-            mapButton.image.color = metagameManager.currentScreen == MainScreenEnum.Map ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
+            mapCircle.color = metagameManager.CurrentScreen == MainScreenEnum.Map ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
             mapAlert.SetActive(HasFinishedMissionOrExpedition());
             
-            buildingsButton.image.color = metagameManager.currentScreen == MainScreenEnum.Buildings ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
+            buildingsCircle.color = metagameManager.CurrentScreen == MainScreenEnum.Buildings ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
             buildingsAlert.SetActive(HasBuildingNotification());
             
-            builderButton.image.color = metagameManager.currentScreen == MainScreenEnum.Builder ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
+            builderCircle.color = metagameManager.CurrentScreen == MainScreenEnum.Builder ? colorConfig.bottomHubActive : colorConfig.bottomHubInactive;
             builderAlert.SetActive(HasFinishedUpgrade());
         }
 

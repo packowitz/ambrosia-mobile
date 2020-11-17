@@ -11,7 +11,7 @@ using UnityEngine.UI;
 using Utils;
 using Zenject;
 
-namespace Metagame.MainScreen
+namespace Metagame.MapScreen
 {
     public class StartExpeditionController : MonoBehaviour
     {
