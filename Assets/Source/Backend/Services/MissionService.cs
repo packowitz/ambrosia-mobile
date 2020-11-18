@@ -14,7 +14,7 @@ namespace Backend.Services
     public class MissionService
     {
         [Inject] private ServerAPI serverAPI;
-        private SignalBus signalBus;
+        private readonly SignalBus signalBus;
         public List<Mission> Missions { get; private set; }
 
         public MissionService(SignalBus signalBus)

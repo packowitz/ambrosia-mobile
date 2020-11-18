@@ -38,11 +38,11 @@ namespace Metagame.MapScreen
 
         private void UpdateResources(Resources res)
         {
-            tokens.SetGeneratedAmount(res.tokens, res.tokensMax, res.tokensProductionTime);
+            tokens.SetGeneratedAmount(res.tokens, res.tokensMax, res.TokensProductionTime);
             tokensPremium.SetAmount(res.premiumTokens, res.premiumTokensMax);
-            cogwheels.SetGeneratedAmount(res.cogwheels, res.cogwheelsMax, res.cogwheelsProductionTime);
+            cogwheels.SetGeneratedAmount(res.cogwheels, res.cogwheelsMax, res.CogwheelsProductionTime);
             cogwheelsPremium.SetAmount(res.premiumCogwheels, res.premiumCogwheelsMax);
-            steam.SetGeneratedAmount(res.steam, res.steamMax, res.steamProductionTime);
+            steam.SetGeneratedAmount(res.steam, res.steamMax, res.SteamProductionTime);
             steamPremium.SetAmount(res.premiumSteam, res.premiumSteamMax);
             coins.SetAmount(res.coins);
             rubies.SetAmount(res.rubies);

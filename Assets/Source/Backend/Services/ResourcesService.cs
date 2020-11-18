@@ -24,6 +24,38 @@ namespace Backend.Services
         public bool EnoughResources(ResourceType type, int amount) {
             return ResourceAmount(type) >= amount;
         }
+
+        public bool CanClaim(ResourceType type)
+        {
+            switch (type)
+            {
+                case ResourceType.STEAM:
+                    return Resources.steam < Resources.steamMax;
+                case ResourceType.PREMIUM_STEAM:
+                    return Resources.premiumSteam < Resources.premiumSteamMax;
+                case ResourceType.COGWHEELS:
+                    return Resources.cogwheels < Resources.cogwheelsMax;
+                case ResourceType.PREMIUM_COGWHEELS:
+                    return Resources.premiumCogwheels < Resources.premiumCogwheelsMax;
+                case ResourceType.TOKENS:
+                    return Resources.tokens < Resources.tokensMax;
+                case ResourceType.PREMIUM_TOKENS:
+                    return Resources.premiumTokens < Resources.premiumTokensMax;
+                case ResourceType.METAL:
+                    return Resources.metal < Resources.metalMax;
+                case ResourceType.IRON:
+                    return Resources.iron < Resources.ironMax;
+                case ResourceType.STEEL:
+                    return Resources.steel < Resources.steelMax;
+                case ResourceType.WOOD:
+                    return Resources.wood < Resources.woodMax;
+                case ResourceType.BROWN_COAL:
+                    return Resources.brownCoal < Resources.brownCoalMax;
+                case ResourceType.BLACK_COAL:
+                    return Resources.blackCoal < Resources.blackCoalMax;
+                default: return true;
+            }
+        }
         
         public int ResourceAmount(ResourceType type) {
             switch (type)

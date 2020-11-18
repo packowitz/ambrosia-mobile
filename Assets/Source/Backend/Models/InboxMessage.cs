@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Backend.Models.Enums;
 
 namespace Backend.Models
@@ -16,5 +17,12 @@ namespace Backend.Models
         public List<InboxMessageItem> items;
         public long ageInSeconds;
         public int validInSeconds;
+        public DateTime ValidTime { get; private set; }
+        
+        [OnDeserialized]
+        internal void OnDeserialized(StreamingContext context)
+        {
+            ValidTime = DateTime.Now + TimeSpan.FromSeconds(validInSeconds);
+        }
     }
 }

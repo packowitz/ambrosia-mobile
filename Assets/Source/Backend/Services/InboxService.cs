@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Backend.Models;
 using Backend.Responses;
@@ -9,13 +10,22 @@ namespace Backend.Services
     public class InboxService
     {
         public List<InboxMessage> Messages { get; private set; }
+        
+        [Inject] private ServerAPI serverAPI;
+        private readonly SignalBus signalBus;
 
         public InboxService(SignalBus signalBus)
         {
+            this.signalBus = signalBus;
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);
             });
+        }
+
+        public void Claim(InboxMessage message, Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost($"/inbox/claim/{message.id}", null, onSuccess);
         }
 
         private void Consume(PlayerActionResponse data)
@@ -42,6 +52,11 @@ namespace Backend.Services
                 {
                     Messages.RemoveAt(idx);
                 }
+            }
+
+            if (data.inboxMessages != null || data.inboxMessageDeleted != null)
+            {
+                signalBus.Fire(new InboxSignal(data.inboxMessages, data.inboxMessageDeleted));
             }
         }
 

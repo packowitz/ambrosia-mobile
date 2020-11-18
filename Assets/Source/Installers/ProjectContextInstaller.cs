@@ -16,6 +16,7 @@ namespace Installers
             // declare signals
             Container.DeclareSignal<ExpeditionLevelSignal>();
             Container.DeclareSignal<ExpeditionSignal>();
+            Container.DeclareSignal<InboxSignal>();
             Container.DeclareSignal<MainScreenChangedSignal>();
             Container.DeclareSignal<MissionSignal>();
             Container.DeclareSignal<PlayerActionSignal>();

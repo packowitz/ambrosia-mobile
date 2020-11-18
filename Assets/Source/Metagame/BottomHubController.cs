@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Metagame
 {
-    public class ButtonHubController : MonoBehaviour
+    public class BottomHubController : MonoBehaviour
     {
         [SerializeField] private Button tasksButton;
         [SerializeField] private Image tasksCircle;
@@ -53,7 +53,8 @@ namespace Metagame
                 metagameManager.SetMainScreen(MainScreenEnum.Inbox);
             });
             
-            signalBus.Subscribe<MainScreenChangedSignal>(signal => UpdateButtons());
+            signalBus.Subscribe<MainScreenChangedSignal>(UpdateButtons);
+            signalBus.Subscribe<InboxSignal>(UpdateButtons);
         }
 
         private void UpdateButtons()

@@ -53,7 +53,7 @@ namespace Metagame.MapScreen
         private HeroAvatarPrefabController hero4Prefab;
 
         private readonly Dictionary<long, HeroAvatarPrefabController> heroPrefabs = new Dictionary<long, HeroAvatarPrefabController>();
-        private bool loading = false;
+        private bool loading;
 
         private void Start()
         {
@@ -70,7 +70,8 @@ namespace Metagame.MapScreen
 
         private void Update()
         {
-            available.text = "Disappears in " + TimeSpan.FromSeconds(expedition.secondsAvailable).TimerWithUnit();
+            var timeLeft = expedition.AvailableTime - DateTime.Now;
+            available.text = "Disappears in " + timeLeft.TimerWithUnit();
         }
 
         public void SetExpedition(Expedition exp)
