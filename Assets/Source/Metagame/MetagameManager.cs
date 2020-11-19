@@ -1,13 +1,14 @@
 using Backend.Signal;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Metagame
 {
     public class MetagameManager: MonoBehaviour
     {
-        [SerializeField] private GameObject mapPanel;
-        [SerializeField] private GameObject inboxPanel;
+        [SerializeField] private Canvas mapCanvas;
+        [SerializeField] private Canvas inboxCanvas;
         
         [Inject] private SignalBus signalBus;
 
@@ -24,8 +25,8 @@ namespace Metagame
             {
                 Debug.Log($"Changing main screen to {mainScreen}");
                 CurrentScreen = mainScreen;
-                mapPanel.SetActive(CurrentScreen == MainScreenEnum.Map);
-                inboxPanel.SetActive(CurrentScreen == MainScreenEnum.Inbox);
+                mapCanvas.enabled = CurrentScreen == MainScreenEnum.Map;
+                inboxCanvas.enabled = CurrentScreen == MainScreenEnum.Inbox;
                 
                 signalBus.Fire<MainScreenChangedSignal>();
             }
