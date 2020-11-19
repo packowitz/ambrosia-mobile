@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 618940df6eadc4b5081971a742ec53a7, type: 3}
-    totalSpriteSurfaceArea: 1382272
+    totalSpriteSurfaceArea: 3586672
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -59,8 +59,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6da65c54a2fd642bf9197f96766ad0e3, type: 3}
   - {fileID: 21300000, guid: 776225846c06e4c79bc655c6ea0125d1, type: 3}
   - {fileID: 21300000, guid: e7ae5bf4556c74945955108c465e3403, type: 3}
+  - {fileID: 21300000, guid: b9e36e256ac594c0890d3ba6c1d9f57c, type: 3}
+  - {fileID: 21300000, guid: f9c4bc75e00934acd88044a0e74ef026, type: 3}
   - {fileID: 21300000, guid: 47cd2bd5970024c6ea0148c869851ef1, type: 3}
   - {fileID: 21300000, guid: 102fee86a744d40afb2d3bbbf6c88348, type: 3}
+  - {fileID: 21300000, guid: 7f758bc6a02f542658df97fbb4e29576, type: 3}
   - {fileID: 21300000, guid: 929351e68b19b4376992a30c959b3923, type: 3}
   - {fileID: 21300000, guid: 5765a437fbc434ad4bd86530301025b7, type: 3}
   - {fileID: 21300000, guid: 4931cb476ce2e45048e722806cb667b9, type: 3}
@@ -89,8 +92,11 @@ SpriteAtlas:
   - map
   - star_6_6
   - star_5_5
+  - background_builder
+  - background_buildings
   - star_1_5
   - star_1_2
+  - background_tasks
   - star_3_6
   - buildings
   - builder

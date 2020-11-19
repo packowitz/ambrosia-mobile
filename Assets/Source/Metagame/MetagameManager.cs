@@ -1,6 +1,5 @@
 using Backend.Signal;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Metagame
@@ -9,6 +8,9 @@ namespace Metagame
     {
         [SerializeField] private Canvas mapCanvas;
         [SerializeField] private Canvas inboxCanvas;
+        [SerializeField] private Canvas tasksCanvas;
+        [SerializeField] private Canvas buildingsCanvas;
+        [SerializeField] private Canvas builderCanvas;
         
         [Inject] private SignalBus signalBus;
 
@@ -25,8 +27,12 @@ namespace Metagame
             {
                 Debug.Log($"Changing main screen to {mainScreen}");
                 CurrentScreen = mainScreen;
+                
                 mapCanvas.enabled = CurrentScreen == MainScreenEnum.Map;
                 inboxCanvas.enabled = CurrentScreen == MainScreenEnum.Inbox;
+                tasksCanvas.enabled = CurrentScreen == MainScreenEnum.Tasks;
+                buildingsCanvas.enabled = CurrentScreen == MainScreenEnum.Buildings;
+                builderCanvas.enabled = CurrentScreen == MainScreenEnum.Builder;
                 
                 signalBus.Fire<MainScreenChangedSignal>();
             }

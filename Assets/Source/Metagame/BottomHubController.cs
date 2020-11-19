@@ -52,6 +52,18 @@ namespace Metagame
             {
                 metagameManager.SetMainScreen(MainScreenEnum.Inbox);
             });
+            tasksButton.onClick.AddListener(() =>
+            {
+                metagameManager.SetMainScreen(MainScreenEnum.Tasks);
+            });
+            buildingsButton.onClick.AddListener(() =>
+            {
+                metagameManager.SetMainScreen(MainScreenEnum.Buildings);
+            });
+            builderButton.onClick.AddListener(() =>
+            {
+                metagameManager.SetMainScreen(MainScreenEnum.Builder);
+            });
             
             signalBus.Subscribe<MainScreenChangedSignal>(UpdateButtons);
             signalBus.Subscribe<InboxSignal>(UpdateButtons);
