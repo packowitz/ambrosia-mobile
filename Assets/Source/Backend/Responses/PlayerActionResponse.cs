@@ -44,11 +44,10 @@ namespace Backend.Responses
         public List<MerchantPlayerItem> merchantItems;
         public MerchantPlayerItem boughtMerchantItem;
         public List<BlackMarketItem> blackMarketItems;
-        public List<AchievementReward> achievementRewards;
-        public long? claimedAchievementRewardId;
         public AutoBreakdownConfiguration autoBreakdownConfiguration;
         public List<InboxMessage> inboxMessages;
         public long? inboxMessageDeleted;
         public List<Team> teams;
+        public List<PlayerTask> playerTasks;
     }
 }

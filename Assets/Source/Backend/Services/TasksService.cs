@@ -1,30 +1,41 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Responses;
 using Backend.Signal;
+using UnityEngine;
 using Zenject;
 
 namespace Backend.Services
 {
-    public class AchievementsService
+    public class TasksService
     {
+        private readonly ServerAPI serverAPI;
+        
         private Achievements achievements;
-        public List<AchievementReward> AchievementRewards { get; private set; }
+        private List<PlayerTask> playerTasks;
+        public List<TaskCluster> TaskClusters { get; private set; }
+        
+        public bool TaskClustersInitialized => TaskClusters != null && TaskClusters.Count > 0;
 
-        public AchievementsService(SignalBus signalBus)
+        public TasksService(SignalBus signalBus, ServerAPI serverAPI)
         {
+            this.serverAPI = serverAPI;
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);
             });
         }
 
-        public bool HasClaimableReward()
+        public bool HasClaimableTask()
         {
-            return AchievementRewards.Exists(a => AchievementAmount(a.achievementType) >= a.achievementAmount);
+            return playerTasks.Exists(playerTask =>
+            {
+                var taskCluster = TaskClusters.Find(cluster => playerTask.taskClusterId == cluster.id);
+                var task = taskCluster?.tasks.Find(t => t.number == playerTask.currentTaskNumber);
+                return task != null && AchievementAmount(task.taskType) >= task.taskAmount;
+            });
         }
 
         public long AchievementAmount(AchievementRewardType type)
@@ -112,49 +123,42 @@ namespace Backend.Services
                 achievements = data.achievements;
             }
 
-            if (data.achievementRewards != null)
+            if (data.playerTasks != null)
             {
-                if (AchievementRewards == null)
+                if (playerTasks == null)
                 {
-                    AchievementRewards = data.achievementRewards;
-                    SortAchievementRewards();
+                    playerTasks = data.playerTasks;
                 }
                 else
                 {
-                    foreach (var dataAchievementReward in data.achievementRewards)
+                    foreach (var playerTask in data.playerTasks)
                     {
-                        Update(dataAchievementReward);
+                        Update(playerTask);
                     }
                 }
             }
-
-            if (data.claimedAchievementRewardId != null)
-            {
-                var idx = AchievementRewards.FindIndex(a => a.id == data.claimedAchievementRewardId);
-                if (idx >= 0)
-                {
-                    AchievementRewards.RemoveAt(idx);
-                }
-            }
         }
 
-        private void Update(AchievementReward achievementReward)
+        private void Update(PlayerTask playerTask)
         {
-            var idx = AchievementRewards.FindIndex(a => a.id == achievementReward.id);
+            var idx = playerTasks.FindIndex(a => a.id == playerTask.id);
             if (idx >= 0)
             {
-                AchievementRewards[idx] = achievementReward;
+                playerTasks[idx] = playerTask;
             }
             else
             {
-                AchievementRewards.Add(achievementReward);
-                SortAchievementRewards();
+                playerTasks.Add(playerTask);
             }
         }
 
-        private void SortAchievementRewards()
+        public void LoadTaskClusters()
         {
-            AchievementRewards = AchievementRewards.OrderBy(a => a.name).ToList();
+            serverAPI.DoGet<List<TaskCluster>>("/tasks", data =>
+            {
+                TaskClusters = data;
+                Debug.Log($"Loaded {TaskClusters.Count} task clusters");
+            });
         }
     }
 }

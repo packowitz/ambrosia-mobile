@@ -26,7 +26,6 @@ namespace Installers
             Container.Bind<ConfigsProvider>().AsSingle();
             
             // data services
-            Container.Bind<AchievementsService>().AsSingle().NonLazy();
             Container.Bind<ActivityService>().AsSingle().NonLazy();
             Container.Bind<BattleService>().AsSingle().NonLazy();
             Container.Bind<BazaarService>().AsSingle().NonLazy();
@@ -47,6 +46,7 @@ namespace Installers
             Container.Bind<PropertyService>().AsSingle().NonLazy();
             Container.Bind<ResourcesService>().AsSingle().NonLazy();
             Container.Bind<StoryService>().AsSingle().NonLazy();
+            Container.Bind<TasksService>().AsSingle().NonLazy();
             Container.Bind<TeamService>().AsSingle().NonLazy();
             Container.Bind<UpgradeService>().AsSingle().NonLazy();
             Container.Bind<VehicleBaseService>().AsSingle().NonLazy();

@@ -33,7 +33,7 @@ namespace Metagame
         [Inject] private SignalBus signalBus;
 
         [Inject] private ActivityService activityService;
-        [Inject] private AchievementsService achievementsService;
+        [Inject] private TasksService tasksService;
         [Inject] private ExpeditionService expeditionService;
         [Inject] private HeroService heroService;
         [Inject] private InboxService inboxService;
@@ -92,7 +92,7 @@ namespace Metagame
 
         private bool HasTaskToClaim()
         {
-            return activityService.HasClaimableActivity() || achievementsService.HasClaimableReward();
+            return activityService.HasClaimableActivity() || tasksService.HasClaimableTask();
         }
 
         private bool HasFinishedMissionOrExpedition()

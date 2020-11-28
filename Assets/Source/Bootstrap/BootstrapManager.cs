@@ -22,6 +22,7 @@ namespace Bootstrap
         [Inject] private PlayerService playerService;
         [Inject] private PropertyService propertyService;
         [Inject] private VehicleBaseService vehicleBaseService;
+        [Inject] private TasksService tasksService;
 
         private void Start()
         {
@@ -49,23 +50,33 @@ namespace Bootstrap
                 await UniTask.WaitUntil(() => serverAPI.IsLoggedIn);
                 loadingController.SetActive(true);
             }
+            
             if (!playerService.PlayerInitialized)
             {
                 loadingController.SetMessage("Loading Player");
                 playerService.LoadPlayer();
                 await UniTask.WaitUntil(() => playerService.PlayerInitialized);
             }
+            
             if (!heroBaseService.HeroesInitialized)
             {
                 loadingController.SetMessage("Loading Heroes");
                 heroBaseService.LoadBaseHeroes();
                 await UniTask.WaitUntil(() => heroBaseService.HeroesInitialized);
             }
+            
             if (!vehicleBaseService.VehiclesInitialized)
             {
                 loadingController.SetMessage("Loading Vehicles");
                 vehicleBaseService.LoadBaseVehicles();
                 await UniTask.WaitUntil(() => vehicleBaseService.VehiclesInitialized);
+            }
+            
+            if (!tasksService.TaskClustersInitialized)
+            {
+                loadingController.SetMessage("Loading Tasks");
+                tasksService.LoadTaskClusters();
+                await UniTask.WaitUntil(() => tasksService.TaskClustersInitialized);
             }
 
             if (!propertyService.IsInitialized)

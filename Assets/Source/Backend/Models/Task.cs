@@ -5,14 +5,12 @@ using Backend.Models.Enums;
 namespace Backend.Models
 {
     [Serializable]
-    public class AchievementReward
+    public class Task
     {
         public long id;
-        public bool starter;
-        public string name;
-        public AchievementRewardType achievementType;
-        public long achievementAmount;
-        public long? followUpReward;
+        public int number;
+        public AchievementRewardType taskType;
+        public long taskAmount;
         public long lootBoxId;
 
         // transient. only for player view
