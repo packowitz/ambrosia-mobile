@@ -16,12 +16,27 @@ namespace Metagame.MapScreen
         [SerializeField] private Image inner;
         [SerializeField] private SpriteAtlas vehicleAtlas;
         [SerializeField] private Image vehicleImage;
+        [SerializeField] private Button detailButton;
+        [SerializeField] private ExpeditionDetailController expeditionDetailPrefab;
 
+        [Inject] private PopupCanvasController popupCanvasController;
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private VehicleService vehicleService;
 
+        private PlayerExpedition expedition;
+
+        public void Start()
+        {
+            detailButton.onClick.AddListener(() =>
+            {
+                var popup = popupCanvasController.OpenPopup(expeditionDetailPrefab);
+                popup.SetExpedition(expedition);
+            });
+        }
+
         public void SetExpedition(PlayerExpedition expedition)
         {
+            this.expedition = expedition;
             var colorsConfig = configsProvider.Get<ColorsConfig>();
             switch (expedition.rarity)
             {

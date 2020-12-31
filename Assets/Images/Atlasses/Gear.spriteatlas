@@ -1,0 +1,231 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Gear
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 75
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 84f6cd56858eb40f29fcb088a0eedcf5, type: 3}
+    - {fileID: 102900000, guid: de826f4d261c7400aa80edccf93770d9, type: 3}
+    totalSpriteSurfaceArea: 482816
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 73427700b772147d08283543ff48f93a, type: 3}
+  - {fileID: 21300000, guid: 6f5ff560eabfd43ee88ceb5b5a62f019, type: 3}
+  - {fileID: 21300000, guid: 73b53570bed9c4049a678c13c5ad0ba3, type: 3}
+  - {fileID: 21300000, guid: c484ea70716804e99bece5184a16bcaf, type: 3}
+  - {fileID: 21300000, guid: 8bc82490f107643e9be19a46bf8016cf, type: 3}
+  - {fileID: 21300000, guid: 22897f9024ba9415785831e74fc0ee65, type: 3}
+  - {fileID: 21300000, guid: 058257f0649b94eb1950e33ed5c030f8, type: 3}
+  - {fileID: 21300000, guid: b82a98f0b132842eab35fdfc7742c828, type: 3}
+  - {fileID: 21300000, guid: 02061201b17404fb8b36c2733ff9ce76, type: 3}
+  - {fileID: 21300000, guid: dcdab831411e94bf6b55cda0e3014a0e, type: 3}
+  - {fileID: 21300000, guid: d1dec76118d4b4381a5c249aae486429, type: 3}
+  - {fileID: 21300000, guid: ed07dd61b1977409b9e486ee3c028b72, type: 3}
+  - {fileID: 21300000, guid: f9fa6f6124ffd4a9397a8290af65d49f, type: 3}
+  - {fileID: 21300000, guid: c9439491a083b4a579401fc4be06742a, type: 3}
+  - {fileID: 21300000, guid: b602d0a1cbf59451a8fce874d97a05a6, type: 3}
+  - {fileID: 21300000, guid: f67edcb172ac94137bb3fa9f762ab49d, type: 3}
+  - {fileID: 21300000, guid: 16de2d427478b4717bf8833d8de6af3d, type: 3}
+  - {fileID: 21300000, guid: 9785da721bf6942c5aa25619ad7b2649, type: 3}
+  - {fileID: 21300000, guid: a28f4482f21a64199ae1884bf26746c0, type: 3}
+  - {fileID: 21300000, guid: ee9dc5a2c562b4d04badecfd70e4e26e, type: 3}
+  - {fileID: 21300000, guid: 370bb4e2373184bd384fa756ff3321a2, type: 3}
+  - {fileID: 21300000, guid: cf92961398e6e4f14b0edf01574e9b2f, type: 3}
+  - {fileID: 21300000, guid: 51638433ca189452f881f1fbd1c9327e, type: 3}
+  - {fileID: 21300000, guid: e98e9633dbf744812967960335a76af5, type: 3}
+  - {fileID: 21300000, guid: 31115a635f1f3411d977c5e56c7007af, type: 3}
+  - {fileID: 21300000, guid: 0a7c1383f13744627a6a8f97bcaca061, type: 3}
+  - {fileID: 21300000, guid: 47e09cb3bdaa54795a2ac412a58a05e5, type: 3}
+  - {fileID: 21300000, guid: 48c3afb3a4caa4aba8dfafd7723a86bc, type: 3}
+  - {fileID: 21300000, guid: 4b6443c371bb941df9fef89325d10cbb, type: 3}
+  - {fileID: 21300000, guid: f4213ef3b53434ef0b27dec8341e732c, type: 3}
+  - {fileID: 21300000, guid: b122f204f010a4af8abb5b324f728c9a, type: 3}
+  - {fileID: 21300000, guid: 7a0eaf24bb79b43ba854e698afd87092, type: 3}
+  - {fileID: 21300000, guid: 29b021644589740788b8360dccc7d94b, type: 3}
+  - {fileID: 21300000, guid: 5b929874e944c4d079efbb9aeeb6e400, type: 3}
+  - {fileID: 21300000, guid: 02019974cfb8c4d59ace27d6cf591022, type: 3}
+  - {fileID: 21300000, guid: 2416d594dcf4e4607a1c11c8b49c5e81, type: 3}
+  - {fileID: 21300000, guid: 44d48cb4bcfc146fe9828d673a351a53, type: 3}
+  - {fileID: 21300000, guid: 1a063045b925a4e33bc4704cf8317c25, type: 3}
+  - {fileID: 21300000, guid: 5a3894b5812384f95873a49fcc62e6e3, type: 3}
+  - {fileID: 21300000, guid: de4278f52597f4a32bb1bbd9a8d9ef43, type: 3}
+  - {fileID: 21300000, guid: b9631746b57604859a76a2837c313975, type: 3}
+  - {fileID: 21300000, guid: 5e2d0f66fbfc04b4495ba2080243a5e5, type: 3}
+  - {fileID: 21300000, guid: 95e4bb86387d24d988f0002787695191, type: 3}
+  - {fileID: 21300000, guid: 3fe5cea644d274efb8015a1e4ad177cc, type: 3}
+  - {fileID: 21300000, guid: 7bb780b6b840f4b808eb646924dc3c06, type: 3}
+  - {fileID: 21300000, guid: ba2996b6733be447f956bc16c0d3b8cd, type: 3}
+  - {fileID: 21300000, guid: a72561e6b076346a19ad1b1ad7f0b697, type: 3}
+  - {fileID: 21300000, guid: 0b8b7ce67a5b44a939475b29f58f4883, type: 3}
+  - {fileID: 21300000, guid: 3be089f646e8f453c93af97e3cc98080, type: 3}
+  - {fileID: 21300000, guid: 8460da47b0ed04170844bbd758d8d5dd, type: 3}
+  - {fileID: 21300000, guid: 07e0be870993341158a23cc452c6f9ad, type: 3}
+  - {fileID: 21300000, guid: a1ade497284c94c5f86d91253d7e5cc3, type: 3}
+  - {fileID: 21300000, guid: 21e9efa7122d74f9488855e123cb2ba4, type: 3}
+  - {fileID: 21300000, guid: 72cad418c9ddb45fe8ba776206c46d74, type: 3}
+  - {fileID: 21300000, guid: 521b5a58a943549aa9f1aab2ffe8905f, type: 3}
+  - {fileID: 21300000, guid: 92aac988f88344dccb2bfc77bee671e1, type: 3}
+  - {fileID: 21300000, guid: 5ab110b8c77b242af83b8b8548f3e432, type: 3}
+  - {fileID: 21300000, guid: 6caf77e851b7d4cf6b617979e56e90af, type: 3}
+  - {fileID: 21300000, guid: 0247c1f8476b74ab38ffd8cb7ef57ad6, type: 3}
+  - {fileID: 21300000, guid: 2ecd563912006464ea0101bb84af8120, type: 3}
+  - {fileID: 21300000, guid: d6771879beef947e9a848337d6551e8f, type: 3}
+  - {fileID: 21300000, guid: a6af959983fd1449c81d83555848445d, type: 3}
+  - {fileID: 21300000, guid: 78576de9e05f7469aa09d4c798f3f795, type: 3}
+  - {fileID: 21300000, guid: f1e64b7adb9e94246983cc05d0b9086b, type: 3}
+  - {fileID: 21300000, guid: f13e5aaa21a22456a900ef3c276c1df6, type: 3}
+  - {fileID: 21300000, guid: 63c44dea132314ec88213eaeff9069de, type: 3}
+  - {fileID: 21300000, guid: 92edcf2bf2a5644298d0edc0d3d08944, type: 3}
+  - {fileID: 21300000, guid: c4c3caeb6bbc14dd48b2fe7b30623496, type: 3}
+  - {fileID: 21300000, guid: d34aa94c40b3849c883e7a954fea8812, type: 3}
+  - {fileID: 21300000, guid: 29e2037c7847f4ff9987a63c9ad9ee54, type: 3}
+  - {fileID: 21300000, guid: ab5d128cceefc4b4a92f5dbb10a32048, type: 3}
+  - {fileID: 21300000, guid: 39ae6b8c47fa74f9a9dd5cd1a0ecc5a6, type: 3}
+  - {fileID: 21300000, guid: 12c24aecf4f344bc88c6eaa69ec8a530, type: 3}
+  - {fileID: 21300000, guid: 9883922dc0ca740b7ada1422c22935ff, type: 3}
+  - {fileID: 21300000, guid: 8c59865da7d5d416eaa0d31124975f7f, type: 3}
+  - {fileID: 21300000, guid: 8911995d08b4a4198be13c49344630f0, type: 3}
+  - {fileID: 21300000, guid: 12328cadcc7f84e5388e1d4d38d52a50, type: 3}
+  - {fileID: 21300000, guid: 00c15bfdd1b7a4a9a959ad690a6edfd5, type: 3}
+  - {fileID: 21300000, guid: 035cf32e1732849fda702d5fb6831e22, type: 3}
+  - {fileID: 21300000, guid: 7a562a4e976a844298ffc6f3f12dfad3, type: 3}
+  - {fileID: 21300000, guid: 1b043b4e66b8140189009f53f842285e, type: 3}
+  - {fileID: 21300000, guid: a735076eae8f4468e9186f2ca72337d9, type: 3}
+  - {fileID: 21300000, guid: 5ec35c7e709264665a8446c8fb668fce, type: 3}
+  - {fileID: 21300000, guid: 8fc9e38ed76224f0cba58ea70790ce66, type: 3}
+  - {fileID: 21300000, guid: 4adce29e753ba46fe804976b759125da, type: 3}
+  - {fileID: 21300000, guid: 23706fded83494c37a5043042f112aee, type: 3}
+  - {fileID: 21300000, guid: 9e82b5ee0066c428589c516e448e38fd, type: 3}
+  - {fileID: 21300000, guid: 0e2af31f1ebb04b77a12602be4ba7ca4, type: 3}
+  - {fileID: 21300000, guid: 2ade3fefe34e143bd82fa83db39d860e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - VITAL_AURA_HELMET
+  - BERSERKERS_AXE_SHIELD
+  - default_HELMET
+  - VITAL_AURA_ARMOR
+  - BUFFS_BLESSING_BOOTS
+  - SLOT_BUFFING
+  - TERRIBLE_FATE_GLOVES
+  - STONE_SKIN_HELMET
+  - STONE_SKIN_ARMOR
+  - BUFFS_BLESSING_ARMOR
+  - MYTHICAL_MIRROR
+  - SLOT_CRIT
+  - POWER_FIST_SHIELD
+  - SLOT_ARMOR
+  - REVERSED_REALITY
+  - REVERSED_REALITY_GLOVES
+  - STONE_SKIN_WEAPON
+  - BUFFS_BLESSING_HELMET
+  - REVERSED_REALITY_BOOTS
+  - VITAL_AURA_WEAPON
+  - WARHORN_GLOVES
+  - VITAL_AURA
+  - TERRIBLE_FATE_HELMET
+  - SLOT_SPEED
+  - default_GLOVES
+  - MYTHICAL_MIRROR_GLOVES
+  - POWER_FIST_GLOVES
+  - VITAL_AURA_GLOVES
+  - MYTHICAL_MIRROR_BOOTS
+  - default_WEAPON
+  - TERRIBLE_FATE_ARMOR
+  - STONE_SKIN_GLOVES
+  - BUFFS_BLESSING_SHIELD
+  - TERRIBLE_FATE_ARMOR
+  - default_BOOTS
+  - TERRIBLE_FATE_WEAPON
+  - BERSERKERS_AXE_GLOVES
+  - WARHORN_BOOTS
+  - TERRIBLE_FATE_WEAPON
+  - TERRIBLE_FATE_BOOTS
+  - SLOT_HP_EMPTY
+  - MYTHICAL_MIRROR_SHIELD
+  - SLOT_CRIT_EMPTY
+  - TERRIBLE_FATE_SHIELD
+  - WARHORN_WEAPON
+  - SLOT_SPEED_EMPTY
+  - BUFFS_BLESSING
+  - REVERSED_REALITY_ARMOR
+  - BERSERKERS_AXE_HELMET
+  - BERSERKERS_AXE_ARMOR
+  - TERRIBLE_FATE_BOOTS
+  - STONE_SKIN
+  - POWER_FIST_ARMOR
+  - POWER_FIST_WEAPON
+  - BUFFS_BLESSING_GLOVES
+  - MYTHICAL_MIRROR_WEAPON
+  - TERRIBLE_FATE_SHIELD
+  - SLOT_SPECIAL
+  - default_ARMOR
+  - POWER_FIST
+  - SLOT_ARMOR_EMPTY
+  - MYTHICAL_MIRROR_HELMET
+  - SLOT_BUFFING_EMPTY
+  - REVERSED_REALITY_SHIELD
+  - STONE_SKIN_SHIELD
+  - WARHORN_ARMOR
+  - VITAL_AURA_SHIELD
+  - SLOT_STRENGTH
+  - REVERSED_REALITY_WEAPON
+  - MYTHICAL_MIRROR_ARMOR
+  - BERSERKERS_AXE_BOOTS
+  - WARHORN
+  - SLOT_SPECIAL_EMPTY
+  - default_SHIELD
+  - BERSERKERS_AXE
+  - TERRIBLE_FATE_HELMET
+  - POWER_FIST_HELMET
+  - SLOT_STRENGTH_EMPTY
+  - POWER_FIST_BOOTS
+  - BUFFS_BLESSING_WEAPON
+  - STONE_SKIN_BOOTS
+  - WARHORN_HELMET
+  - TERRIBLE_FATE_GLOVES
+  - WARHORN_SHIELD
+  - SLOT_HP
+  - VITAL_AURA_BOOTS
+  - TERRIBLE_FATE
+  - BERSERKERS_AXE_WEAPON
+  - REVERSED_REALITY_HELMET
+  m_Tag: Gear
+  m_IsVariant: 0

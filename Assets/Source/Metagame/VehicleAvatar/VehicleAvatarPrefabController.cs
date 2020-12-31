@@ -4,12 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
+using Utils;
 using Zenject;
 
 namespace Metagame.VehicleAvatar
 {
     public class VehicleAvatarPrefabController : MonoBehaviour
     {
+        [SerializeField] private RectTransform canvas;
         [SerializeField] private Image avatarImg;
         [SerializeField] private SpriteAtlas vehicleAtlas;
         [SerializeField] private Button background;
@@ -27,8 +29,9 @@ namespace Metagame.VehicleAvatar
 
         public Vehicle Vehicle { get; private set; }
 
-        public void SetVehicle(Vehicle vehicle)
+        public void SetVehicle(Vehicle vehicle, float? adjustToHeight = null)
         {
+            canvas.ScaleToHeight(adjustToHeight);
             Vehicle = vehicle;
             if (Vehicle == null)
             {

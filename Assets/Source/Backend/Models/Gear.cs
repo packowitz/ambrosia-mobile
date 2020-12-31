@@ -19,20 +19,20 @@ namespace Backend.Models
         public int statValue;
         public int statQuality;
         public GearQuality gearQuality;
-        public GearJewelSlot jewelSlot1;
-        public JewelType jewel1Type;
+        public GearJewelSlot? jewelSlot1;
+        public JewelType? jewel1Type;
         public int? jewel1Level;
-        public GearJewelSlot jewelSlot2;
-        public JewelType jewel2Type;
+        public GearJewelSlot? jewelSlot2;
+        public JewelType? jewel2Type;
         public int? jewel2Level;
-        public GearJewelSlot jewelSlot3;
-        public JewelType jewel3Type;
+        public GearJewelSlot? jewelSlot3;
+        public JewelType? jewel3Type;
         public int? jewel3Level;
-        public GearJewelSlot jewelSlot4;
-        public JewelType jewel4Type;
+        public GearJewelSlot? jewelSlot4;
+        public JewelType? jewel4Type;
         public int? jewel4Level;
         public bool specialJewelSlot;
-        public JewelType specialJewelType;
+        public JewelType? specialJewelType;
         public int? specialJewelLevel;
 
         // transient

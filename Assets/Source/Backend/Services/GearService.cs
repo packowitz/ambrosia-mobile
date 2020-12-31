@@ -53,7 +53,7 @@ namespace Backend.Services
 
             if (data.gearIdsRemovedFromArmory != null)
             {
-                gears = gears.Where(h => !data.heroIdsRemoved.Contains(h.id)).ToList();
+                gears = gears.Where(g => !data.gearIdsRemovedFromArmory.Contains(g.id)).ToList();
             }
         }
 

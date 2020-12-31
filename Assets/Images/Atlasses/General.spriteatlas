@@ -43,11 +43,15 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 618940df6eadc4b5081971a742ec53a7, type: 3}
-    totalSpriteSurfaceArea: 3586672
+    totalSpriteSurfaceArea: 3756656
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 77b1cc903bc574bf18484ea155bae6c8, type: 3}
   - {fileID: 21300000, guid: 2f0483212823444289cf8a3f166d12b1, type: 3}
+  - {fileID: 21300000, guid: e92823516b03f436eb53257954eb1cbe, type: 3}
+  - {fileID: 21300000, guid: 58377a619d32c4621bb201ae494027f1, type: 3}
+  - {fileID: 21300000, guid: 8d8196c1ab81b42459d78589d4c661ba, type: 3}
   - {fileID: 21300000, guid: 617ad2822225c4469827ddb649960496, type: 3}
   - {fileID: 21300000, guid: 13685dc2e07204f50ae71e42f5ab7fee, type: 3}
   - {fileID: 21300000, guid: 452639e2720fc4f64b7ec6bec7dd29f1, type: 3}
@@ -69,18 +73,25 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4931cb476ce2e45048e722806cb667b9, type: 3}
   - {fileID: 21300000, guid: b0d51577745054740aea79eb0c9b471f, type: 3}
   - {fileID: 21300000, guid: fdc27da7df62f45359db9dbdc03bf9fe, type: 3}
+  - {fileID: 21300000, guid: 9de709c79540e4740afa75465dea5158, type: 3}
   - {fileID: 21300000, guid: b75801c970fb84d80b8dd444525b221f, type: 3}
   - {fileID: 21300000, guid: 830b9a6a8c0ba41f9818c27479d5295c, type: 3}
   - {fileID: 21300000, guid: 296dc10bc6f984b5cb6ae2626e4d685a, type: 3}
   - {fileID: 21300000, guid: 477ee63bc89a444e6b3610cab0bedbd1, type: 3}
+  - {fileID: 21300000, guid: 0081ac8b5d29c42dfb2a58863af13612, type: 3}
   - {fileID: 21300000, guid: 4494afeb2edab44d4b25777fe6721bd4, type: 3}
   - {fileID: 21300000, guid: 6024469d88ce041fdae569c00126c16a, type: 3}
   - {fileID: 21300000, guid: 63f0380ef77d8429fbc9f509e918e5ec, type: 3}
   - {fileID: 21300000, guid: 3dc9a43e60b8d4979ab9d61b8f3eced4, type: 3}
   - {fileID: 21300000, guid: a6d655bebcf80449c8272e988da7dea9, type: 3}
   - {fileID: 21300000, guid: c5f3f0ee028ff4a23abfc443eb34c8b8, type: 3}
+  - {fileID: 21300000, guid: 0efcebaff98c94ad89066b8d43b3db39, type: 3}
   m_PackedSpriteNamesToIndex:
+  - star_2
   - star_2_6
+  - star_5
+  - star_4
+  - star_6
   - star_2_5
   - star_2_3
   - circle
@@ -102,15 +113,18 @@ SpriteAtlas:
   - builder
   - star_2_2
   - ring
+  - star_1
   - star_5_6
   - star_1_4
   - star_3_5
   - star_4_4
+  - breakdown
   - star_1_6
   - tasks
   - star_2_4
   - star_3_3
   - star_3_4
   - star_1_1
+  - star_3
   m_Tag: General
   m_IsVariant: 0

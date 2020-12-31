@@ -25,8 +25,12 @@ namespace Backend.Services
             return heroes;
         }
 
-        public Hero Hero(long id)
+        public Hero Hero(long? id)
         {
+            if (id == null)
+            {
+                return null;
+            }
             return heroes.Find(h => h.id == id);
         }
 

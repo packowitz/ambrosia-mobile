@@ -39,6 +39,11 @@ namespace Backend.Services
             return expeditions.Where(e => playerExpeditions.FindIndex(p => p.expeditionId == e.id) == -1).ToList();
         }
 
+        public void FinishPlayerExpedition(PlayerExpedition playerExpedition, Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost($"/expedition/{playerExpedition.id}/finish", null, onSuccess);
+        }
+
         private async void ScheduledExpeditionReload()
         {
             await UniTask.Delay(TimeSpan.FromMinutes(5));

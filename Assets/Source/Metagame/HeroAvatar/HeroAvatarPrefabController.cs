@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.U2D;
 using UnityEngine.UI;
+using Utils;
 using Zenject;
 using Color = Backend.Models.Enums.Color;
 
@@ -15,6 +16,7 @@ namespace Metagame.HeroAvatar
 {
     public class HeroAvatarPrefabController: MonoBehaviour
     {
+        [SerializeField] private RectTransform canvas;
         [SerializeField] private Image avatarImg;
         [SerializeField] private Image avatarBackground;
         [SerializeField] private TMP_Text level;
@@ -33,8 +35,9 @@ namespace Metagame.HeroAvatar
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private HeroBaseService heroBaseService;
 
-        public void SetHero(Hero hero, bool indicateAvailability = false)
+        public void SetHero(Hero hero, float? adjustToHeight = null, bool indicateAvailability = false)
         {
+            canvas.ScaleToHeight(adjustToHeight);
             if (hero == null)
             {
                 avatar.SetActive(false);

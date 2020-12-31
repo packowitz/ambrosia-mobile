@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e9bb72c2ab4b0a9b38999c3ef61089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 5550328612460278956}
   avatarImg: {fileID: 8478938249793728286}
   avatarBackground: {fileID: 5499442914503022187}
   level: {fileID: 788618010970585523}

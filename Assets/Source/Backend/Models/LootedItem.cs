@@ -2,7 +2,7 @@ using System;
 using Backend.Models.Enums;
 using Backend.Models.Enums.ObjectShape;
 
-namespace Backend
+namespace Backend.Models
 {
     [Serializable]
     public class LootedItem

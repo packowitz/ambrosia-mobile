@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e62c2f65ea24b73ab350966fb0a4736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 6506975766253588177}
   avatarImg: {fileID: 5965417933089623747}
   vehicleAtlas: {fileID: 4343727234628468602, guid: 53695c01c56e244ea9b479147c6d3c7f,
     type: 2}

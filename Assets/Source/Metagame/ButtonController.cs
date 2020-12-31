@@ -19,6 +19,16 @@ namespace Metagame
             loadingIndicator.enabled = false;
         }
 
+        public void SetText(string txt)
+        {
+            buttonText.text = txt;
+        }
+
+        public void SetColor(Color color)
+        {
+            button.image.color = color;
+        }
+
         public void SetInteractable(bool active)
         {
             button.interactable = active;
@@ -29,11 +39,11 @@ namespace Metagame
             button.onClick.AddListener(call);
         }
 
-        public void ShowIndicator()
+        public void ShowIndicator(bool show = true)
         {
-            button.interactable = false;
-            buttonText.enabled = false;
-            loadingIndicator.enabled = true;
+            button.interactable = !show;
+            buttonText.enabled = !show;
+            loadingIndicator.enabled = show;
         }
     }
 }

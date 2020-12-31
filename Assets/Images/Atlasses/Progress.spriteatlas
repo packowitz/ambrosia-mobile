@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Progress
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 75
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 33cada71e60fa47689bacbc26f6b435b, type: 3}
+    totalSpriteSurfaceArea: 327680
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0ac3a2c026f00403f9ae96ecb0d0f0ad, type: 3}
+  - {fileID: 21300000, guid: 6babfe61b6b57419e94ebd9f9837541a, type: 3}
+  - {fileID: 21300000, guid: 658f51f15be4f42eeb986f88d9903d8c, type: 3}
+  - {fileID: 21300000, guid: ee20044256aa0439c8d6bb4167cfa0b2, type: 3}
+  - {fileID: 21300000, guid: 88570ec49dc93404080a3d9b08b40a80, type: 3}
+  - {fileID: 21300000, guid: 39121005add57453f8a13998d3f2530a, type: 3}
+  - {fileID: 21300000, guid: a0d2e70600f5a44eb926e7bfcfdd5bcb, type: 3}
+  - {fileID: 21300000, guid: ce605e5678d6847b8b28f8c7629deb76, type: 3}
+  - {fileID: 21300000, guid: 316b35f70f9ee491ba085369cde4372e, type: 3}
+  - {fileID: 21300000, guid: 2126ccd80f2524fd6844e462649dd22d, type: 3}
+  - {fileID: 21300000, guid: cd3c3c49e667a4ba6bd0949de02432e6, type: 3}
+  - {fileID: 21300000, guid: 54ec2e2c99b8d4751af3f8783e5e5e5f, type: 3}
+  - {fileID: 21300000, guid: 50c1bd6c0564442eb9aa3eadab2d74b3, type: 3}
+  - {fileID: 21300000, guid: 63c03e1db3e784ac8831bb103ae9ebe2, type: 3}
+  - {fileID: 21300000, guid: f96b5c6d321e6480690299a63ad5f5ce, type: 3}
+  - {fileID: 21300000, guid: 54ca479dddd63458c9f6ad303258e49d, type: 3}
+  - {fileID: 21300000, guid: 33d25fed7c0074ec4a7f2e5425b1aa44, type: 3}
+  - {fileID: 21300000, guid: ec4168bec7e7e4327bd577d1bb184350, type: 3}
+  - {fileID: 21300000, guid: d93fc8ee24a1c43c78d3be5c10c8623e, type: 3}
+  - {fileID: 21300000, guid: a136a8ef200ea49c2a763c0eabfdc66a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - LAB_SPEED
+  - BUILDER_QUEUE
+  - COMMON_INCUBATION_UP_PER_MIL
+  - BARRACKS_SIZE
+  - GARAGE_SLOT
+  - EXPEDITION_SPEED
+  - HERO_TRAIN_LEVEL
+  - MISSION_SPEED
+  - PLAYER_XP
+  - UNCOMMON_INCUBATION_UP_PER_MIL
+  - SIMPLE_INCUBATION_UP_PER_MIL
+  - RARE_INCUBATION_UP_PER_MIL
+  - AUTO_BREAKDOWN_ENABLED
+  - MISSION_MAX_BATTLES
+  - VEHICLE_UPGRADE_LEVEL
+  - UNCOMMON_INCUBATION_SUPER_UP_PER_MIL
+  - EXPEDITION_LEVEL
+  - INCUBATORS
+  - BUILDER_SPEED
+  - JEWEL_MERGE_DOUBLE_CHANCE
+  m_Tag: Progress
+  m_IsVariant: 0

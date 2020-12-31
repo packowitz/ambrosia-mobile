@@ -31,5 +31,21 @@ namespace Configs
         [SerializeField] public Color heroAscInnerInactive;
         [SerializeField] public Color bottomHubActive;
         [SerializeField] public Color bottomHubInactive;
+        [SerializeField] public Color buttonSuccess;
+        [SerializeField] public Color buttonDanger;
+        [SerializeField] public Color gearJewel0;
+        [SerializeField] public Color gearJewel1;
+        [SerializeField] public Color gearJewel2;
+        [SerializeField] public Color gearJewel3;
+        [SerializeField] public Color gearJewel4;
+        [SerializeField] public Color gearSHABBY;
+        [SerializeField] public Color gearRUSTY;
+        [SerializeField] public Color gearORDINARY;
+        [SerializeField] public Color gearUSEFUL;
+        [SerializeField] public Color gearGOOD;
+        [SerializeField] public Color gearAWESOME;
+        [SerializeField] public Color gearFLAWLESS;
+        [SerializeField] public Color gearPERFECT;
+        [SerializeField] public Color gearGODLIKE;
     }
 }
