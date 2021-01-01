@@ -60,6 +60,19 @@ namespace Metagame
             }
         }
 
+        public void SetInboxItem(InboxMessageItem item, float adjustToHeight)
+        {
+            switch (item.type)
+            {
+                case LootItemType.RESOURCE:
+                    // ReSharper disable once PossibleInvalidOperationException
+                    SetResource(item.resourceType, (long) item.resourceAmount, adjustToHeight);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public void SetResource(ResourceType type, long resourceAmount, float adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);

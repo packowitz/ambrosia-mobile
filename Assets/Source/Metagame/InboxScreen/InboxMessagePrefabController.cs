@@ -15,7 +15,7 @@ namespace Metagame.InboxScreen
         [SerializeField] private TMP_Text timeLeftText;
         [SerializeField] private ButtonController claimButton;
         [SerializeField] private RectTransform itemsCanvas;
-        [SerializeField] private InboxItemPrefabController itemPrefab;
+        [SerializeField] private LootItemPrefabController itemPrefab;
 
         [Inject] private InboxService inboxService;
         [Inject] private ResourcesService resourcesService;
@@ -31,7 +31,7 @@ namespace Metagame.InboxScreen
             message.items.ForEach(item =>
             {
                 var prefab = Instantiate(itemPrefab, itemsCanvas);
-                prefab.SetItem(item);
+                prefab.SetInboxItem(item, itemsCanvas.rect.height);
             });
             
             claimButton.AddClickListener(() =>

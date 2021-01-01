@@ -437,7 +437,7 @@ MonoBehaviour:
   timeLeftText: {fileID: 6170285882179463854}
   claimButton: {fileID: 6016952398365496132}
   itemsCanvas: {fileID: 3234653815152480009}
-  itemPrefab: {fileID: 6940250443785113297, guid: 3e3f1536ceb35496891dc3803951b2bf,
+  itemPrefab: {fileID: 8239294116467436588, guid: d2ab5eb16cc7346bbb8c182bebc79dd3,
     type: 3}
 --- !u!114 &2685296708175310881
 MonoBehaviour:
