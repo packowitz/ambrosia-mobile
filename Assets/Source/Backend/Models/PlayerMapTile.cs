@@ -12,12 +12,12 @@ namespace Backend.Models
         public bool discovered;
         public bool chestOpened;
         public bool discoverable;
-        public MapTileStructure structure;
-        public FightIcon fightIcon;
+        public MapTileStructure? structure;
+        public FightIcon? fightIcon;
         public long? fightId;
         public bool? fightRepeatable;
         public bool? victoriousFight;
         public long? portalToMapId;
-        public BuildingType buildingType;
+        public BuildingType? buildingType;
     }
 }

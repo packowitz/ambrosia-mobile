@@ -14,6 +14,7 @@ namespace Installers
             SignalBusInstaller.Install(Container);
             
             // declare signals
+            Container.DeclareSignal<CurrentMapSignal>();
             Container.DeclareSignal<ExpeditionLevelSignal>();
             Container.DeclareSignal<ExpeditionSignal>();
             Container.DeclareSignal<InboxSignal>();

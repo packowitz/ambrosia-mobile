@@ -11,8 +11,11 @@ namespace Backend.Services
         public PlayerMap CurrentPlayerMap { get; private set; }
         public List<PlayerMap> PlayerMaps{ get; private set; }
 
+        private readonly SignalBus signalBus;
+
         public MapService(SignalBus signalBus)
         {
+            this.signalBus = signalBus;
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);
@@ -57,6 +60,7 @@ namespace Backend.Services
             if (currentMap)
             {
                 CurrentPlayerMap = playerMap;
+                signalBus.Fire(new CurrentMapSignal(CurrentPlayerMap));
             }
         }
     }
