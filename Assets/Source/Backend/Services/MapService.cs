@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Backend.Models;
+using Backend.Models.Enums;
 using Backend.Responses;
 using Backend.Signal;
 using Zenject;
@@ -11,6 +13,7 @@ namespace Backend.Services
         public PlayerMap CurrentPlayerMap { get; private set; }
         public List<PlayerMap> PlayerMaps{ get; private set; }
 
+        [Inject] private ServerAPI serverAPI;
         private readonly SignalBus signalBus;
 
         public MapService(SignalBus signalBus)
@@ -20,6 +23,23 @@ namespace Backend.Services
             {
                 Consume(signal.Data);
             });
+        }
+
+        public bool HasUnvisitedMineCloseToReset()
+        {
+            var oneDayAhead = DateTime.Now + TimeSpan.FromHours(24);
+            var closeToReset = PlayerMaps.Find(map => map.type == MapType.MINE && map.ResetTime != null && map.unvisited && map.ResetTime < oneDayAhead);
+            return closeToReset != null;
+        }
+
+        public void ChangeMapTo(long mapId, Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost($"/map/{mapId}/current", null, onSuccess);
+        }
+
+        public void ToggleFavorite(Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost($"/map/{CurrentPlayerMap.mapId}/favorite/{!CurrentPlayerMap.favorite}", null, onSuccess);
         }
 
         private void Consume(PlayerActionResponse data)

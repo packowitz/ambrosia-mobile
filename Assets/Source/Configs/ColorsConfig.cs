@@ -47,5 +47,7 @@ namespace Configs
         [SerializeField] public Color gearFLAWLESS;
         [SerializeField] public Color gearPERFECT;
         [SerializeField] public Color gearGODLIKE;
+        [SerializeField] public Color mapFavorite;
+        [SerializeField] public Color mapNoFavorite;
     }
 }

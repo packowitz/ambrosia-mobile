@@ -53,8 +53,164 @@ MonoBehaviour:
     sprite: {fileID: 21300088, guid: 873e82b4b7f3d43f6befb24dacc0ec3e, type: 3}
   - type: 19
     sprite: {fileID: 21300054, guid: 873e82b4b7f3d43f6befb24dacc0ec3e, type: 3}
+  whiteTile: {fileID: 21300106, guid: 873e82b4b7f3d43f6befb24dacc0ec3e, type: 3}
+  bottomLeftEmpty: {fileID: 21300082, guid: 873e82b4b7f3d43f6befb24dacc0ec3e, type: 3}
+  bottomRightEmpty: {fileID: 21300080, guid: 873e82b4b7f3d43f6befb24dacc0ec3e, type: 3}
+  bottomLeftAndRightEmpty: {fileID: 21300096, guid: 873e82b4b7f3d43f6befb24dacc0ec3e,
+    type: 3}
   mapStructures:
-  - structure: 14
-    sprite: {fileID: 21300022, guid: 14aefffd3622c7347aad64f2bed35801, type: 3}
+  - structure: 0
+    sprite: {fileID: -5978381698223126134, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
     scale: 0.5
-    offset: {x: 0, y: 0}
+    offset: {x: 0, y: 0.08}
+  - structure: 1
+    sprite: {fileID: -4010895650997395768, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 2
+    sprite: {fileID: -4102271554739841081, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 3
+    sprite: {fileID: 5424533285958081683, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 4
+    sprite: {fileID: -8812249874781887266, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 5
+    sprite: {fileID: -7189027718975920451, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 6
+    sprite: {fileID: -1151882646968376062, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 7
+    sprite: {fileID: 7684451573945587242, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 8
+    sprite: {fileID: -2654871650183706260, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 9
+    sprite: {fileID: 1098088387424180447, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 10
+    sprite: {fileID: 5954106521392182887, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 11
+    sprite: {fileID: 2992453798593652498, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 12
+    sprite: {fileID: -2922433226184598992, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 13
+    sprite: {fileID: -2780866419341766168, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 14
+    sprite: {fileID: -76743648946860465, guid: 5d45d672f998c45b28e05901a9ab260a, type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 15
+    sprite: {fileID: -2217750760717737132, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 16
+    sprite: {fileID: -9058696212272071814, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 17
+    sprite: {fileID: -8527480017919699017, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 18
+    sprite: {fileID: 4950695299213312995, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 19
+    sprite: {fileID: -5067098984270884591, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 20
+    sprite: {fileID: -742434819715253876, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - structure: 21
+    sprite: {fileID: 2627883439392312596, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  mapFights:
+  - fightIcon: 0
+    sprite: {fileID: -2779981698394664529, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 1
+    sprite: {fileID: 4782847443560939424, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 2
+    sprite: {fileID: 2265027695787598559, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 3
+    sprite: {fileID: 4619697562046347015, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 4
+    sprite: {fileID: -7732438372048690845, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 5
+    sprite: {fileID: -2205293389243516443, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 6
+    sprite: {fileID: -312402851732178631, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 7
+    sprite: {fileID: -1502750012599898478, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}
+  - fightIcon: 8
+    sprite: {fileID: -2174308956376940299, guid: 5d45d672f998c45b28e05901a9ab260a,
+      type: 3}
+    scale: 0.5
+    offset: {x: 0, y: 0.08}

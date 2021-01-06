@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Backend.Models.Enums;
 
 namespace Backend.Models
@@ -19,8 +20,18 @@ namespace Backend.Models
         public int minY;
         public int maxY;
         public int? secondsToReset;
+        public DateTime? ResetTime;
         public bool unvisited;
  
         public List<PlayerMapTile> tiles;
+        
+        [OnDeserialized]
+        internal void OnDeserialized(StreamingContext context)
+        {
+            if (secondsToReset != null)
+            {
+                ResetTime = DateTime.Now + TimeSpan.FromSeconds((int) secondsToReset);
+            }
+        }
     }
 }

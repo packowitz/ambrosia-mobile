@@ -40,6 +40,9 @@ namespace Metagame.MapScreen
         [SerializeField] public Sprite bottomLeftEmpty;
         [SerializeField] public Sprite bottomRightEmpty;
         [SerializeField] public Sprite bottomLeftAndRightEmpty;
+        [SerializeField] public Sprite discoverIcon;
+        [SerializeField] public float discoverScale;
+        [SerializeField] public Vector2 discoverOffset;
         [SerializeField] private List<MapStructureToSprite> mapStructures;
         [SerializeField] private List<MapFightToSprite> mapFights;
 
