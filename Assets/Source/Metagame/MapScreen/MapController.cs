@@ -3,6 +3,7 @@ using Backend.Models;
 using Backend.Services;
 using Backend.Signal;
 using Configs;
+using Lean.Touch;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +18,7 @@ namespace Metagame.MapScreen
         [Inject] private SignalBus signalBus;
 
         private PlayerMap currentMap;
-        private List<MapTileController> drawnTiles = new List<MapTileController>();
+        private readonly List<MapTileController> drawnTiles = new List<MapTileController>();
 
         private void Start()
         {
@@ -34,6 +35,30 @@ namespace Metagame.MapScreen
                     RecenterCamera();
                 }
             });
+        }
+
+        private void OnEnable()
+        {
+            LeanTouch.OnFingerTap += HandleTap;
+        }
+
+        private void OnDisable()
+        {
+            LeanTouch.OnFingerTap -= HandleTap;
+        }
+
+        private void HandleTap(LeanFinger finger)
+        {
+            if (!finger.IsOverGui)
+            {
+                var worldPosition = Camera.main.ScreenToWorldPoint(finger.ScreenPosition);
+                var tileCoords = HexGridUtils.ConvertWorldToOffsetCoordinates(worldPosition);
+                var tile = currentMap.tiles.Find(t => t.posX == tileCoords.x && t.posY == tileCoords.y);
+                if (tile != null)
+                {
+                    Debug.Log("Tabbed tile " + tile.posX + "-" + tile.posY);
+                }
+            }
         }
 
         private void UpdateMap()

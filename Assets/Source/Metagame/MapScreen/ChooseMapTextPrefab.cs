@@ -1,7 +1,10 @@
+using System;
+using Backend.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Utils;
 
 namespace Metagame.MapScreen
 {
@@ -10,11 +13,28 @@ namespace Metagame.MapScreen
         [SerializeField] private TMP_Text text;
         [SerializeField] private Button button;
 
-        public void SetText(string mapName, bool italic = false)
+        public void SetMap(PlayerMap map)
         {
-            text.text = mapName;
-            if (italic)
+            if (map != null)
             {
+                if (map.ResetTime != null)
+                {
+                    var restTime = map.ResetTime - DateTime.Now;
+                    text.text = $"{map.name} (reset in {restTime?.TimerWithUnit()})";
+                }
+                else
+                {
+                    text.text = map.name;
+                }
+                
+                if (map.unvisited)
+                {
+                    text.fontStyle = FontStyles.Bold;
+                }
+            }
+            else
+            {
+                text.text = "No maps available";
                 text.fontStyle = FontStyles.Italic;
             }
         }

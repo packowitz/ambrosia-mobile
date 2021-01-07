@@ -58,6 +58,9 @@ MonoBehaviour:
   bottomRightEmpty: {fileID: 21300080, guid: 873e82b4b7f3d43f6befb24dacc0ec3e, type: 3}
   bottomLeftAndRightEmpty: {fileID: 21300096, guid: 873e82b4b7f3d43f6befb24dacc0ec3e,
     type: 3}
+  discoverIcon: {fileID: 21300000, guid: 37a3142fa7d2f4334980f6ce6f3b7060, type: 3}
+  discoverScale: 0.4
+  discoverOffset: {x: 0, y: 0.05}
   mapStructures:
   - structure: 0
     sprite: {fileID: -5978381698223126134, guid: 5d45d672f998c45b28e05901a9ab260a,
@@ -172,8 +175,8 @@ MonoBehaviour:
   - fightIcon: 0
     sprite: {fileID: -2779981698394664529, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}
   - fightIcon: 1
     sprite: {fileID: 4782847443560939424, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
@@ -182,13 +185,13 @@ MonoBehaviour:
   - fightIcon: 2
     sprite: {fileID: 2265027695787598559, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}
   - fightIcon: 3
     sprite: {fileID: 4619697562046347015, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}
   - fightIcon: 4
     sprite: {fileID: -7732438372048690845, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
@@ -197,20 +200,20 @@ MonoBehaviour:
   - fightIcon: 5
     sprite: {fileID: -2205293389243516443, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}
   - fightIcon: 6
     sprite: {fileID: -312402851732178631, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}
   - fightIcon: 7
     sprite: {fileID: -1502750012599898478, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}
   - fightIcon: 8
     sprite: {fileID: -2174308956376940299, guid: 5d45d672f998c45b28e05901a9ab260a,
       type: 3}
-    scale: 0.5
-    offset: {x: 0, y: 0.08}
+    scale: 0.6
+    offset: {x: 0, y: 0.2}

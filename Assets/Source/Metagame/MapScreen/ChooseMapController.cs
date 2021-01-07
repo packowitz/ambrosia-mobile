@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Services;
 using Configs;
@@ -31,6 +33,8 @@ namespace Metagame.MapScreen
         [Inject] private ConfigsProvider configsProvider;
 
         private MapType mapType = MapType.CAMPAIGN;
+
+        private readonly MineComparer mineComparer = new MineComparer();
 
         private void Start()
         {
@@ -74,17 +78,21 @@ namespace Metagame.MapScreen
             mapsCanvas.DetachChildren();
             mapsCanvas.gameObject.SetActive(false);
             var maps = mapService.PlayerMaps.Where(map => map.type == mapType && map.favorite).ToList();
+            if (mapType == MapType.MINE)
+            {
+                maps.Sort(mineComparer);
+            }
             if (maps.IsEmpty())
             {
                 var emptyMapList = Instantiate(chooseMapTextPrefab, mapsCanvas);
-                emptyMapList.SetText("No maps marked as favorite", true);
+                emptyMapList.SetMap(null);
             }
             else
             {
                 maps.ForEach(map =>
                 {
                     var mapNameInstance = Instantiate(chooseMapTextPrefab, mapsCanvas);
-                    mapNameInstance.SetText(map.name);
+                    mapNameInstance.SetMap(map);
                     mapNameInstance.AddClickListener(() =>
                     {
                         mapService.ChangeMapTo(map.mapId);
@@ -101,6 +109,33 @@ namespace Metagame.MapScreen
             dungeonsBackground.color = new Color {a = mapType == MapType.DUNGEON ? 0.75f : 0.35f, r = 1f, g = 1f, b = 1f};
             minesBackground.color = new Color {a = mapType == MapType.MINE ? 0.75f : 0.35f, r = 1f, g = 1f, b = 1f};
             minesAlert.SetActive(mapService.HasUnvisitedMineCloseToReset());
+        }
+    }
+    
+    public class MineComparer : IComparer<PlayerMap>
+    {
+        public int Compare(PlayerMap x, PlayerMap y)
+        {
+            if (x.ResetTime == null || y.ResetTime == null)
+            {
+                if (y.ResetTime != null)
+                {
+                    return 1;
+                }
+
+                if (x.ResetTime != null)
+                {
+                    return -1;
+                }
+
+                return 0;
+            }
+            if (x.ResetTime > y.ResetTime)
+            {
+                return 1;
+            }
+
+            return -1;
         }
     }
 }
