@@ -17,10 +17,9 @@ namespace Metagame.MapScreen
         {
             if (map != null)
             {
-                if (map.ResetTime != null)
+                if (map.secondsToReset != null)
                 {
-                    var restTime = map.ResetTime - DateTime.Now;
-                    text.text = $"{map.name} (reset in {restTime?.TimerWithUnit()})";
+                    text.text = $"{map.name} (reset in {(map.ResetTime - DateTime.Now).TimerWithUnit()})";
                 }
                 else
                 {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Threading;
 using Backend.Models.Enums;
 
 namespace Backend.Models
@@ -20,8 +21,11 @@ namespace Backend.Models
         public int minY;
         public int maxY;
         public int? secondsToReset;
-        public DateTime? ResetTime;
         public bool unvisited;
+        
+        // transient
+        public DateTime ResetTime;
+        public CancellationTokenSource CancellationTokenSource;
  
         public List<PlayerMapTile> tiles;
         

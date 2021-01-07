@@ -36,8 +36,6 @@ namespace Backend.Models
 
         // transient
         public CancellationTokenSource CancellationTokenSource;
-        public bool updating;
-        public bool updateFailed;
         
         [OnDeserialized]
         internal void OnDeserialized(StreamingContext context)

@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Responses;
 using Backend.Signal;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace Backend.Services
@@ -28,7 +31,7 @@ namespace Backend.Services
         public bool HasUnvisitedMineCloseToReset()
         {
             var oneDayAhead = DateTime.Now + TimeSpan.FromHours(24);
-            var closeToReset = PlayerMaps.Find(map => map.type == MapType.MINE && map.ResetTime != null && map.unvisited && map.ResetTime < oneDayAhead);
+            var closeToReset = PlayerMaps.Find(map => map.type == MapType.MINE && map.secondsToReset != null && map.unvisited && map.ResetTime < oneDayAhead);
             return closeToReset != null;
         }
 
@@ -70,6 +73,10 @@ namespace Backend.Services
             var idx = PlayerMaps.FindIndex(m => m.mapId == playerMap.mapId);
             if (idx >= 0)
             {
+                if (PlayerMaps[idx].CancellationTokenSource != null)
+                {
+                    PlayerMaps[idx].CancellationTokenSource.Cancel();
+                }
                 PlayerMaps[idx] = playerMap;
             }
             else
@@ -82,6 +89,23 @@ namespace Backend.Services
                 CurrentPlayerMap = playerMap;
                 signalBus.Fire(new CurrentMapSignal(CurrentPlayerMap));
             }
+
+            if (playerMap.secondsToReset != null)
+            {
+                ReloadMap(playerMap).SuppressCancellationThrow();
+            }
+        }
+        
+        private async UniTask ReloadMap(PlayerMap playerMap)
+        {
+            playerMap.CancellationTokenSource = new CancellationTokenSource();
+            await UniTask.Delay(
+                playerMap.ResetTime - DateTime.Now,
+                cancellationToken: playerMap.CancellationTokenSource.Token
+            );
+            playerMap.CancellationTokenSource = null;
+            Debug.Log($"Updating mission {playerMap.mapId}");
+            serverAPI.DoGet<PlayerMap>($"/map/{playerMap.mapId}", data => Update(data, data.mapId == CurrentPlayerMap.mapId));
         }
     }
     
