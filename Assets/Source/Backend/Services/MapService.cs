@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Backend.Models;
 using Backend.Models.Enums;
+using Backend.Requests;
 using Backend.Responses;
 using Backend.Signal;
 using Cysharp.Threading.Tasks;
@@ -43,6 +44,12 @@ namespace Backend.Services
         public void ToggleFavorite(Action<PlayerActionResponse> onSuccess = null)
         {
             serverAPI.DoPost($"/map/{CurrentPlayerMap.mapId}/favorite/{!CurrentPlayerMap.favorite}", null, onSuccess);
+        }
+
+        public void DiscoverTile(long mapId, PlayerMapTile tile, Action<PlayerActionResponse> onSuccess = null)
+        {
+            var request = new DiscoverTileRequest {mapId = mapId, posX = tile.posX, posY = tile.posY};
+            serverAPI.DoPost("/map/discover", request, onSuccess);
         }
 
         private void Consume(PlayerActionResponse data)

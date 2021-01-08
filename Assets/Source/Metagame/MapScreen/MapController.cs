@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Backend.Models;
+using Backend.Models.Enums;
 using Backend.Services;
 using Backend.Signal;
 using Configs;
@@ -14,6 +15,7 @@ namespace Metagame.MapScreen
         [SerializeField] private MapTileController mapTilePrefab;
 
         [Inject] private MapService mapService;
+        [Inject] private ResourcesService resourcesService;
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private SignalBus signalBus;
 
@@ -57,7 +59,31 @@ namespace Metagame.MapScreen
                 if (tile != null)
                 {
                     Debug.Log("Tabbed tile " + tile.posX + "-" + tile.posY);
+                    HandleTileTap(tile);
                 }
+            }
+        }
+
+        private void HandleTileTap(PlayerMapTile tile)
+        {
+            if (tile.discoverable)
+            {
+                Debug.Log("Discover map tile " + tile.posX + "-" + tile.posY);
+                if (resourcesService.EnoughResources(ResourceType.STEAM, currentMap.discoverySteamCost))
+                {
+                     mapService.DiscoverTile(currentMap.mapId, tile);
+                }
+                else
+                {
+                    // show error
+                }
+
+                return;
+            }
+
+            if (tile.discovered)
+            {
+                
             }
         }
 

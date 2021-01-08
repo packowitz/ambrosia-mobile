@@ -23,11 +23,15 @@ namespace Backend.Models
         public int? secondsToReset;
         public bool unvisited;
         
+        public List<PlayerMapTile> tiles;
+        
         // transient
         public DateTime ResetTime;
         public CancellationTokenSource CancellationTokenSource;
- 
-        public List<PlayerMapTile> tiles;
+        public int visibleMinX = int.MaxValue;
+        public int visibleMaxX = int.MinValue;
+        public int visibleMinY = int.MaxValue;
+        public int visibleMaxY = int.MinValue;
         
         [OnDeserialized]
         internal void OnDeserialized(StreamingContext context)
@@ -36,6 +40,17 @@ namespace Backend.Models
             {
                 ResetTime = DateTime.Now + TimeSpan.FromSeconds((int) secondsToReset);
             }
+            
+            tiles?.ForEach(tile =>
+            {
+                if (tile.discovered || tile.discoverable)
+                {
+                    visibleMinX = tile.posX < visibleMinX ? tile.posX : visibleMinX;
+                    visibleMaxX = tile.posX > visibleMaxX ? tile.posX : visibleMaxX;
+                    visibleMinY = tile.posY < visibleMinY ? tile.posY : visibleMinY;
+                    visibleMaxY = tile.posY > visibleMaxY ? tile.posY : visibleMaxY;
+                }
+            });
         }
     }
 }

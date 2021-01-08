@@ -10,11 +10,13 @@ namespace Metagame.MapScreen
     public class MapTileController : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer background;
+        [SerializeField] private TMP_Text someText;
 
         private const int LAYER_WHITE = 1;
         private const int LAYER_FAKE_3D = 2;
         private const int LAYER_STRUCTURE = 3;
-        private const int LAYER_FIGHT = 4;
+        private const int LAYER_STRUCTURE_TEXT = 4;
+        private const int LAYER_FIGHT = 5;
         public void SetPlayerTile(PlayerMap map, PlayerMapTile tile, MapTileConfig mapTileConfig)
         {
             transform.localPosition = HexGridUtils.ConvertOffsetToWorldCoordinates(new Vector2Int(tile.posX, tile.posY));
@@ -62,6 +64,12 @@ namespace Metagame.MapScreen
             {
                 AddIcon(mapTileConfig.whiteTile, baseLayer + LAYER_WHITE, 1f, Vector2.zero, new Color{a = 0.75f, b = 1f, g = 1f, r = 1f});
                 AddIcon(mapTileConfig.discoverIcon, baseLayer + LAYER_STRUCTURE, mapTileConfig.discoverScale, mapTileConfig.discoverOffset, text: map.discoverySteamCost.ToString());
+                someText.text = map.discoverySteamCost.ToString();
+                someText.gameObject.SetActive(true);
+                someText.gameObject.GetComponent<MeshRenderer>().sortingOrder = baseLayer + LAYER_STRUCTURE_TEXT;
+                var locPos = someText.transform.localPosition;
+                locPos.y += mapTileConfig.discoverOffset.y;
+                someText.transform.localPosition = locPos;
             }
         }
 
