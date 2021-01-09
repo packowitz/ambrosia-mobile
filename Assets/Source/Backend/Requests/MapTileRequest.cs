@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Backend.Requests
 {
     [Serializable]
-    public struct DiscoverTileRequest
+    public struct MapTileRequest
     {
         public long mapId;
         public int posX;

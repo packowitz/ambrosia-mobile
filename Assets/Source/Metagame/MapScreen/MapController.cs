@@ -13,11 +13,14 @@ namespace Metagame.MapScreen
     public class MapController : MonoBehaviour
     {
         [SerializeField] private MapTileController mapTilePrefab;
+        [SerializeField] private ErrorPopupController errorPopupPrefab;
+        [SerializeField] private LootedController lootedPrefab;
 
         [Inject] private MapService mapService;
         [Inject] private ResourcesService resourcesService;
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private SignalBus signalBus;
+        [Inject] private PopupCanvasController popupCanvasController;
 
         private PlayerMap currentMap;
         private readonly List<MapTileController> drawnTiles = new List<MapTileController>();
@@ -58,7 +61,6 @@ namespace Metagame.MapScreen
                 var tile = currentMap.tiles.Find(t => t.posX == tileCoords.x && t.posY == tileCoords.y);
                 if (tile != null)
                 {
-                    Debug.Log("Tabbed tile " + tile.posX + "-" + tile.posY);
                     HandleTileTap(tile);
                 }
             }
@@ -68,14 +70,14 @@ namespace Metagame.MapScreen
         {
             if (tile.discoverable)
             {
-                Debug.Log("Discover map tile " + tile.posX + "-" + tile.posY);
                 if (resourcesService.EnoughResources(ResourceType.STEAM, currentMap.discoverySteamCost))
                 {
                      mapService.DiscoverTile(currentMap.mapId, tile);
                 }
                 else
                 {
-                    // show error
+                    var error = popupCanvasController.OpenPopup(errorPopupPrefab);
+                    error.SetError("Insufficient resources", "Not enough steam to discover map tile");
                 }
 
                 return;
@@ -83,7 +85,32 @@ namespace Metagame.MapScreen
 
             if (tile.discovered)
             {
-                
+                if (tile.fightId != null && (tile.victoriousFight == false || tile.fightRepeatable == true))
+                {
+                    Debug.Log("open fight popup");
+                }
+                else if (tile.structure != null)
+                {
+                    if (tile.portalToMapId != null)
+                    {
+                        mapService.ChangeMapTo((long) tile.portalToMapId);
+                    }
+                    else if (tile.buildingType != null)
+                    {
+                        Debug.Log($"goto building {tile.buildingType}");
+                    }
+                    else if (!tile.chestOpened)
+                    {
+                        mapService.OpenChest(currentMap.mapId, tile, data =>
+                        {
+                            if (data.looted != null)
+                            {
+                                var lootedPopup = popupCanvasController.OpenPopup(lootedPrefab);
+                                lootedPopup.SetLooted(data.looted);
+                            }
+                        });
+                    }
+                }
             }
         }
 

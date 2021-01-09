@@ -2468,6 +2468,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapTilePrefab: {fileID: 5148001735034475061, guid: 967b0602e949041e9a68b1feeabf08d0,
     type: 3}
+  errorPopupPrefab: {fileID: 9108062020737803986, guid: ab29d360ce1fb458e8f885f3f906309e,
+    type: 3}
+  lootedPrefab: {fileID: 8883557370956607913, guid: 0bec206a3e5ca4093ad451e776d04cc7,
+    type: 3}
 --- !u!4 &1765886558
 Transform:
   m_ObjectHideFlags: 0

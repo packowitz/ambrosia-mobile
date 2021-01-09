@@ -89,10 +89,9 @@ namespace Metagame.MapScreen
 
             if (!autobreakdown.IsEmpty())
             {
-                loading = true;
+                actionButton.ShowIndicator();
                 forgeService.Breakdown(autobreakdown, data =>
                 {
-                    loading = false;
                     Destroy(gameObject);
                 });
             }

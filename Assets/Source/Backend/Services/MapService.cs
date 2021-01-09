@@ -38,7 +38,8 @@ namespace Backend.Services
 
         public void ChangeMapTo(long mapId, Action<PlayerActionResponse> onSuccess = null)
         {
-            serverAPI.DoPost($"/map/{mapId}/current", null, onSuccess);
+            var mapKnown = PlayerMaps.Find(m => m.mapId == mapId) != null;
+            serverAPI.DoPost($"/map/{mapId}/{(mapKnown ? "current" : "discover")}", null, onSuccess);
         }
 
         public void ToggleFavorite(Action<PlayerActionResponse> onSuccess = null)
@@ -48,8 +49,20 @@ namespace Backend.Services
 
         public void DiscoverTile(long mapId, PlayerMapTile tile, Action<PlayerActionResponse> onSuccess = null)
         {
-            var request = new DiscoverTileRequest {mapId = mapId, posX = tile.posX, posY = tile.posY};
+            var request = new MapTileRequest {mapId = mapId, posX = tile.posX, posY = tile.posY};
             serverAPI.DoPost("/map/discover", request, onSuccess);
+        }
+
+        public void OpenChest(long mapId, PlayerMapTile tile, Action<PlayerActionResponse> onSuccess = null)
+        {
+            var request = new MapTileRequest {mapId = mapId, posX = tile.posX, posY = tile.posY};
+            serverAPI.DoPost("/map/open_chest", request, onSuccess);
+        }
+
+        public void DiscoverBuilding(long mapId, PlayerMapTile tile, Action<PlayerActionResponse> onSuccess = null)
+        {
+            var request = new MapTileRequest {mapId = mapId, posX = tile.posX, posY = tile.posY};
+            serverAPI.DoPost("/map/new_building", request, onSuccess);
         }
 
         private void Consume(PlayerActionResponse data)
