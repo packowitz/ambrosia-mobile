@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Backend.Models;
 using Backend.Responses;
 using Backend.Signal;
+using JetBrains.Annotations;
 using Zenject;
 
 namespace Backend.Services
@@ -18,6 +19,7 @@ namespace Backend.Services
             });
         }
 
+        [CanBeNull]
         public Team Team(string type)
         {
             return Teams.Find(team => team.type == type);

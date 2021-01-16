@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Services;
@@ -35,12 +36,18 @@ namespace Metagame.HeroAvatar
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private HeroBaseService heroBaseService;
 
-        public void SetHero(Hero hero, float? adjustToHeight = null, bool indicateAvailability = false)
+        private Hero hero;
+        private readonly List<AscPointPrefabController> ascPoints = new List<AscPointPrefabController>();
+
+        public void SetHero(Hero heroToShow, float? adjustToHeight = null, bool indicateAvailability = false)
         {
+            hero = heroToShow;
             canvas.ScaleToHeight(adjustToHeight);
             if (hero == null)
             {
                 avatar.SetActive(false);
+                ascPoints.ForEach(ascPoint => Destroy(ascPoint.gameObject));
+                ascPoints.Clear();
                 return;
             }
             avatar.SetActive(true);
@@ -77,6 +84,7 @@ namespace Metagame.HeroAvatar
             {
                 var ascPrefab = Instantiate(ascPointPrefab, ascPointsContainer);
                 ascPrefab.SetActive(hero.ascLvl >= i);
+                ascPoints.Add(ascPrefab);
             }
 
             if (baseHero.maxAscLevel == 8)
@@ -85,6 +93,11 @@ namespace Metagame.HeroAvatar
             }
             
             SetActive(false);
+        }
+
+        public Hero GetHero()
+        {
+            return hero;
         }
 
         public void AddClickListener(UnityAction call)

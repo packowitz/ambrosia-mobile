@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 189348861830841453}
   - component: {fileID: 8363813434261712083}
   m_Layer: 5
-  m_Name: InboxResourcePanel
+  m_Name: BuilderResourcePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +702,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2df1c56ec23554985946bef6a0d66d73,
+      objectReference: {fileID: 21300000, guid: 0ddd816f9d53e4d57baa1a265090eca6,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03b14d68740b44c1e828b4d1e2d4d89c, type: 3}

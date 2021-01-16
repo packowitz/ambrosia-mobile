@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Backend.Models;
+using Backend.Requests;
 using Backend.Responses;
 using Backend.Signal;
 using Cysharp.Threading.Tasks;
@@ -24,6 +25,11 @@ namespace Backend.Services
             {
                 Consume(signal.Data);
             });
+        }
+
+        public void StartMission(StartMissionRequest request, Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost("/battle/mission", request, onSuccess);
         }
 
         private void Consume(PlayerActionResponse data)

@@ -2,6 +2,7 @@ using Backend.Models;
 using Backend.Services;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 using Utils;
@@ -89,7 +90,7 @@ namespace Metagame.VehicleAvatar
             }
         }
 
-        public void ActivateNextAvailableOnClick()
+        public void ActivateNextAvailableOnClick(UnityAction callback = null)
         {
             if (Vehicle != null)
             {
@@ -98,6 +99,7 @@ namespace Metagame.VehicleAvatar
                         var availableVehicles = vehicleService.AvailableVehicles();
                         var next = availableVehicles.Find(v => v.slot > Vehicle.slot) ?? availableVehicles[0];
                         SetVehicle(next);
+                        callback?.Invoke();
                     });
             }
         }

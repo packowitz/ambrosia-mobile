@@ -25,7 +25,6 @@ namespace Metagame
         {
             if (mainScreen != CurrentScreen)
             {
-                Debug.Log($"Changing main screen to {mainScreen}");
                 CurrentScreen = mainScreen;
                 
                 mapCanvas.enabled = CurrentScreen == MainScreenEnum.Map;

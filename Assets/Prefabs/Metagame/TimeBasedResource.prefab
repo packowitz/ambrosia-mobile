@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generatedAmountText: {fileID: 1803782422318190451}
+  icon: {fileID: 8427526710161992198}
   toggleBtn: {fileID: 678569135177706399}
 --- !u!114 &678569135177706399
 MonoBehaviour:

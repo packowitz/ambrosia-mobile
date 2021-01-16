@@ -32,6 +32,7 @@ namespace Installers
             Container.Bind<BazaarService>().AsSingle().NonLazy();
             Container.Bind<BuildingService>().AsSingle().NonLazy();
             Container.Bind<ExpeditionService>().AsSingle().NonLazy();
+            Container.Bind<FightService>().AsSingle().NonLazy();
             Container.Bind<ForgeService>().AsSingle().NonLazy();
             Container.Bind<GearService>().AsSingle().NonLazy();
             Container.Bind<HeroBaseService>().AsSingle().NonLazy();

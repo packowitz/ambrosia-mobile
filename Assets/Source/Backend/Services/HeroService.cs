@@ -3,6 +3,7 @@ using System.Linq;
 using Backend.Models;
 using Backend.Responses;
 using Backend.Signal;
+using JetBrains.Annotations;
 using Zenject;
 
 namespace Backend.Services
@@ -34,6 +35,7 @@ namespace Backend.Services
             return heroes.Find(h => h.id == id);
         }
 
+        [CanBeNull]
         public Hero AvailableHero(long? id)
         {
             if (id == null)

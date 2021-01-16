@@ -24,9 +24,15 @@ namespace Metagame
             buttonText.text = txt;
         }
 
-        public void SetColor(Color color)
+        public void SetColor(Color color, Color? inactive = null)
         {
-            button.image.color = color;
+            var colors = button.colors;
+            colors.normalColor = color;
+            if (inactive != null)
+            {
+                colors.disabledColor = (Color) inactive;
+            }
+            button.colors = colors;
         }
 
         public void SetInteractable(bool active)

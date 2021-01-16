@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Metagame
@@ -7,6 +8,7 @@ namespace Metagame
     public class AnyResourcePanel : MonoBehaviour
     {
         [SerializeField] private TMP_Text amountText;
+        [SerializeField] private Image icon;
 
         public void SetAmount(int amount)
         {
@@ -22,6 +24,11 @@ namespace Metagame
         {
             SetAmount(amount);
             amountText.fontStyle = max ? FontStyles.Bold : FontStyles.Normal;
+        }
+
+        public void SetIcon(Sprite sprite)
+        {
+            icon.sprite = sprite;
         }
     }
 }

@@ -2472,6 +2472,8 @@ MonoBehaviour:
     type: 3}
   lootedPrefab: {fileID: 8883557370956607913, guid: 0bec206a3e5ca4093ad451e776d04cc7,
     type: 3}
+  startFightPrefab: {fileID: 6700305586030607727, guid: 0dea788f49b154a569a96e46f9f90fef,
+    type: 3}
 --- !u!4 &1765886558
 Transform:
   m_ObjectHideFlags: 0

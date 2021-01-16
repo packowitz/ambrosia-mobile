@@ -68,6 +68,46 @@ namespace Backend.Services
             var props = Properties(PropertyType.MERGE_ASC_HERO, rarity);
             return props.IsEmpty() ? 0 : props[0].value1;
         }
+        
+        public int VehicleStat(Vehicle vehicle, VehicleStat stat)
+        {
+            var parts = new List<VehiclePart>();
+            if (vehicle.engine != null)
+            {
+                parts.Add(vehicle.engine);
+            }
+            if (vehicle.frame != null)
+            {
+                parts.Add(vehicle.frame);
+            }
+            if (vehicle.computer != null)
+            {
+                parts.Add(vehicle.computer);
+            }
+            if (vehicle.specialPart1 != null)
+            {
+                parts.Add(vehicle.specialPart1);
+            }
+            if (vehicle.specialPart2 != null)
+            {
+                parts.Add(vehicle.specialPart2);
+            }
+            if (vehicle.specialPart3 != null)
+            {
+                parts.Add(vehicle.specialPart3);
+            }
+
+            var sum = 0;
+            parts.ForEach(part =>
+            {
+                var propType = (PropertyType) Enum.Parse(typeof(PropertyType), $"{part.type}_{part.quality}");
+                Properties(propType, part.level)
+                    .Where(prop => prop.vehicleStat == stat)
+                    .ToList()
+                    .ForEach(prop => sum += prop.value1);
+            });
+            return sum;
+        }
 
         public void CheckVersions()
         {

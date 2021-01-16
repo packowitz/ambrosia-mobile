@@ -9,6 +9,7 @@ namespace Metagame
     public class GeneratedResourcePanel : MonoBehaviour
     {
         [SerializeField] private TMP_Text generatedAmountText;
+        [SerializeField] private Image icon;
         [SerializeField] private Button toggleBtn;
 
         private bool showAmount = true;
@@ -60,6 +61,11 @@ namespace Metagame
                     generatedAmountText.text = timeLeft.Timer();
                 }
             }
+        }
+
+        public void SetIcon(Sprite sprite)
+        {
+            icon.sprite = sprite;
         }
     }
 }

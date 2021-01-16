@@ -32,7 +32,11 @@ namespace Configs
         [SerializeField] public Color bottomHubActive;
         [SerializeField] public Color bottomHubInactive;
         [SerializeField] public Color buttonSuccess;
+        [SerializeField] public Color buttonSuccessInactive;
         [SerializeField] public Color buttonDanger;
+        [SerializeField] public Color buttonDangerInactive;
+        [SerializeField] public Color buttonSecondary;
+        [SerializeField] public Color buttonSecondaryInactive;
         [SerializeField] public Color gearJewel0;
         [SerializeField] public Color gearJewel1;
         [SerializeField] public Color gearJewel2;

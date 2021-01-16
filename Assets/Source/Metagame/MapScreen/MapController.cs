@@ -15,6 +15,7 @@ namespace Metagame.MapScreen
         [SerializeField] private MapTileController mapTilePrefab;
         [SerializeField] private ErrorPopupController errorPopupPrefab;
         [SerializeField] private LootedController lootedPrefab;
+        [SerializeField] private StartFightController startFightPrefab;
 
         [Inject] private MapService mapService;
         [Inject] private ResourcesService resourcesService;
@@ -87,7 +88,11 @@ namespace Metagame.MapScreen
             {
                 if (tile.fightId != null && (tile.victoriousFight == false || tile.fightRepeatable == true))
                 {
-                    Debug.Log("open fight popup");
+                    
+                    // TODO check for ongoing mission and open mission popover instead
+                    
+                    var fightPopup = popupCanvasController.OpenPopup(startFightPrefab);
+                    fightPopup.SetMapTile(currentMap, tile);
                 }
                 else if (tile.structure != null)
                 {
