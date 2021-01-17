@@ -27,16 +27,12 @@ namespace Metagame.MapScreen
         [SerializeField] private HeroAvatarPrefabController hero3;
         [SerializeField] private HeroAvatarPrefabController hero4;
         [SerializeField] private ButtonController cancelBtn;
-        [SerializeField] private ButtonController startBtn;
-        [SerializeField] private Image resourceIcon;
-        [SerializeField] private TMP_Text resourceAmount;
+        [SerializeField] private ButtonResourceController startBtn;
         [SerializeField] private SpriteAtlas resourceAtlas;
         [SerializeField] private ButtonController missionBtn;
         [SerializeField] private GameObject missionPopup;
         [SerializeField] private Slider missionSlider;
-        [SerializeField] private ButtonController startMissionBtn;
-        [SerializeField] private Image missionResourceIcon;
-        [SerializeField] private TMP_Text missionResourceAmount;
+        [SerializeField] private ButtonResourceController startMissionBtn;
         [SerializeField] private TMP_Text missionCount;
         [SerializeField] private GameObject fightCanvas;
         [SerializeField] private TMP_Text fightTitle;
@@ -213,9 +209,9 @@ namespace Metagame.MapScreen
         private void UpdateFight()
         {
             resourcePanel.SetResourceType(fight.resourceType);
-            resourceIcon.sprite = resourceAtlas.GetSprite(fight.resourceType.ToString());
-            missionResourceIcon.sprite = resourceAtlas.GetSprite(fight.resourceType.ToString());
-            resourceAmount.text = $"{fight.costs}";
+            var resourceIcon = resourceAtlas.GetSprite(fight.resourceType.ToString());
+            startBtn.SetResource(resourceIcon, $"{fight.costs}");
+            startMissionBtn.SetResourceIcon(resourceIcon);
             UpdateMissionMinMax();
             UpdateMissionCount(MaxMissionsPossible());
             
@@ -251,7 +247,7 @@ namespace Metagame.MapScreen
         {
             missionRequest.battleTimes = count;
             missionSlider.value = count;
-            missionResourceAmount.text = $"{fight.costs * count}";
+            startMissionBtn.SetResourceAmount($"{fight.costs * count}");
             missionCount.text = $"{count}";
             startMissionBtn.SetInteractable(count > 0);
         }
