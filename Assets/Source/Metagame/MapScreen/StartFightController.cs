@@ -40,6 +40,8 @@ namespace Metagame.MapScreen
         [SerializeField] private TMP_Text fightXp;
         [SerializeField] private TMP_Text fightAsc;
         [SerializeField] private TMP_Text fightLevel;
+        [SerializeField] private RectTransform stagesCanvas;
+        [SerializeField] private StartFightPopupStageController stagePrefab;
 
         [Inject] private FightService fightService;
         [Inject] private TeamService teamService;
@@ -219,6 +221,12 @@ namespace Metagame.MapScreen
             fightDescription.text = fight.description;
             fightLevel.text = $"Difficulty {fight.level}";
             UpdateXpAndAsc();
+            
+            fight.stages.ForEach(stage =>
+            {
+                var stageCanvas = Instantiate(stagePrefab, stagesCanvas);
+                stageCanvas.SetStage(stage);
+            });
         }
 
         private void UpdateXpAndAsc()
@@ -234,7 +242,7 @@ namespace Metagame.MapScreen
                 }
 
                 fightXp.text = $"XP {fight.xp + ((fight.xp * xpBoost) / 100)}";
-                fightAsc.text = $"XP {fight.ascPoints + ((fight.ascPoints * ascBoost) / 100)}";
+                fightAsc.text = $"Asc {fight.ascPoints + ((fight.ascPoints * ascBoost) / 100)}";
             }
         }
 
