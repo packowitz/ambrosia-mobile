@@ -100,7 +100,7 @@ namespace Backend.Services
             var sum = 0;
             parts.ForEach(part =>
             {
-                var propType = (PropertyType) Enum.Parse(typeof(PropertyType), $"{part.type}_{part.quality}");
+                var propType = (PropertyType) Enum.Parse(typeof(PropertyType), $"{part.type}_PART_{part.quality}");
                 Properties(propType, part.level)
                     .Where(prop => prop.vehicleStat == stat)
                     .ToList()

@@ -1,3 +1,4 @@
+using System;
 using Backend.Models;
 using Backend.Models.Enums;
 using JetBrains.Annotations;
@@ -11,14 +12,27 @@ namespace Metagame.MapScreen
     {
         [SerializeField] private SpriteRenderer background;
         [SerializeField] private TMP_Text someText;
+        [SerializeField] private SpriteRenderer progress;
+        [SerializeField] private SpriteRenderer progressBackground;
+        [SerializeField] private SpriteRenderer progressBar;
+
+        private Mission mission;
+        public int PosX { get; private set; }
+        public int PosY { get; private set; }
 
         private const int LAYER_WHITE = 1;
         private const int LAYER_FAKE_3D = 2;
         private const int LAYER_STRUCTURE = 3;
         private const int LAYER_STRUCTURE_TEXT = 4;
         private const int LAYER_FIGHT = 5;
+        private const int LAYER_PROGRESS = 6;
+        private const int LAYER_PROGRESS_BACKGROUND = 7;
+        private const int LAYER_PROGRESS_BAR = 8;
         public void SetPlayerTile(PlayerMap map, PlayerMapTile tile, MapTileConfig mapTileConfig)
         {
+            PosX = tile.posX;
+            PosY = tile.posY;
+            
             transform.localPosition = HexGridUtils.ConvertOffsetToWorldCoordinates(new Vector2Int(tile.posX, tile.posY));
             gameObject.name = $"X{tile.posX} Y{tile.posY} {tile.type}";
 
@@ -71,11 +85,44 @@ namespace Metagame.MapScreen
                 locPos.y += mapTileConfig.discoverOffset.y;
                 someText.transform.localPosition = locPos;
             }
+
+            progress.sortingOrder = baseLayer + LAYER_PROGRESS;
+            progressBackground.sortingOrder = baseLayer + LAYER_PROGRESS_BACKGROUND;
+            progressBar.sortingOrder = baseLayer + LAYER_PROGRESS_BAR;
+        }
+
+        public void SetMission(Mission ongoingMission)
+        {
+            mission = ongoingMission;
+            progress.gameObject.SetActive(ongoingMission != null);
         }
 
         public void Remove()
         {
             Destroy(gameObject);
+        }
+
+        private void Update()
+        {
+            if (mission != null)
+            {
+                if (mission.DoneTime < DateTime.Now)
+                {
+                    var progressTransform = progressBar.transform;
+                    var scale = progressTransform.localScale;
+                    scale.x = 1f;
+                    progressTransform.localScale = scale;
+                }
+                else
+                {
+                    var secondsDone = mission.duration - Convert.ToSingle((mission.DoneTime - DateTime.Now).TotalSeconds);
+                    
+                    var progressTransform = progressBar.transform;
+                    var scale = progressTransform.localScale;
+                    scale.x = secondsDone <= 0f ? 0f : secondsDone / mission.duration;
+                    progressTransform.localScale = scale;
+                }
+            }
         }
 
         private void AddIcon(Sprite sprite, int layer, float scale, Vector2 offset, Color? color = null, [CanBeNull] string text = null)

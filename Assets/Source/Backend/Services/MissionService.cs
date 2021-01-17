@@ -7,6 +7,7 @@ using Backend.Requests;
 using Backend.Responses;
 using Backend.Signal;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
@@ -30,6 +31,12 @@ namespace Backend.Services
         public void StartMission(StartMissionRequest request, Action<PlayerActionResponse> onSuccess = null)
         {
             serverAPI.DoPost("/battle/mission", request, onSuccess);
+        }
+
+        [CanBeNull]
+        public Mission GetMission(long mapId, int posX, int posY)
+        {
+            return Missions.Find(m => m.mapId == mapId && m.posX == posX && m.posY == posY);
         }
 
         private void Consume(PlayerActionResponse data)
@@ -59,11 +66,11 @@ namespace Backend.Services
 
             if (data.missionIdFinished != null)
             {
-                var idx = Missions.FindIndex(m => m.id == data.missionIdFinished);
-                if (idx >= 0)
+                var missionFinished = Missions.Find(m => m.id == data.missionIdFinished);
+                if (missionFinished != null)
                 {
-                    Missions.RemoveAt(idx);
-                    signalBus.Fire<MissionSignal>();
+                    Missions.Remove(missionFinished);
+                    signalBus.Fire(new MissionSignal(missionFinished, true));
                 }
             }
         }
@@ -85,7 +92,7 @@ namespace Backend.Services
                 SortMissions();
             }
             
-            signalBus.Fire(new MissionSignal(mission));
+            signalBus.Fire(new MissionSignal(mission, false));
 
             if (!mission.missionFinished)
             {

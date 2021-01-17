@@ -162,6 +162,7 @@ namespace Metagame.MapScreen
                 fight = data;
                 loading = false;
                 UpdateFight();
+                CheckButton();
             });
 
             if (tile.fightRepeatable != true)

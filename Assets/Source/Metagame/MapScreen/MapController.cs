@@ -19,6 +19,7 @@ namespace Metagame.MapScreen
 
         [Inject] private MapService mapService;
         [Inject] private ResourcesService resourcesService;
+        [Inject] private MissionService missionService;
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private SignalBus signalBus;
         [Inject] private PopupCanvasController popupCanvasController;
@@ -39,6 +40,19 @@ namespace Metagame.MapScreen
                 if (mapChanged)
                 {
                     RecenterCamera();
+                }
+            });
+            signalBus.Subscribe<MissionSignal>(data =>
+            {
+                if (data.Data.mapId == currentMap.mapId)
+                {
+                    drawnTiles.ForEach(tile =>
+                    {
+                        if (tile.PosX == data.Data.posX && tile.PosY == data.Data.posY)
+                        {
+                            tile.SetMission(data.Finished ? null : missionService.GetMission(currentMap.mapId, tile.PosX, tile.PosY));
+                        }
+                    });
                 }
             });
         }
@@ -88,11 +102,16 @@ namespace Metagame.MapScreen
             {
                 if (tile.fightId != null && (tile.victoriousFight == false || tile.fightRepeatable == true))
                 {
-                    
-                    // TODO check for ongoing mission and open mission popover instead
-                    
-                    var fightPopup = popupCanvasController.OpenPopup(startFightPrefab);
-                    fightPopup.SetMapTile(currentMap, tile);
+                    var mission = missionService.GetMission(currentMap.mapId, tile.posX, tile.posY);
+                    if (mission != null)
+                    {
+                        // TODO open mission popover
+                    }
+                    else
+                    {
+                        var fightPopup = popupCanvasController.OpenPopup(startFightPrefab);
+                        fightPopup.SetMapTile(currentMap, tile);
+                    }
                 }
                 else if (tile.structure != null)
                 {
@@ -133,6 +152,7 @@ namespace Metagame.MapScreen
                 {
                     var tileView = Instantiate(mapTilePrefab, transform);
                     tileView.SetPlayerTile(currentMap, tile, config);
+                    tileView.SetMission(missionService.GetMission(currentMap.mapId, tile.posX, tile.posY));
                     drawnTiles.Add(tileView);
                 }
             });
