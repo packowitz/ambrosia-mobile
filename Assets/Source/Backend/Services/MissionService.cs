@@ -33,6 +33,11 @@ namespace Backend.Services
             serverAPI.DoPost("/battle/mission", request, onSuccess);
         }
 
+        public void FinishMission(Mission mission, Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost($"/battle/mission/{mission.id}/finish", null, onSuccess);
+        }
+
         [CanBeNull]
         public Mission GetMission(long mapId, int posX, int posY)
         {

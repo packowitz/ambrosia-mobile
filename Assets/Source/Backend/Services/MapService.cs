@@ -7,6 +7,7 @@ using Backend.Requests;
 using Backend.Responses;
 using Backend.Signal;
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 
@@ -63,6 +64,12 @@ namespace Backend.Services
         {
             var request = new MapTileRequest {mapId = mapId, posX = tile.posX, posY = tile.posY};
             serverAPI.DoPost("/map/new_building", request, onSuccess);
+        }
+
+        [CanBeNull]
+        public string GetMapName(long mapId)
+        {
+            return PlayerMaps.Find(m => m.mapId == mapId)?.name;
         }
 
         private void Consume(PlayerActionResponse data)

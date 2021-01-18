@@ -2474,6 +2474,8 @@ MonoBehaviour:
     type: 3}
   startFightPrefab: {fileID: 6700305586030607727, guid: 0dea788f49b154a569a96e46f9f90fef,
     type: 3}
+  missionDetailPrefab: {fileID: 6200820163224390382, guid: ccbc11fe025a7485dbbf4815aae4eaab,
+    type: 3}
 --- !u!4 &1765886558
 Transform:
   m_ObjectHideFlags: 0

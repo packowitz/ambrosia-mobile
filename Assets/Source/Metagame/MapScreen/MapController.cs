@@ -16,6 +16,7 @@ namespace Metagame.MapScreen
         [SerializeField] private ErrorPopupController errorPopupPrefab;
         [SerializeField] private LootedController lootedPrefab;
         [SerializeField] private StartFightController startFightPrefab;
+        [SerializeField] private MissionDetailController missionDetailPrefab;
 
         [Inject] private MapService mapService;
         [Inject] private ResourcesService resourcesService;
@@ -105,7 +106,8 @@ namespace Metagame.MapScreen
                     var mission = missionService.GetMission(currentMap.mapId, tile.posX, tile.posY);
                     if (mission != null)
                     {
-                        // TODO open mission popover
+                        var missionPopup = popupCanvasController.OpenPopup(missionDetailPrefab);
+                        missionPopup.SetMission(mission);
                     }
                     else
                     {

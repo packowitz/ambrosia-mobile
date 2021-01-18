@@ -13,14 +13,26 @@ namespace Metagame.MapScreen
         [SerializeField] private RectTransform canvas;
         [SerializeField] private SpriteAtlas vehicleAtlas;
         [SerializeField] private Image vehicleImage;
+        [SerializeField] private Button detailButton;
+        [SerializeField] private MissionDetailController missionDetailPrefab;
 
         [Inject] private VehicleService vehicleService;
+        [Inject] private PopupCanvasController popupCanvasController;
 
         private Mission mission;
 
-        public void SetMission(Mission mission)
+        private void Start()
         {
-            this.mission = mission;
+            detailButton.onClick.AddListener(() =>
+            {
+                var missionPopup = popupCanvasController.OpenPopup(missionDetailPrefab);
+                missionPopup.SetMission(mission);
+            });
+        }
+
+        public void SetMission(Mission m)
+        {
+            mission = m;
             var battleNumber = 0;
             var vehicle = vehicleService.Vehicle(mission.vehicleId);
             vehicleImage.sprite = vehicleAtlas.GetSprite(vehicle.avatar);

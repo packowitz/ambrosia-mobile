@@ -11,9 +11,9 @@ namespace Backend.Models
         public long id;
         public long playerId;
         public Fight fight;
-        public long? mapId;
-        public int? posX;
-        public int? posY;
+        public long mapId;
+        public int posX;
+        public int posY;
         public long vehicleId;
         public int slotNumber;
         public long? hero1Id;
