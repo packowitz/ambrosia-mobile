@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Services;
+using Backend.Signal;
 using Configs;
 using Metagame.HeroAvatar;
 using Metagame.VehicleAvatar;
@@ -25,8 +26,11 @@ namespace Metagame.MapScreen
         [SerializeField] private HeroAvatarPrefabController hero2;
         [SerializeField] private HeroAvatarPrefabController hero3;
         [SerializeField] private HeroAvatarPrefabController hero4;
-        [SerializeField] private LootItemPrefabController lootItemPrefab;
         [SerializeField] private ButtonController actionButton;
+        [SerializeField] private RectTransform progressBar;
+        [SerializeField] private RectTransform battlesCanvas;
+        [SerializeField] private RectTransform battlesContainer;
+        [SerializeField] private MissionDetailBattleController missionBattlePrefab;
 
         [Inject] private HeroService heroService;
         [Inject] private VehicleService vehicleService;
@@ -35,10 +39,15 @@ namespace Metagame.MapScreen
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private GearService gearService;
         [Inject] private ForgeService forgeService;
+        [Inject] private SignalBus signalBus;
 
         private PlayerExpedition expedition;
         private Mission mission;
         private bool loading;
+        private const float BATTLE_HEIGHT = 135f;
+
+        private readonly Dictionary<long, MissionDetailBattleController> battleViews =
+            new Dictionary<long, MissionDetailBattleController>();
 
         private void Start()
         {
@@ -57,13 +66,23 @@ namespace Metagame.MapScreen
                 {
                     loading = false;
                     actionButton.ShowIndicator(false);
-                    if (data.missions?.IsEmpty() == false)
-                    {
-                        mission = data.missions[0];
-                        UpdateMission();
-                    }
                 });
             });
+            signalBus.Subscribe<MissionSignal>(ConsumeMissionSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<MissionSignal>(ConsumeMissionSignal);
+        }
+
+        private void ConsumeMissionSignal(MissionSignal signal)
+        {
+            if (signal.Data.id == mission?.id)
+            {
+                mission = signal.Data;
+                UpdateMission();
+            }
         }
 
         private void ClosePopup()
@@ -103,7 +122,7 @@ namespace Metagame.MapScreen
 
         private void Update()
         {
-            if (mission.lootCollected)
+            if (mission.battles.Find(m => m.cancelled) != null)
             {
                 untilDoneTxt.text = "Aborted";
                 actionButton.gameObject.SetActive(false);
@@ -113,6 +132,7 @@ namespace Metagame.MapScreen
                 untilDoneTxt.text = "Completed";
                 actionButton.SetText("Finish");
                 actionButton.SetColor(configsProvider.Get<ColorsConfig>().buttonSuccess);
+                progressBar.offsetMax = new Vector2(0, progressBar.offsetMax.y);
             }
             else
             {
@@ -120,12 +140,21 @@ namespace Metagame.MapScreen
                 untilDoneTxt.text = timeLeft.TimerWithUnit();
                 actionButton.SetText("Abort");
                 actionButton.SetColor(configsProvider.Get<ColorsConfig>().buttonDanger);
+                var max = ((RectTransform) progressBar.parent).rect.width;
+                var donePercentage = (mission.duration - Convert.ToSingle(timeLeft.TotalSeconds)) / mission.duration;
+                var right = max - max * donePercentage;
+                progressBar.offsetMax = new Vector2(-right, progressBar.offsetMax.y);
             }
         }
 
         public void SetMission(Mission playerMission)
         {
             mission = playerMission;
+            var battlesHeight = BATTLE_HEIGHT * mission.totalCount;
+            if (battlesHeight < battlesContainer.rect.height)
+            {
+                battlesContainer.sizeDelta = new Vector2(battlesContainer.sizeDelta.x, battlesHeight);
+            }
             UpdateMission();
         }
 
@@ -138,25 +167,18 @@ namespace Metagame.MapScreen
             hero3.SetHero(heroService.Hero(mission.hero3Id));
             hero4.SetHero(heroService.Hero(mission.hero4Id));
 
-            // if (expedition.lootedItems?.IsEmpty() == false)
-            // {
-            //     lootContainer.gameObject.SetActive(true);
-            //     actionButton.gameObject.SetActive(false);
-            //     expedition.lootedItems.ForEach(item =>
-            //     {
-            //         if (item.type == LootedItemType.GEAR)
-            //         {
-            //             var gear = gearService.Gear(item.value);
-            //             gear.markedToBreakdown = forgeService.IsAutoBreakdown(gear);
-            //         }
-            //         var prefab = Instantiate(lootItemPrefab, lootContainer);
-            //         prefab.SetItem(item, lootContainer.rect.height);
-            //     });
-            // }
-            // else
-            // {
-            //     lootContainer.gameObject.SetActive(false);
-            // }
+            var battleNumber = 1;
+            mission.battles.ForEach(battle =>
+            {
+                var battleView = battleViews.ContainsKey(battle.battleId) ? battleViews[battle.battleId] : null;
+                if (battleView == null)
+                {
+                    battleView = Instantiate(missionBattlePrefab, battlesCanvas);
+                    battleViews[battle.battleId] = battleView;
+                }
+                battleView.SetBattle(battle, battleNumber);
+                battleNumber++;
+            });
         }
     }
 }

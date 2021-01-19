@@ -43,11 +43,11 @@ namespace Metagame.HeroAvatar
         {
             hero = heroToShow;
             canvas.ScaleToHeight(adjustToHeight);
+            ascPoints.ForEach(ascPoint => Destroy(ascPoint.gameObject));
+            ascPoints.Clear();
             if (hero == null)
             {
                 avatar.SetActive(false);
-                ascPoints.ForEach(ascPoint => Destroy(ascPoint.gameObject));
-                ascPoints.Clear();
                 return;
             }
             avatar.SetActive(true);

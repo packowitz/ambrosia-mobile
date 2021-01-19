@@ -62,11 +62,9 @@ namespace Backend.Services
 
         private void Consume(PlayerActionResponse data)
         {
-            var fireSignal = false;
             if (data.expeditions != null)
             {
                 expeditions = data.expeditions;
-                fireSignal = true;
             }
 
             if (data.playerExpeditions != null)
@@ -82,8 +80,6 @@ namespace Backend.Services
                         Update(playerExpedition);
                     }
                 }
-
-                fireSignal = true;
             }
 
             if (data.playerExpeditionCancelled != null)
@@ -94,12 +90,7 @@ namespace Backend.Services
                     playerExpeditions.RemoveAt(idx);
                 }
 
-                fireSignal = true;
-            }
-
-            if (fireSignal)
-            {
-                signalBus.Fire<ExpeditionSignal>();
+                signalBus.Fire(new ExpeditionSignal());
             }
         }
 
@@ -114,6 +105,7 @@ namespace Backend.Services
             {
                 playerExpeditions.Add(playerExpedition);
             }
+            signalBus.Fire(new ExpeditionSignal(playerExpedition));
         }
     }
 }

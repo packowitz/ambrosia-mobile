@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Services;
+using Backend.Signal;
 using Configs;
 using Metagame.HeroAvatar;
 using Metagame.VehicleAvatar;
@@ -21,10 +22,12 @@ namespace Metagame.MapScreen
         [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_Text untilDoneTxt;
         [SerializeField] private TMP_Text description;
-        [SerializeField] private RectTransform teamContainer;
         [SerializeField] private RectTransform lootContainer;
-        [SerializeField] private HeroAvatarPrefabController heroAvatarPrefab;
-        [SerializeField] private VehicleAvatarPrefabController vehicleAvatarPrefab;
+        [SerializeField] private VehicleAvatarPrefabController vehicleAvatar;
+        [SerializeField] private HeroAvatarPrefabController hero1;
+        [SerializeField] private HeroAvatarPrefabController hero2;
+        [SerializeField] private HeroAvatarPrefabController hero3;
+        [SerializeField] private HeroAvatarPrefabController hero4;
         [SerializeField] private LootItemPrefabController lootItemPrefab;
         [SerializeField] private ButtonController actionButton;
 
@@ -34,10 +37,13 @@ namespace Metagame.MapScreen
         [Inject] private ConfigsProvider configsProvider;
         [Inject] private GearService gearService;
         [Inject] private ForgeService forgeService;
+        [Inject] private SignalBus signalBus;
 
         private PlayerExpedition expedition;
         private bool loading;
         private bool expeditionCancelled;
+
+        private readonly List<LootItemPrefabController> lootItems = new List<LootItemPrefabController>();
 
         private void Start()
         {
@@ -56,17 +62,27 @@ namespace Metagame.MapScreen
                 {
                     loading = false;
                     actionButton.ShowIndicator(false);
-                    if (data.playerExpeditions?.IsEmpty() == false)
-                    {
-                        expedition = data.playerExpeditions[0];
-                        UpdateExpedition();
-                    }
-                    else if (data.playerExpeditionCancelled != null)
+                    if (data.playerExpeditionCancelled == expedition.id)
                     {
                         expeditionCancelled = true;
                     }
                 });
             });
+            signalBus.Subscribe<ExpeditionSignal>(ConsumeExpeditionSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<ExpeditionSignal>(ConsumeExpeditionSignal);
+        }
+
+        private void ConsumeExpeditionSignal(ExpeditionSignal signal)
+        {
+            if (signal.Data != null && signal.Data.id == expedition?.id)
+            {
+                expedition = signal.Data;
+                UpdateExpedition();
+            }
         }
 
         private void ClosePopup()
@@ -133,42 +149,14 @@ namespace Metagame.MapScreen
         {
             title.text = expedition.name;
             description.text = expedition.description;
-            teamContainer.DetachChildren();
-            var vehicle = vehicleService.Vehicle(expedition.vehicleId);
-            if (vehicle != null)
-            {
-                var vehicleAvatar = Instantiate(vehicleAvatarPrefab, teamContainer);
-                vehicleAvatar.SetVehicle(vehicle);
-            }
+            vehicleAvatar.SetVehicle(vehicleService.Vehicle(expedition.vehicleId));
+            hero1.SetHero(heroService.Hero(expedition.hero1Id));
+            hero2.SetHero(heroService.Hero(expedition.hero2Id));
+            hero3.SetHero(heroService.Hero(expedition.hero3Id));
+            hero4.SetHero(heroService.Hero(expedition.hero4Id));
 
-            var hero1 = heroService.Hero(expedition.hero1Id);
-            if (hero1 != null)
-            {
-                var hero1Avatar = Instantiate(heroAvatarPrefab, teamContainer);
-                hero1Avatar.SetHero(hero1);
-            }
-
-            var hero2 = heroService.Hero(expedition.hero2Id);
-            if (hero2 != null)
-            {
-                var hero2Avatar = Instantiate(heroAvatarPrefab, teamContainer);
-                hero2Avatar.SetHero(hero2);
-            }
-
-            var hero3 = heroService.Hero(expedition.hero3Id);
-            if (hero3 != null)
-            {
-                var hero3Avatar = Instantiate(heroAvatarPrefab, teamContainer);
-                hero3Avatar.SetHero(hero3);
-            }
-
-            var hero4 = heroService.Hero(expedition.hero4Id);
-            if (hero4 != null)
-            {
-                var hero4Avatar = Instantiate(heroAvatarPrefab, teamContainer);
-                hero4Avatar.SetHero(hero4);
-            }
-
+            lootItems.ForEach(item => Destroy(item.gameObject));
+            lootItems.Clear();
             if (expedition.lootedItems?.IsEmpty() == false)
             {
                 lootContainer.gameObject.SetActive(true);
@@ -182,6 +170,7 @@ namespace Metagame.MapScreen
                     }
                     var prefab = Instantiate(lootItemPrefab, lootContainer);
                     prefab.SetItem(item, lootContainer.rect.height);
+                    lootItems.Add(prefab);
                 });
             }
             else

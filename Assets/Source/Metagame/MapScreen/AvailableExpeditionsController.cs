@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Backend.Services;
 using Backend.Signal;
@@ -21,9 +22,14 @@ namespace Metagame.MapScreen
             signalBus.Subscribe<ExpeditionSignal>(UpdateExpeditions);
         }
 
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<ExpeditionSignal>(UpdateExpeditions);
+        }
+
         private void UpdateExpeditions()
         {
-            expeditions.ForEach(e => e.Remove());
+            expeditions.ForEach(e => Destroy(e.gameObject));
             expeditions.Clear();
             expeditionService.AvailableExpeditions().ForEach(expedition =>
             {

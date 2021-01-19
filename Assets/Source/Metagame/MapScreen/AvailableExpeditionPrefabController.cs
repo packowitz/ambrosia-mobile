@@ -29,9 +29,9 @@ namespace Metagame.MapScreen
             });
         }
 
-        public void SetExpedition(Expedition expedition)
+        public void SetExpedition(Expedition exp)
         {
-            this.expedition = expedition;
+            expedition = exp;
             var colorsConfig = configsProvider.Get<ColorsConfig>();
             switch (expedition.expeditionBase.rarity)
             {
@@ -56,11 +56,6 @@ namespace Metagame.MapScreen
             }
 
             durationText.text = expedition.expeditionBase.durationHours.ToString();
-        }
-
-        public void Remove()
-        {
-            Destroy(gameObject);
         }
     }
 }

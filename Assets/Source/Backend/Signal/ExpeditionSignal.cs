@@ -1,18 +1,17 @@
 using Backend.Models;
+using JetBrains.Annotations;
 
 namespace Backend.Signal
 {
     public class ExpeditionSignal
     {
-        public ExpeditionSignal()
-        {
-        }
-
+        public ExpeditionSignal() {}
+        
         public ExpeditionSignal(PlayerExpedition data)
         {
             Data = data;
         }
 
-        public PlayerExpedition Data { get; }
+        [CanBeNull] public PlayerExpedition Data { get; }
     }
 }

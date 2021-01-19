@@ -138,11 +138,18 @@ namespace Metagame.MapScreen
             
             startBtn.SetColor(colorsConfig.buttonSuccess, colorsConfig.buttonSuccessInactive);
             
-            signalBus.Subscribe<ResourcesSignal>(signal =>
-            {
-                UpdateMissionMinMax();
-                CheckButton();
-            });
+            signalBus.Subscribe<ResourcesSignal>(ConsumeResourcesSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<ResourcesSignal>(ConsumeResourcesSignal);
+        }
+
+        private void ConsumeResourcesSignal(ResourcesSignal signal)
+        {
+            UpdateMissionMinMax();
+            CheckButton();
         }
 
         public void SetMapTile(PlayerMap map, PlayerMapTile tile)

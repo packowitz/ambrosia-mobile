@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Backend.Models
 {
@@ -16,5 +17,13 @@ namespace Backend.Models
         public bool cancelled;
 
         public List<LootedItem> lootedItems;
+        
+        public DateTime DoneTime { get; private set; }
+        
+        [OnDeserialized]
+        internal void OnDeserialized(StreamingContext context)
+        {
+            DoneTime = DateTime.Now + TimeSpan.FromSeconds(secondsUntilDone);
+        }
     }
 }

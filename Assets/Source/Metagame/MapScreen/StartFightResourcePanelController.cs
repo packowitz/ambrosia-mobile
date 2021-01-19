@@ -24,10 +24,17 @@ namespace Metagame.MapScreen
         private void Start()
         {
             UpdateResources(resourcesService.Resources);
-            signalBus.Subscribe<ResourcesSignal>(signal =>
-            {
-                UpdateResources(signal.Data);
-            });
+            signalBus.Subscribe<ResourcesSignal>(ConsumeResourcesSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<ResourcesSignal>(ConsumeResourcesSignal);
+        }
+
+        private void ConsumeResourcesSignal(ResourcesSignal signal)
+        {
+            UpdateResources(signal.Data);
         }
 
         public void SetResourceType(ResourceType resType)
