@@ -33,6 +33,7 @@ namespace Metagame.MapScreen
         [Inject] private ConfigsProvider configsProvider;
 
         private MapType mapType = MapType.CAMPAIGN;
+        private readonly List<ChooseMapTextPrefab> chooseMapTexts = new List<ChooseMapTextPrefab>();
 
         private readonly MineComparer mineComparer = new MineComparer();
 
@@ -75,7 +76,8 @@ namespace Metagame.MapScreen
 
         private void UpdateMapList()
         {
-            mapsCanvas.DetachChildren();
+            chooseMapTexts.ForEach(c => Destroy(c.gameObject));
+            chooseMapTexts.Clear();
             mapsCanvas.gameObject.SetActive(false);
             var maps = mapService.PlayerMaps.Where(map => map.type == mapType && map.favorite).ToList();
             if (mapType == MapType.MINE)
@@ -86,6 +88,7 @@ namespace Metagame.MapScreen
             {
                 var emptyMapList = Instantiate(chooseMapTextPrefab, mapsCanvas);
                 emptyMapList.SetMap(null);
+                chooseMapTexts.Add(emptyMapList);
             }
             else
             {
@@ -98,6 +101,7 @@ namespace Metagame.MapScreen
                         mapService.ChangeMapTo(map.mapId);
                         Destroy(gameObject);
                     });
+                    chooseMapTexts.Add(mapNameInstance);
                 });
             }
             mapsCanvas.gameObject.SetActive(true);

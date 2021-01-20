@@ -1,4 +1,3 @@
-using System;
 using Backend.Services;
 using Backend.Signal;
 using Configs;
