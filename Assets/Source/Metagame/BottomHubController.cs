@@ -69,6 +69,12 @@ namespace Metagame
             signalBus.Subscribe<InboxSignal>(UpdateButtons);
         }
 
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<MainScreenChangedSignal>(UpdateButtons);
+            signalBus.Unsubscribe<InboxSignal>(UpdateButtons);
+        }
+
         private void UpdateButtons()
         {
             var colorConfig = configsProvider.Get<ColorsConfig>();

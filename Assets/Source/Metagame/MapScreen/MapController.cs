@@ -33,29 +33,39 @@ namespace Metagame.MapScreen
             currentMap = mapService.CurrentPlayerMap;
             UpdateMap();
             RecenterCamera();
-            signalBus.Subscribe<CurrentMapSignal>(data =>
+            signalBus.Subscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
+            signalBus.Subscribe<MissionSignal>(ConsumeMissionSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
+            signalBus.Unsubscribe<MissionSignal>(ConsumeMissionSignal);
+        }
+
+        private void ConsumeMissionSignal(MissionSignal signal)
+        {
+            if (signal.Data.mapId == currentMap.mapId)
             {
-                var mapChanged = data.CurrentMap.mapId != currentMap.mapId;
-                currentMap = data.CurrentMap;
-                UpdateMap();
-                if (mapChanged)
+                drawnTiles.ForEach(tile =>
                 {
-                    RecenterCamera();
-                }
-            });
-            signalBus.Subscribe<MissionSignal>(data =>
-            {
-                if (data.Data.mapId == currentMap.mapId)
-                {
-                    drawnTiles.ForEach(tile =>
+                    if (tile.PosX == signal.Data.posX && tile.PosY == signal.Data.posY)
                     {
-                        if (tile.PosX == data.Data.posX && tile.PosY == data.Data.posY)
-                        {
-                            tile.SetMission(data.Finished ? null : missionService.GetMission(currentMap.mapId, tile.PosX, tile.PosY));
-                        }
-                    });
-                }
-            });
+                        tile.SetMission(signal.Finished ? null : missionService.GetMission(currentMap.mapId, tile.PosX, tile.PosY));
+                    }
+                });
+            }
+        }
+
+        private void ConsumeCurrentMapSignal(CurrentMapSignal signal)
+        {
+            var mapChanged = signal.CurrentMap.mapId != currentMap.mapId;
+            currentMap = signal.CurrentMap;
+            UpdateMap();
+            if (mapChanged)
+            {
+                RecenterCamera();
+            }
         }
 
         private void OnEnable()

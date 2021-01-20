@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Backend.Models;
 using Backend.Services;
@@ -18,13 +19,20 @@ namespace Metagame.InboxScreen
         private void Start()
         {
             AddMessages(inboxService.Messages);
-            signalBus.Subscribe<InboxSignal>(signal =>
+            signalBus.Subscribe<InboxSignal>(ConsumeInboxSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<InboxSignal>(ConsumeInboxSignal);
+        }
+
+        private void ConsumeInboxSignal(InboxSignal signal)
+        {
+            if (signal.NewMessages != null)
             {
-                if (signal.NewMessages != null)
-                {
-                    AddMessages(signal.NewMessages);
-                }
-            });
+                AddMessages(signal.NewMessages);
+            }
         }
 
         private void AddMessages(List<InboxMessage> messages) {

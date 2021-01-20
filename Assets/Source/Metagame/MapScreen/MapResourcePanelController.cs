@@ -1,3 +1,4 @@
+using System;
 using Backend.Services;
 using Backend.Signal;
 using Configs;
@@ -30,10 +31,17 @@ namespace Metagame.MapScreen
             var colorConfig = configsProvider.Get<CharColorsConfig>().GetConfig(playerService.Player.color);
             playerAvatar.image.color = colorConfig.playerBorderColor;
             UpdateResources(resourcesService.Resources);
-            signalBus.Subscribe<ResourcesSignal>(signal =>
-            {
-                UpdateResources(signal.Data);
-            });
+            signalBus.Subscribe<ResourcesSignal>(ConsumeResourcesSignal);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<ResourcesSignal>(ConsumeResourcesSignal);
+        }
+
+        private void ConsumeResourcesSignal(ResourcesSignal signal)
+        {
+            UpdateResources(signal.Data);
         }
 
         private void UpdateResources(Resources res)

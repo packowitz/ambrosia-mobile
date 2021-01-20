@@ -46,6 +46,11 @@ namespace Metagame.InboxScreen
             signalBus.Subscribe<ResourcesSignal>(CheckClaimButton);
         }
 
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<ResourcesSignal>(CheckClaimButton);
+        }
+
         private void CheckClaimButton()
         {
             claimButton.SetInteractable(message.items.Exists(CanClaimItem));

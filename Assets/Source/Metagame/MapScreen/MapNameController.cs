@@ -1,3 +1,4 @@
+using System;
 using Backend.Services;
 using Backend.Signal;
 using TMPro;
@@ -22,15 +23,22 @@ namespace Metagame.MapScreen
         {
             text.text = mapService.CurrentPlayerMap.name;
             mapAlert.SetActive(mapService.HasUnvisitedMineCloseToReset());
-            signalBus.Subscribe<CurrentMapSignal>(data =>
-            {
-                text.text = data.CurrentMap.name;
-                mapAlert.SetActive(mapService.HasUnvisitedMineCloseToReset());
-            });
+            signalBus.Subscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
             button.onClick.AddListener(() =>
             {
                 popupCanvasController.OpenPopup(chooseMapPrefab);
             });
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.Unsubscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
+        }
+
+        private void ConsumeCurrentMapSignal(CurrentMapSignal signal)
+        {
+            text.text = signal.CurrentMap.name; 
+            mapAlert.SetActive(mapService.HasUnvisitedMineCloseToReset());
         }
     }
 }
