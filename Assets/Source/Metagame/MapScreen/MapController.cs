@@ -39,8 +39,8 @@ namespace Metagame.MapScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
-            signalBus.Unsubscribe<MissionSignal>(ConsumeMissionSignal);
+            signalBus.TryUnsubscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
+            signalBus.TryUnsubscribe<MissionSignal>(ConsumeMissionSignal);
         }
 
         private void ConsumeMissionSignal(MissionSignal signal)

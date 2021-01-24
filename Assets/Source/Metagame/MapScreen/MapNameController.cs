@@ -32,7 +32,7 @@ namespace Metagame.MapScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
+            signalBus.TryUnsubscribe<CurrentMapSignal>(ConsumeCurrentMapSignal);
         }
 
         private void ConsumeCurrentMapSignal(CurrentMapSignal signal)

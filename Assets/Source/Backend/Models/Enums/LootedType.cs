@@ -16,6 +16,7 @@ namespace Backend.Models.Enums
         UPGRADE,
         BLACK_MARKET,
         ODD_JOB,
-        DAILY_ACTIVITY
+        DAILY_ACTIVITY,
+        TASK
     }
 }

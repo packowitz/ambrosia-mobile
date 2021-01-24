@@ -104,6 +104,9 @@ namespace Metagame
                 case LootedType.DAILY_ACTIVITY:
                     title.text = "Daily activity reward";
                     break;
+                case LootedType.TASK:
+                    title.text = "Task rewards";
+                    break;
             }
             
             lootContainer.gameObject.SetActive(true);

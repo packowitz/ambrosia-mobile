@@ -24,7 +24,7 @@ namespace Metagame.InboxScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<InboxSignal>(ConsumeInboxSignal);
+            signalBus.TryUnsubscribe<InboxSignal>(ConsumeInboxSignal);
         }
 
         private void ConsumeInboxSignal(InboxSignal signal)

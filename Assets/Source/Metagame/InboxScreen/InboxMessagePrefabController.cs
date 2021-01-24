@@ -48,7 +48,7 @@ namespace Metagame.InboxScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<ResourcesSignal>(CheckClaimButton);
+            signalBus.TryUnsubscribe<ResourcesSignal>(CheckClaimButton);
         }
 
         private void CheckClaimButton()

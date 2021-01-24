@@ -35,7 +35,7 @@ namespace Metagame.MapScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<ResourcesSignal>(ConsumeResourcesSignal);
+            signalBus.TryUnsubscribe<ResourcesSignal>(ConsumeResourcesSignal);
         }
 
         private void ConsumeResourcesSignal(ResourcesSignal signal)

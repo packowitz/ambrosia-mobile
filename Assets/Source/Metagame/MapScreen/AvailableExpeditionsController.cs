@@ -24,7 +24,7 @@ namespace Metagame.MapScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<ExpeditionSignal>(UpdateExpeditions);
+            signalBus.TryUnsubscribe<ExpeditionSignal>(UpdateExpeditions);
         }
 
         private void UpdateExpeditions()

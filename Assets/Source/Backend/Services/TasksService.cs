@@ -15,7 +15,7 @@ namespace Backend.Services
         private SignalBus signalBus;
         
         private Achievements achievements;
-        private List<PlayerTask> playerTasks;
+        public List<PlayerTask> PlayerTasks { get; private set; }
         public List<TaskCluster> TaskClusters { get; private set; }
         
         public bool TaskClustersInitialized => TaskClusters != null && TaskClusters.Count > 0;
@@ -30,9 +30,14 @@ namespace Backend.Services
             });
         }
 
+        public void ClaimTask(TaskCluster cluster, Action<PlayerActionResponse> onSuccess = null)
+        {
+            serverAPI.DoPost($"/tasks/claim/{cluster.id}", null, onSuccess);
+        }
+
         public bool HasClaimableTask()
         {
-            return playerTasks.Exists(playerTask =>
+            return PlayerTasks.Exists(playerTask =>
             {
                 var taskCluster = TaskClusters.Find(cluster => playerTask.taskClusterId == cluster.id);
                 var task = taskCluster?.tasks.Find(t => t.number == playerTask.currentTaskNumber);
@@ -127,9 +132,9 @@ namespace Backend.Services
 
             if (data.playerTasks != null)
             {
-                if (playerTasks == null)
+                if (PlayerTasks == null)
                 {
-                    playerTasks = data.playerTasks;
+                    PlayerTasks = data.playerTasks;
                 }
                 else
                 {
@@ -139,18 +144,23 @@ namespace Backend.Services
                     }
                 }
             }
+
+            if (data.achievements != null || data.playerTasks != null)
+            {
+                signalBus.Fire<TaskSignal>();
+            }
         }
 
         private void Update(PlayerTask playerTask)
         {
-            var idx = playerTasks.FindIndex(a => a.id == playerTask.id);
+            var idx = PlayerTasks.FindIndex(a => a.id == playerTask.id);
             if (idx >= 0)
             {
-                playerTasks[idx] = playerTask;
+                PlayerTasks[idx] = playerTask;
             }
             else
             {
-                playerTasks.Add(playerTask);
+                PlayerTasks.Add(playerTask);
             }
         }
 

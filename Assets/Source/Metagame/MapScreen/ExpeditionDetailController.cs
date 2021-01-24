@@ -73,7 +73,7 @@ namespace Metagame.MapScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<ExpeditionSignal>(ConsumeExpeditionSignal);
+            signalBus.TryUnsubscribe<ExpeditionSignal>(ConsumeExpeditionSignal);
         }
 
         private void ConsumeExpeditionSignal(ExpeditionSignal signal)

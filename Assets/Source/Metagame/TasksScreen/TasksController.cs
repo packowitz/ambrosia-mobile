@@ -1,4 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Backend.Models;
+using Backend.Models.Enums;
 using Backend.Services;
 using Backend.Signal;
 using UnityEngine;
@@ -13,7 +17,10 @@ namespace Metagame.TasksScreen
         [SerializeField] private TabController tasksTab;
         [SerializeField] private GameObject tasksTabCanvas;
         [SerializeField] private RectTransform oddJobsCanvas;
+        [SerializeField] private RectTransform tasksCanvas;
         [SerializeField] private OddJobController oddJobPrefab;
+        [SerializeField] private TaskController taskPrefab;
+        [SerializeField] private TaskCategoryController taskCategoryPrefab;
         [SerializeField] private ConfirmPopupController confirmPrefab;
         [SerializeField] private LootedController lootedPrefab;
 
@@ -27,6 +34,7 @@ namespace Metagame.TasksScreen
         [Inject] private PopupCanvasController popupCanvasController;
 
         private List<OddJobController> oddJobs = new List<OddJobController>();
+        private List<GameObject> tasks = new List<GameObject>();
 
         private void Start()
         {
@@ -65,6 +73,7 @@ namespace Metagame.TasksScreen
             
             UpdateTabAlerts();
             UpdateActivityTab();
+            UpdateTasksTab();
             
             signalBus.Subscribe<ActivitySignal>(ConsumeActivitySignal);
             signalBus.Subscribe<TaskSignal>(ConsumeTaskSignal);
@@ -72,8 +81,8 @@ namespace Metagame.TasksScreen
 
         private void OnDestroy()
         {
-            signalBus.Unsubscribe<ActivitySignal>(ConsumeActivitySignal);
-            signalBus.Unsubscribe<TaskSignal>(ConsumeTaskSignal);
+            signalBus.TryUnsubscribe<ActivitySignal>(ConsumeActivitySignal);
+            signalBus.TryUnsubscribe<TaskSignal>(ConsumeTaskSignal);
         }
 
         private void ConsumeActivitySignal(ActivitySignal signal)
@@ -85,6 +94,7 @@ namespace Metagame.TasksScreen
         private void ConsumeTaskSignal(TaskSignal signal)
         {
             UpdateTabAlerts();
+            UpdateTasksTab();
         }
 
         private void UpdateTabAlerts()
@@ -143,6 +153,46 @@ namespace Metagame.TasksScreen
                 jobView.SetJob(null);
                 oddJobs.Add(jobView);
             }
+        }
+
+        private void UpdateTasksTab()
+        {
+            tasks.ForEach(Destroy);
+            tasks.Clear();
+            foreach (TaskCategory taskCategory in Enum.GetValues(typeof(TaskCategory)))
+            {
+                var taskCategoryName = Instantiate(taskCategoryPrefab, tasksCanvas);
+                taskCategoryName.SetCategory(taskCategory);
+                tasks.Add(taskCategoryName.gameObject);
+                foreach (var taskCluster in tasksService.TaskClusters.Where(t => t.category == taskCategory))
+                {
+                    var task = GetTask(taskCluster);
+                    var taskView = Instantiate(taskPrefab, tasksCanvas);
+                    taskView.SetTask(taskCluster, task, tasksService.AchievementAmount(task.taskType));
+                    taskView.OnClaim(() =>
+                    {
+                        tasksService.ClaimTask(taskCluster, data =>
+                        {
+                            if (data.looted != null)
+                            {
+                                var lootedPopup = popupCanvasController.OpenPopup(lootedPrefab);
+                                lootedPopup.SetLooted(data.looted);
+                            }
+                        });
+                    });
+                    tasks.Add(taskView.gameObject);
+                }
+            }
+        }
+
+        private Task GetTask(TaskCluster taskCluster)
+        {
+            var playerTask = tasksService.PlayerTasks.Find(t => t.taskClusterId == taskCluster.id);
+            if (playerTask != null) {
+                return taskCluster.tasks.Find(t => t.number == playerTask.currentTaskNumber);
+            }
+
+            return taskCluster.tasks[0];
         }
     }
 }
