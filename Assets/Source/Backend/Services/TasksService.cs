@@ -4,6 +4,7 @@ using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Responses;
 using Backend.Signal;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -147,8 +148,14 @@ namespace Backend.Services
 
             if (data.achievements != null || data.playerTasks != null)
             {
-                signalBus.Fire<TaskSignal>();
+                SendSignal();
             }
+        }
+
+        private async void SendSignal()
+        {
+            await UniTask.Delay(TimeSpan.FromMilliseconds(50));
+            signalBus.Fire<TaskSignal>();
         }
 
         private void Update(PlayerTask playerTask)

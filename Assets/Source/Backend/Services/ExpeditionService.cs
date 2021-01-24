@@ -90,7 +90,7 @@ namespace Backend.Services
                     playerExpeditions.RemoveAt(idx);
                 }
 
-                signalBus.Fire(new ExpeditionSignal());
+                SendSignal(new ExpeditionSignal());
             }
         }
 
@@ -105,7 +105,13 @@ namespace Backend.Services
             {
                 playerExpeditions.Add(playerExpedition);
             }
-            signalBus.Fire(new ExpeditionSignal(playerExpedition));
+            SendSignal(new ExpeditionSignal(playerExpedition));
+        }
+
+        private async void SendSignal(ExpeditionSignal signal)
+        {
+            await UniTask.Delay(TimeSpan.FromMilliseconds(50));
+            signalBus.Fire(signal);
         }
     }
 }
