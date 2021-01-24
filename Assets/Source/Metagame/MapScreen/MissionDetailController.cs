@@ -26,6 +26,7 @@ namespace Metagame.MapScreen
         [SerializeField] private HeroAvatarPrefabController hero2;
         [SerializeField] private HeroAvatarPrefabController hero3;
         [SerializeField] private HeroAvatarPrefabController hero4;
+        [SerializeField] private ButtonController closeButton;
         [SerializeField] private ButtonController actionButton;
         [SerializeField] private RectTransform progressBar;
         [SerializeField] private RectTransform battlesCanvas;
@@ -58,6 +59,13 @@ namespace Metagame.MapScreen
                     ClosePopup();
                 }
             });
+            closeButton.AddClickListener(() =>
+            {
+                if (!loading)
+                {
+                    ClosePopup();
+                }
+            });
             actionButton.AddClickListener(() =>
             {
                 loading = true;
@@ -66,6 +74,7 @@ namespace Metagame.MapScreen
                 {
                     loading = false;
                     actionButton.ShowIndicator(false);
+                    actionButton.gameObject.SetActive(false);
                 });
             });
             signalBus.Subscribe<MissionSignal>(ConsumeMissionSignal);

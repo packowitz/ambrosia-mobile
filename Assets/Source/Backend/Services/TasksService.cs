@@ -12,6 +12,7 @@ namespace Backend.Services
     public class TasksService
     {
         private readonly ServerAPI serverAPI;
+        private SignalBus signalBus;
         
         private Achievements achievements;
         private List<PlayerTask> playerTasks;
@@ -22,6 +23,7 @@ namespace Backend.Services
         public TasksService(SignalBus signalBus, ServerAPI serverAPI)
         {
             this.serverAPI = serverAPI;
+            this.signalBus = signalBus;
             signalBus.Subscribe<PlayerActionSignal>(signal =>
             {
                 Consume(signal.Data);

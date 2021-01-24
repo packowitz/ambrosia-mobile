@@ -14,6 +14,8 @@ namespace Backend.Models.Enums
         VIP_LEVEL_UP,
         MERCHANT,
         UPGRADE,
-        BLACK_MARKET
+        BLACK_MARKET,
+        ODD_JOB,
+        DAILY_ACTIVITY
     }
 }

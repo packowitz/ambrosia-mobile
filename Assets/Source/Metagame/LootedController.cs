@@ -98,6 +98,12 @@ namespace Metagame
                 case LootedType.UPGRADE:
                     title.text = "Upgrade finished";
                     break;
+                case LootedType.ODD_JOB:
+                    title.text = "Odd job rewards";
+                    break;
+                case LootedType.DAILY_ACTIVITY:
+                    title.text = "Daily activity reward";
+                    break;
             }
             
             lootContainer.gameObject.SetActive(true);

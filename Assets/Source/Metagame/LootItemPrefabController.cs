@@ -32,7 +32,7 @@ namespace Metagame
         [Inject] private HeroService heroService;
         [Inject] private VehicleService vehicleService;
 
-        public void SetItem(LootedItem item, float adjustToHeight)
+        public void SetItem(LootedItem item, float? adjustToHeight = null)
         {
             switch (item.type)
             {
@@ -60,7 +60,7 @@ namespace Metagame
             }
         }
 
-        public void SetInboxItem(InboxMessageItem item, float adjustToHeight)
+        public void SetInboxItem(InboxMessageItem item, float? adjustToHeight)
         {
             switch (item.type)
             {
@@ -73,7 +73,7 @@ namespace Metagame
             }
         }
 
-        public void SetResource(ResourceType type, long resourceAmount, float adjustToHeight)
+        public void SetResource(ResourceType type, long resourceAmount, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             bottomText.gameObject.SetActive(false);
@@ -81,7 +81,7 @@ namespace Metagame
             centerText.text = $"{NumberUtil.RoundAmount(resourceAmount)}";
         }
 
-        public void SetProgress(ProgressStat stat, long increase, float adjustToHeight)
+        public void SetProgress(ProgressStat stat, long increase, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             bottomText.gameObject.SetActive(false);
@@ -119,7 +119,7 @@ namespace Metagame
             centerText.text = amountText;
         }
 
-        public void SetJewel(JewelTypeObj type, int level, float adjustToHeight)
+        public void SetJewel(JewelTypeObj type, int level, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             centerText.gameObject.SetActive(false);
@@ -192,7 +192,7 @@ namespace Metagame
             }
         }
 
-        public void SetGear(Gear gear, float adjustToHeight)
+        public void SetGear(Gear gear, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             icon.gameObject.SetActive(false);
@@ -208,7 +208,7 @@ namespace Metagame
             });
         }
 
-        public void SetHero(Hero hero, float adjustToHeight)
+        public void SetHero(Hero hero, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             icon.gameObject.SetActive(false);
@@ -218,7 +218,7 @@ namespace Metagame
             prefab.SetHero(hero, dynamicContainer.rect.height);
         }
 
-        public void SetVehicle(Vehicle vehicle, float adjustToHeight)
+        public void SetVehicle(Vehicle vehicle, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             icon.gameObject.SetActive(false);
@@ -228,7 +228,7 @@ namespace Metagame
             prefab.SetVehicle(vehicle, dynamicContainer.rect.height);
         }
 
-        public void SetVehiclePart(VehiclePart part, float adjustToHeight)
+        public void SetVehiclePart(VehiclePart part, float? adjustToHeight)
         {
             dynamicContainer.ScaleToHeight(adjustToHeight);
             centerText.gameObject.SetActive(false);

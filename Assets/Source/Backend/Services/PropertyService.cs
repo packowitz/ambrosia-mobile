@@ -68,6 +68,17 @@ namespace Backend.Services
             var props = Properties(PropertyType.MERGE_ASC_HERO, rarity);
             return props.IsEmpty() ? 0 : props[0].value1;
         }
+
+        public LootedItem DailyReward(int day)
+        {
+            var prop = Properties(PropertyType.DAILY_REWARD, day)[0];
+            return new LootedItem
+            {
+                type = LootedItemType.RESOURCE,
+                resourceType = prop.resourceType,
+                value = prop.value1
+            };
+        }
         
         public int VehicleStat(Vehicle vehicle, VehicleStat stat)
         {

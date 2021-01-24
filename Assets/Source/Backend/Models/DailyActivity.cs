@@ -45,5 +45,23 @@ namespace Backend.Models
                 default: return false;
             }
         }
+
+        public bool Claimed(int day)
+        {
+            switch (day)
+            {
+                case 1: return day1claimed;
+                case 2: return day2claimed;
+                case 3: return day3claimed;
+                case 4: return day4claimed;
+                case 5: return day5claimed;
+                case 6: return day6claimed;
+                case 7: return day7claimed;
+                case 8: return day8claimed;
+                case 9: return day9claimed;
+                case 10: return day10claimed;
+                default: return false;
+            }
+        }
     }
 }

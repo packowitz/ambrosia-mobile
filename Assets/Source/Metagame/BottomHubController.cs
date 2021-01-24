@@ -67,12 +67,16 @@ namespace Metagame
             
             signalBus.Subscribe<MainScreenChangedSignal>(UpdateButtons);
             signalBus.Subscribe<InboxSignal>(UpdateButtons);
+            signalBus.Subscribe<ActivitySignal>(UpdateButtons);
+            signalBus.Subscribe<TaskSignal>(UpdateButtons);
         }
 
         private void OnDestroy()
         {
             signalBus.Unsubscribe<MainScreenChangedSignal>(UpdateButtons);
             signalBus.Unsubscribe<InboxSignal>(UpdateButtons);
+            signalBus.Unsubscribe<ActivitySignal>(UpdateButtons);
+            signalBus.Unsubscribe<TaskSignal>(UpdateButtons);
         }
 
         private void UpdateButtons()
