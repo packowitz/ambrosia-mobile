@@ -12,6 +12,7 @@ namespace Backend.Models.Enums
         BAZAAR,
         FORGE,
         GARAGE,
+        GUILD,
         JEWELRY,
         LABORATORY,
         STORAGE

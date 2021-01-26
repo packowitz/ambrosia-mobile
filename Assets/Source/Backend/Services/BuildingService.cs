@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Signal;
+using JetBrains.Annotations;
 using Zenject;
 
 namespace Backend.Services
@@ -26,7 +27,7 @@ namespace Backend.Services
 
         public Building Building(BuildingType type)
         {
-            return buildings[type];
+            return buildings.ContainsKey(type) ? buildings[type] : null;
         }
     }
 }
