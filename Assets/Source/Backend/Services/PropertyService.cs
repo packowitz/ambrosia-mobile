@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Backend.Models;
 using Backend.Models.Enums;
@@ -34,6 +35,12 @@ namespace Backend.Services
         public List<Property> Properties(PropertyType type, int level)
         {
             return properties[type].props.Where(prop => prop.level == level).ToList();
+        }
+
+        public List<Property> Properties(string typeName, int level)
+        {
+            var type = (PropertyType) Enum.Parse(typeof(PropertyType), typeName);
+            return Properties(type, level);
         }
         
         public int JewelValue(JewelType jewelType, int level)
@@ -72,14 +79,18 @@ namespace Backend.Services
         public LootedItem DailyReward(int day)
         {
             var prop = Properties(PropertyType.DAILY_REWARD, day)[0];
+            if (prop.resourceType == null)
+            {
+                throw new ConstraintException("Daily rewards must have a resource type");
+            }
             return new LootedItem
             {
                 type = LootedItemType.RESOURCE,
-                resourceType = prop.resourceType,
+                resourceType = (ResourceType) prop.resourceType,
                 value = prop.value1
             };
         }
-        
+
         public int VehicleStat(Vehicle vehicle, VehicleStat stat)
         {
             var parts = new List<VehiclePart>();
@@ -118,6 +129,21 @@ namespace Backend.Services
                     .ForEach(prop => sum += prop.value1);
             });
             return sum;
+        }
+
+        public List<Property> BuildingUpgradeCosts(BuildingType buildingType, int level)
+        {
+            return Properties($"{buildingType}_UP_COST", level).OrderBy(prop =>
+            {
+                switch (prop.resourceType)
+                {
+                    case ResourceType.METAL: return 4;
+                    case ResourceType.IRON: return 3;
+                    case ResourceType.STEEL: return 2;
+                    case ResourceType.COINS: return 1;
+                    default: return 0;
+                }
+            }).ToList();
         }
 
         public void CheckVersions()

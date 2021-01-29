@@ -1,14 +1,15 @@
 using Backend.Models.Enums;
 using Backend.Services;
+using Backend.Signal;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 using Color = UnityEngine.Color;
 
-namespace Metagame
+namespace Metagame.BuildingsScreen
 {
-    public class BuildingController : MonoBehaviour
+    public class BuildingsController : MonoBehaviour
     {
         [SerializeField] private Button academyBtn;
         [SerializeField] private Image academyImg;
@@ -50,11 +51,14 @@ namespace Metagame
         [SerializeField] private Image storageImg;
         [SerializeField] private Image storageLock;
         [SerializeField] private TMP_Text storageTxt;
+        [SerializeField] private StorageController storagePrefab;
 
         public Color lockedColor;
         public Color unlockedColor;
 
         [Inject] private BuildingService buildingService;
+        [Inject] private BuildingCanvasController buildingCanvasController;
+        [Inject] private SignalBus signalBus;
 
         private void Start()
         {
@@ -96,9 +100,19 @@ namespace Metagame
             });
             storageBtn.onClick.AddListener(() =>
             {
-                Debug.Log("goto storage");
+                if (buildingService.Building(BuildingType.STORAGE) != null)
+                {
+                    buildingCanvasController.OpenBuilding(storagePrefab);
+                }
             });
             UpdateBuildings();
+            
+            signalBus.Subscribe<BuildingSignal>(UpdateBuildings);
+        }
+
+        private void OnDestroy()
+        {
+            signalBus.TryUnsubscribe<BuildingSignal>(UpdateBuildings);
         }
 
         private void UpdateBuildings()
@@ -115,7 +129,7 @@ namespace Metagame
             UpdateBuilding(BuildingType.STORAGE, storageImg, storageLock, storageTxt);
         }
 
-        private void UpdateBuilding(BuildingType type, Image btnImg, Image locked, TMP_Text name)
+        private void UpdateBuilding(BuildingType type, Image btnImg, Image locked, TMP_Text nameTxt)
         {
             btnImg.alphaHitTestMinimumThreshold = 0.1f;
             var building = buildingService.Building(type);
@@ -123,13 +137,13 @@ namespace Metagame
             {
                 btnImg.color = unlockedColor;
                 locked.gameObject.SetActive(false);
-                name.gameObject.SetActive(true);
+                nameTxt.gameObject.SetActive(true);
             }
             else
             {
                 btnImg.color = lockedColor;
                 locked.gameObject.SetActive(true);
-                name.gameObject.SetActive(false);
+                nameTxt.gameObject.SetActive(false);
             }
         }
     }

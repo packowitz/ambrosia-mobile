@@ -11,9 +11,9 @@ namespace Backend.Models
         public PropertyType type;
         public int? level;
         public HeroStat stat;
-        public ProgressStat progressStat;
-        public ResourceType resourceType;
-        public VehicleStat vehicleStat;
+        public ProgressStat? progressStat;
+        public ResourceType? resourceType;
+        public VehicleStat? vehicleStat;
         public int value1;
         public int? value2;
     }

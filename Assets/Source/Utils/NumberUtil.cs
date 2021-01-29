@@ -14,6 +14,11 @@ namespace Utils
             }
             return amount.ToString();
         }
+
+        public static string PerMill(int perMil)
+        {
+            return $"{perMil / 10.0}";
+        }
         
         public static string ToRoman(int number)
         {

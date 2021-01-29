@@ -2248,6 +2248,8 @@ MonoBehaviour:
   storageImg: {fileID: 1486232849993507249}
   storageLock: {fileID: 9131524188142418320}
   storageTxt: {fileID: 6874070539359423856}
+  storagePrefab: {fileID: 8387428878420809236, guid: 470bf4546ebbe49f8a5644e982d91f66,
+    type: 3}
   lockedColor: {r: 0.36078432, g: 0.36078432, b: 0.36078432, a: 1}
   unlockedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
 --- !u!1 &3962058827774218004

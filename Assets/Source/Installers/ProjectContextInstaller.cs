@@ -15,6 +15,7 @@ namespace Installers
             
             // declare signals
             Container.DeclareSignal<ActivitySignal>();
+            Container.DeclareSignal<BuildingSignal>();
             Container.DeclareSignal<CurrentMapSignal>();
             Container.DeclareSignal<ExpeditionLevelSignal>();
             Container.DeclareSignal<ExpeditionSignal>();
@@ -24,6 +25,7 @@ namespace Installers
             Container.DeclareSignal<PlayerActionSignal>();
             Container.DeclareSignal<ResourcesSignal>();
             Container.DeclareSignal<TaskSignal>();
+            Container.DeclareSignal<UpgradeSelectedSignal>();
             
             Container.Bind<ServerAPI>().AsSingle();
             Container.Bind<ConfigsProvider>().AsSingle();

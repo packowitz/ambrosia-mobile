@@ -43,15 +43,18 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 618940df6eadc4b5081971a742ec53a7, type: 3}
-    totalSpriteSurfaceArea: 3891148
+    totalSpriteSurfaceArea: 4453952
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 77b1cc903bc574bf18484ea155bae6c8, type: 3}
+  - {fileID: 21300000, guid: 5e77e7c0fc27845e49296373d9daecc8, type: 3}
   - {fileID: 21300000, guid: 2f0483212823444289cf8a3f166d12b1, type: 3}
   - {fileID: 21300000, guid: e92823516b03f436eb53257954eb1cbe, type: 3}
   - {fileID: 21300000, guid: 58377a619d32c4621bb201ae494027f1, type: 3}
+  - {fileID: 21300000, guid: 38acd5c1753984739b6365a0ff436073, type: 3}
   - {fileID: 21300000, guid: 8d8196c1ab81b42459d78589d4c661ba, type: 3}
+  - {fileID: 21300000, guid: 44dfc2026d34945e6be4a2c391bf4779, type: 3}
   - {fileID: 21300000, guid: 617ad2822225c4469827ddb649960496, type: 3}
   - {fileID: 21300000, guid: 13685dc2e07204f50ae71e42f5ab7fee, type: 3}
   - {fileID: 21300000, guid: 452639e2720fc4f64b7ec6bec7dd29f1, type: 3}
@@ -64,6 +67,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 776225846c06e4c79bc655c6ea0125d1, type: 3}
   - {fileID: 21300000, guid: e7ae5bf4556c74945955108c465e3403, type: 3}
   - {fileID: 21300000, guid: b9e36e256ac594c0890d3ba6c1d9f57c, type: 3}
+  - {fileID: 21300000, guid: 45dbea35c2bc94d5e8f2e6cae6820438, type: 3}
+  - {fileID: 21300000, guid: 0c9c7c5539aa740b489427e359fb1af9, type: 3}
   - {fileID: 21300000, guid: 84b7b2756e1dc45c7bd5f56c4bca0410, type: 3}
   - {fileID: 21300000, guid: f9c4bc75e00934acd88044a0e74ef026, type: 3}
   - {fileID: 21300000, guid: 47cd2bd5970024c6ea0148c869851ef1, type: 3}
@@ -71,6 +76,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7f758bc6a02f542658df97fbb4e29576, type: 3}
   - {fileID: 21300000, guid: 929351e68b19b4376992a30c959b3923, type: 3}
   - {fileID: 21300000, guid: 5765a437fbc434ad4bd86530301025b7, type: 3}
+  - {fileID: 21300000, guid: 6562563731e854b75bf6afe65f11c907, type: 3}
   - {fileID: 21300000, guid: 4931cb476ce2e45048e722806cb667b9, type: 3}
   - {fileID: 21300000, guid: b0d51577745054740aea79eb0c9b471f, type: 3}
   - {fileID: 21300000, guid: fdc27da7df62f45359db9dbdc03bf9fe, type: 3}
@@ -78,11 +84,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b75801c970fb84d80b8dd444525b221f, type: 3}
   - {fileID: 21300000, guid: 830b9a6a8c0ba41f9818c27479d5295c, type: 3}
   - {fileID: 21300000, guid: 296dc10bc6f984b5cb6ae2626e4d685a, type: 3}
+  - {fileID: 21300000, guid: 3714832b2532e43b8ad4361e23633eff, type: 3}
   - {fileID: 21300000, guid: 477ee63bc89a444e6b3610cab0bedbd1, type: 3}
   - {fileID: 21300000, guid: 0081ac8b5d29c42dfb2a58863af13612, type: 3}
   - {fileID: 21300000, guid: b7091ecb8b5774ceab7f5084237590b7, type: 3}
   - {fileID: 21300000, guid: 4494afeb2edab44d4b25777fe6721bd4, type: 3}
+  - {fileID: 21300000, guid: 00adf23cd3ef9455d8c366551715046b, type: 3}
+  - {fileID: 21300000, guid: c735787c05e1f481a85e97fe7adfde65, type: 3}
+  - {fileID: 21300000, guid: 5687f40d446da4ecf8c8eb21f4ffc7a0, type: 3}
+  - {fileID: 21300000, guid: 9a1a201d30f064f528f99619b5b534ff, type: 3}
   - {fileID: 21300000, guid: 6024469d88ce041fdae569c00126c16a, type: 3}
+  - {fileID: 21300000, guid: 42c512dd9933a417e81c0ba5579d53a5, type: 3}
   - {fileID: 21300000, guid: 63f0380ef77d8429fbc9f509e918e5ec, type: 3}
   - {fileID: 21300000, guid: 3dc9a43e60b8d4979ab9d61b8f3eced4, type: 3}
   - {fileID: 21300000, guid: a6d655bebcf80449c8272e988da7dea9, type: 3}
@@ -91,10 +103,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ce492eafbfaf045b1b5a81fe11c3092c, type: 3}
   m_PackedSpriteNamesToIndex:
   - star_2
+  - level_6
   - star_2_6
   - star_5
   - star_4
+  - level_3
   - star_6
+  - exit
   - star_2_5
   - star_2_3
   - circle
@@ -107,6 +122,8 @@ SpriteAtlas:
   - star_6_6
   - star_5_5
   - background_builder
+  - level_4
+  - level_10
   - background_fight
   - background_buildings
   - star_1_5
@@ -114,6 +131,7 @@ SpriteAtlas:
   - background_tasks
   - star_3_6
   - buildings
+  - background_storage
   - builder
   - star_2_2
   - ring
@@ -121,11 +139,17 @@ SpriteAtlas:
   - star_5_6
   - star_1_4
   - star_3_5
+  - level_7
   - star_4_4
   - breakdown
   - trash
   - star_1_6
+  - level_2
+  - level_5
+  - level_8
+  - level_9
   - tasks
+  - level_1
   - star_2_4
   - star_3_3
   - star_3_4
