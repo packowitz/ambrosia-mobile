@@ -1,4 +1,6 @@
+using Backend.Models.Enums;
 using Backend.Signal;
+using Metagame.BuildingsScreen;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +12,7 @@ namespace Metagame
         [SerializeField] private Canvas inboxCanvas;
         [SerializeField] private Canvas tasksCanvas;
         [SerializeField] private Canvas buildingsCanvas;
+        [SerializeField] private BuildingsController buildingsController;
         [SerializeField] private Canvas builderCanvas;
         
         [Inject] private SignalBus signalBus;
@@ -35,6 +38,18 @@ namespace Metagame
                 
                 signalBus.Fire<MainScreenChangedSignal>();
             }
+        }
+
+        public void OpenBuilding(BuildingType buildingType)
+        {
+            SetMainScreen(MainScreenEnum.Buildings);
+            buildingsController.OpenBuilding(buildingType);
+        }
+
+        public void OpenBuildingUpgrade(BuildingType buildingType)
+        {
+            SetMainScreen(MainScreenEnum.Builder);
+            // TODO set upgrade to buildingType
         }
     }
 }

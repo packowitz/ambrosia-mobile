@@ -792,6 +792,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &563460805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 155564912822112258, guid: 156a788efaef94f8391d7ab811141d53,
+    type: 3}
+  m_PrefabInstance: {fileID: 708139582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff4cbdd81464e2998a3dd610f56fe52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &708139582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1681,6 +1693,7 @@ MonoBehaviour:
   inboxCanvas: {fileID: 1551524546}
   tasksCanvas: {fileID: 1114465502}
   buildingsCanvas: {fileID: 1475264539}
+  buildingsController: {fileID: 563460805}
   builderCanvas: {fileID: 1283755386}
 --- !u!4 &1291050087
 Transform:

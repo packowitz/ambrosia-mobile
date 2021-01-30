@@ -62,49 +62,16 @@ namespace Metagame.BuildingsScreen
 
         private void Start()
         {
-            academyBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto academy");
-            });
-            arenaBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto arena");
-            });
-            barracksBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto barracks");
-            });
-            bazaarBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto bazaar");
-            });
-            forgeBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto forge");
-            });
-            garageBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto garage");
-            });
-            guildBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto guild");
-            });
-            laboratoryBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto laboratory");
-            });
-            jewelryBtn.onClick.AddListener(() =>
-            {
-                Debug.Log("goto jewelry");
-            });
-            storageBtn.onClick.AddListener(() =>
-            {
-                if (buildingService.Building(BuildingType.STORAGE) != null)
-                {
-                    buildingCanvasController.OpenBuilding(storagePrefab);
-                }
-            });
+            academyBtn.onClick.AddListener(() => OpenBuilding(BuildingType.ACADEMY));
+            arenaBtn.onClick.AddListener(() => OpenBuilding(BuildingType.ARENA));
+            barracksBtn.onClick.AddListener(() => OpenBuilding(BuildingType.BARRACKS));
+            bazaarBtn.onClick.AddListener(() => OpenBuilding(BuildingType.BAZAAR));
+            forgeBtn.onClick.AddListener(() => OpenBuilding(BuildingType.FORGE));
+            garageBtn.onClick.AddListener(() => OpenBuilding(BuildingType.GARAGE));
+            guildBtn.onClick.AddListener(() => OpenBuilding(BuildingType.GUILD));
+            laboratoryBtn.onClick.AddListener(() => OpenBuilding(BuildingType.LABORATORY));
+            jewelryBtn.onClick.AddListener(() => OpenBuilding(BuildingType.JEWELRY));
+            storageBtn.onClick.AddListener(() => OpenBuilding(BuildingType.STORAGE));
             UpdateBuildings();
             
             signalBus.Subscribe<BuildingSignal>(UpdateBuildings);
@@ -113,6 +80,47 @@ namespace Metagame.BuildingsScreen
         private void OnDestroy()
         {
             signalBus.TryUnsubscribe<BuildingSignal>(UpdateBuildings);
+        }
+
+        public void OpenBuilding(BuildingType buildingType)
+        {
+            if (buildingService.Building(buildingType) != null)
+            {
+                switch (buildingType)
+                {
+                    case BuildingType.ACADEMY:
+                        Debug.Log("goto academy");
+                        break;
+                    case BuildingType.ARENA:
+                        Debug.Log("goto arena");
+                        break;
+                    case BuildingType.BARRACKS:
+                        Debug.Log("goto barracks");
+                        break;
+                    case BuildingType.BAZAAR:
+                        Debug.Log("goto bazaar");
+                        break;
+                    case BuildingType.FORGE:
+                        Debug.Log("goto forge");
+                        break;
+                    case BuildingType.GARAGE:
+                        Debug.Log("goto garage");
+                        break;
+                    case BuildingType.GUILD:
+                        Debug.Log("goto guild");
+                        break;
+                    case BuildingType.LABORATORY:
+                        Debug.Log("goto laboratory");
+                        break;
+                    case BuildingType.JEWELRY:
+                        Debug.Log("goto jewelry");
+                        break;
+                    case BuildingType.STORAGE:
+                        buildingCanvasController.OpenBuilding(storagePrefab);
+                        break;
+                }
+            }
+            
         }
 
         private void UpdateBuildings()

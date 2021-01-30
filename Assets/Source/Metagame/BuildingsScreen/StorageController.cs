@@ -53,8 +53,7 @@ namespace Metagame.BuildingsScreen
                 {
                     Destroy(levelPopup.gameObject);
                     Destroy(gameObject);
-                    metagameManager.SetMainScreen(MainScreenEnum.Builder);
-                    signalBus.Fire(new UpgradeSelectedSignal(BuildingType.STORAGE));
+                    metagameManager.OpenBuildingUpgrade(BuildingType.STORAGE);
                 });
             });
 

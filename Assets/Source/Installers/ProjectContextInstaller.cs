@@ -25,7 +25,6 @@ namespace Installers
             Container.DeclareSignal<PlayerActionSignal>();
             Container.DeclareSignal<ResourcesSignal>();
             Container.DeclareSignal<TaskSignal>();
-            Container.DeclareSignal<UpgradeSelectedSignal>();
             
             Container.Bind<ServerAPI>().AsSingle();
             Container.Bind<ConfigsProvider>().AsSingle();

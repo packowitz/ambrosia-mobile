@@ -22,8 +22,10 @@ namespace Metagame.MapScreen
         [Inject] private ResourcesService resourcesService;
         [Inject] private MissionService missionService;
         [Inject] private ConfigsProvider configsProvider;
+        [Inject] private BuildingService buildingService;
         [Inject] private SignalBus signalBus;
         [Inject] private PopupCanvasController popupCanvasController;
+        [Inject] private MetagameManager metagameManager;
 
         private PlayerMap currentMap;
         private readonly List<MapTileController> drawnTiles = new List<MapTileController>();
@@ -133,7 +135,15 @@ namespace Metagame.MapScreen
                     }
                     else if (tile.buildingType != null)
                     {
-                        Debug.Log($"goto building {tile.buildingType}");
+                        var building = buildingService.Building((BuildingType) tile.buildingType);
+                        if (building != null)
+                        {
+                            metagameManager.OpenBuilding(building.type);
+                        }
+                        else
+                        {
+                            Debug.Log($"discover new building: {tile.buildingType}");
+                        }
                     }
                     else if (!tile.chestOpened)
                     {
